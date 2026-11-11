@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiveTrack | NGO Donation Transparency & Volunteer Matching</title>
+    
+    <!-- Google Fonts: Manrope & DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepTeal: '#073F3D',
+                        turquoise: '#0C8277',
+                        lightMint: '#EFFAF8',
+                        warmOrange: '#F59A38',
+                        mintBorder: '#CBEBE5'
+                    },
+                    fontFamily: {
+                        manrope: ['Manrope', 'sans-serif'],
+                        dmSans: ['DM Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #F8FCFB;
+            color: #1F2937;
+        }
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'Manrope', sans-serif;
+        }
+        .bg-mint-gradient {
+            background: linear-gradient(135deg, #EFFAF8 0%, #E2F5F2 100%);
+        }
+        .bg-teal-gradient {
+            background: linear-gradient(135deg, #073F3D 0%, #0A5A57 100%);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #EFFAF8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0C8277;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-turquoise selection:text-white min-h-screen flex flex-col">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-deepTeal text-lightMint text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-warmOrange animate-pulse"></span>
+        <span>100% Transparency Verified — Every Rupee is tracked & Audited publicly.</span>
+        <a href="#reports" class="underline hover:text-warmOrange transition-colors ml-1">View Q3 Transparency Report &rarr;</a>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-mintBorder shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo & Tagline -->
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="image_dbcec3.jpg" alt="GiveTrack Logo" class="h-11 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='https://placehold.co/180x50/073F3D/ffffff?text=GiveTrack'">
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+                <a href="#home" class="px-3 py-2 text-sm font-semibold text-deepTeal hover:text-turquoise rounded-lg hover:bg-lightMint transition-colors">Home</a>
+                <a href="#campaigns" class="px-3 py-2 text-sm font-semibold text-gray-600 hover:text-turquoise rounded-lg hover:bg-lightMint transition-colors">Campaigns</a>
+                <a href="#transparency" class="px-3 py-2 text-sm font-semibold text-gray-600 hover:text-turquoise rounded-lg hover:bg-lightMint transition-colors">Donations & Expenses</a>
+                <a href="#volunteers" class="px-3 py-2 text-sm font-semibold text-gray-600 hover:text-turquoise rounded-lg hover:bg-lightMint transition-colors">Volunteers</a>
+                <a href="#reports" class="px-3 py-2 text-sm font-semibold text-gray-600 hover:text-turquoise rounded-lg hover:bg-lightMint transition-colors">Reports</a>
+            </nav>
+
+            <!-- User Utilities & CTA -->
+            <div class="flex items-center gap-3">
+                <!-- Notifications button -->
+                <button onclick="toggleNotificationDropdown()" class="relative p-2 rounded-full text-gray-600 hover:text-deepTeal hover:bg-lightMint transition-colors focus:outline-none" aria-label="Notifications">
+                    <i data-lucide="bell" class="w-5 h-5"></i>
+                    <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-warmOrange rounded-full ring-2 ring-white"></span>
+                </button>
+
+                <!-- Profile Dropdown Trigger -->
+                <div class="hidden sm:flex items-center gap-2 pl-2 border-l border-gray-200">
+                    <div class="w-9 h-9 rounded-full bg-turquoise text-white font-bold text-sm flex items-center justify-center shadow-sm">
+                        AK
+                    </div>
+                    <div class="text-xs leading-tight hidden lg:block">
+                        <p class="font-bold text-deepTeal">Ananya K.</p>
+                        <p class="text-gray-500">Verified Donor</p>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <button onclick="openDonationModal()" class="bg-warmOrange hover:bg-amber-600 text-white font-semibold text-sm px-4 py-2.5 rounded-xl shadow-sm transition-all hover:shadow transform hover:-translate-y-0.5 flex items-center gap-1.5">
+                    <i data-lucide="heart" class="w-4 h-4 fill-white"></i>
+                    <span>Donate Now</span>
+                </button>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-lightMint focus:outline-none">
+                    <i data-lucide="menu" id="menuIcon" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-mintBorder px-4 pt-2 pb-6 space-y-2 shadow-lg">
+            <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg font-semibold text-deepTeal bg-lightMint">Home</a>
+            <a href="#campaigns" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg font-semibold text-gray-700 hover:bg-lightMint">Campaigns</a>
+            <a href="#transparency" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg font-semibold text-gray-700 hover:bg-lightMint">Donations & Expenses</a>
+            <a href="#volunteers" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg font-semibold text-gray-700 hover:bg-lightMint">Volunteers</a>
+            <a href="#reports" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg font-semibold text-gray-700 hover:bg-lightMint">Reports & Audit</a>
+            <div class="pt-4 border-t border-gray-100 flex items-center gap-3 px-3">
+                <div class="w-10 h-10 rounded-full bg-turquoise text-white font-bold flex items-center justify-center">AK</div>
+                <div>
+                    <p class="font-bold text-deepTeal text-sm">Ananya Kapoor</p>
+                    <p class="text-xs text-gray-500">ananya.k@example.com</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- NOTIFICATION DROPDOWN MODAL/PANEL -->
+    <div id="notificationPanel" class="hidden absolute right-16 top-20 z-50 w-80 bg-white rounded-2xl shadow-2xl border border-mintBorder p-4 animate-in fade-in slide-in-from-top-2 duration-200">
+        <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-3">
+            <h4 class="font-bold text-deepTeal text-sm flex items-center gap-2">
+                <i data-lucide="bell" class="w-4 h-4 text-turquoise"></i> Notifications
+            </h4>
+            <span class="text-xs bg-lightMint text-turquoise font-bold px-2 py-0.5 rounded-full">2 New</span>
+        </div>
+        <div class="space-y-3 text-xs">
+            <div class="p-2.5 rounded-xl bg-lightMint/60 border border-mintBorder/40">
+                <p class="font-bold text-deepTeal">Audit Verified ✅</p>
+                <p class="text-gray-600 mt-0.5">Green Streets expenditure of ₹15,000 verified with GST invoice #4829.</p>
+                <span class="text-[10px] text-gray-400 mt-1 block">2 hours ago</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                <p class="font-semibold text-gray-800">New Volunteer Match!</p>
+                <p class="text-gray-600 mt-0.5">Your profile matched "Digital Learning Buddy" campaign.</p>
+                <span class="text-[10px] text-gray-400 mt-1 block">1 day ago</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-grow">
+        <!-- HERO / WELCOME SECTION -->
+        <section id="home" class="relative overflow-hidden bg-mint-gradient py-12 lg:py-20 border-b border-mintBorder">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur border border-turquoise/20 text-turquoise px-3.5 py-1.5 rounded-full text-xs font-bold shadow-xs">
+                            <i data-lucide="shield-check" class="w-4 h-4"></i>
+                            <span>Radical Transparency in Non-Profit Management</span>
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-deepTeal leading-tight tracking-tight">
+                            Every Rupee Tracked. <br class="hidden sm:inline">
+                            <span class="text-turquoise">Every Life Impacted.</span>
+                        </h1>
+                        
+                        <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                            GiveTrack connects generous donors, active field volunteers, and impactful grassroots NGOs. Track real-time fund utilization down to verified receipts, or lend your skills to drive real social change.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#campaigns" class="w-full sm:w-auto px-7 py-3.5 bg-deepTeal hover:bg-emerald-950 text-white font-bold text-center rounded-xl shadow-md transition-all hover:shadow-lg flex items-center justify-center gap-2">
+                                <span>Explore Active Campaigns</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#volunteers" class="w-full sm:w-auto px-7 py-3.5 bg-white hover:bg-lightMint text-turquoise font-bold text-center rounded-xl border border-turquoise/30 shadow-sm transition-all hover:border-turquoise flex items-center justify-center gap-2">
+                                <i data-lucide="users" class="w-4 h-4"></i>
+                                <span>Become a Volunteer</span>
+                            </a>
+                        </div>
+
+                        <!-- Trust signals -->
+                        <div class="pt-6 flex items-center justify-center lg:justify-start gap-6 text-xs text-gray-500 font-medium border-t border-teal-900/10">
+                            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-turquoise"></i> 80G Tax Exemption</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-turquoise"></i> Public Audit Logs</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-turquoise"></i> Zero Hidden Fees</span>
+                        </div>
+                    </div>
+
+                    <!-- Hero Graphic / Dynamic Card Preview -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-mintBorder relative">
+                            <div class="flex items-center justify-between pb-4 border-b border-gray-100">
+                                <div>
+                                    <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Live Platform Overview</span>
+                                    <h3 class="text-lg font-bold text-deepTeal">Financial Integrity Index</h3>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold flex items-center gap-1">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> 100% Audited
+                                </span>
+                            </div>
+
+                            <div class="my-6 space-y-4">
+                                <div class="p-4 bg-lightMint rounded-2xl border border-mintBorder flex justify-between items-center">
+                                    <div>
+                                        <p class="text-xs text-gray-500 font-semibold">Total Raised to Date</p>
+                                        <p class="text-2xl font-black text-deepTeal" id="heroTotalDonationsDisplay">₹1,00,000</p>
+                                    </div>
+                                    <div class="w-10 h-10 bg-turquoise/10 rounded-xl flex items-center justify-center text-turquoise">
+                                        <i data-lucide="trending-up" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="p-3.5 bg-gray-50 rounded-2xl border border-gray-100">
+                                        <p class="text-xs text-gray-500 font-medium">Deployed to Field</p>
+                                        <p class="text-lg font-bold text-emerald-700" id="heroUtilisedDisplay">₹65,000</p>
+                                        <p class="text-[10px] text-gray-400 mt-0.5">65% Direct Impact</p>
+                                    </div>
+                                    <div class="p-3.5 bg-gray-50 rounded-2xl border border-gray-100">
+                                        <p class="text-xs text-gray-500 font-medium">Available Fund</p>
+                                        <p class="text-lg font-bold text-warmOrange" id="heroBalanceDisplay">₹35,000</p>
+                                        <p class="text-[10px] text-gray-400 mt-0.5">35% In Pipeline</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-deepTeal rounded-2xl p-4 text-white flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-warmOrange/20 border border-warmOrange flex items-center justify-center text-warmOrange">
+                                        <i data-lucide="award" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-lightMint">Transparent Guarantee</p>
+                                        <p class="text-[11px] text-gray-300">Track your precise donation receipt</p>
+                                    </div>
+                                </div>
+                                <button onclick="openDonationModal()" class="text-xs font-bold bg-white text-deepTeal px-3 py-2 rounded-lg hover:bg-lightMint transition-colors">
+                                    Test Donate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- DASHBOARD STATS OVERVIEW -->
+        <section class="py-10 bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    
+                    <!-- Stat Card 1 -->
+                    <div class="bg-white p-6 rounded-2xl border border-mintBorder shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-deepTeal"></div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Total Donations</p>
+                                <h3 class="text-3xl font-extrabold text-deepTeal mt-2" id="statTotalDonations">₹1,00,000</h3>
+                            </div>
+                            <div class="p-3 rounded-xl bg-lightMint text-deepTeal group-hover:bg-deepTeal group-hover:text-white transition-colors">
+                                <i data-lucide="wallet" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-emerald-600 font-medium mt-3 flex items-center gap-1">
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i> +12% from last month
+                        </p>
+                    </div>
+
+                    <!-- Stat Card 2 -->
+                    <div class="bg-white p-6 rounded-2xl border border-mintBorder shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-turquoise"></div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Funds Utilised</p>
+                                <h3 class="text-3xl font-extrabold text-turquoise mt-2" id="statFundsUtilised">₹65,000</h3>
+                            </div>
+                            <div class="p-3 rounded-xl bg-lightMint text-turquoise group-hover:bg-turquoise group-hover:text-white transition-colors">
+                                <i data-lucide="pie-chart" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 font-medium mt-3">
+                            <span class="font-bold text-deepTeal">65%</span> total execution rate
+                        </p>
+                    </div>
+
+                    <!-- Stat Card 3 -->
+                    <div class="bg-white p-6 rounded-2xl border border-mintBorder shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-warmOrange"></div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Remaining Balance</p>
+                                <h3 class="text-3xl font-extrabold text-amber-600 mt-2" id="statRemainingBalance">₹35,000</h3>
+                            </div>
+                            <div class="p-3 rounded-xl bg-amber-50 text-warmOrange group-hover:bg-warmOrange group-hover:text-white transition-colors">
+                                <i data-lucide="vault" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 font-medium mt-3">
+                            Allocated to upcoming milestones
+                        </p>
+                    </div>
+
+                    <!-- Stat Card 4 -->
+                    <div class="bg-white p-6 rounded-2xl border border-mintBorder shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-emerald-500"></div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Active Volunteers</p>
+                                <h3 class="text-3xl font-extrabold text-deepTeal mt-2" id="statActiveVolunteers">128</h3>
+                            </div>
+                            <div class="p-3 rounded-xl bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                                <i data-lucide="user-check" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-emerald-600 font-medium mt-3 flex items-center gap-1">
+                            <i data-lucide="check" class="w-3.5 h-3.5"></i> Across 3 active initiatives
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ACTIVE CAMPAIGNS SECTION -->
+        <section id="campaigns" class="py-16 bg-gray-50/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <span class="text-xs font-bold text-turquoise uppercase tracking-widest">Verified Projects</span>
+                        <h2 class="text-3xl font-bold text-deepTeal mt-1">Active Fundraising Campaigns</h2>
+                    </div>
+                    <p class="text-sm text-gray-500 max-w-md">
+                        Every campaign receives strict milestones monitoring. Funds are released only upon proof of expenditure.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Campaign 1 -->
+                    <div class="bg-white rounded-3xl border border-mintBorder overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+                        <div class="h-48 bg-teal-900 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800" alt="Every Child in School" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/073F3D/ffffff?text=Education+Campaign'">
+                            <span class="absolute top-4 right-4 bg-white/95 backdrop-blur text-deepTeal font-extrabold text-xs px-3 py-1 rounded-full shadow-sm">
+                                Education
+                            </span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-deepTeal mb-2 group-hover:text-turquoise transition-colors">Every Child in School</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                    Providing digital learning kits, uniforms, and after-school tutoring for underprivileged children in rural Karnataka.
+                                </p>
+                            </div>
+                            <div>
+                                <!-- Progress -->
+                                <div class="space-y-2 mb-6">
+                                    <div class="flex justify-between text-xs font-bold">
+                                        <span class="text-deepTeal">Raised: <span id="c1-raised">₹42,000</span></span>
+                                        <span class="text-gray-500">Goal: ₹60,000</span>
+                                    </div>
+                                    <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden p-0.5 border border-gray-200">
+                                        <div id="c1-bar" class="bg-turquoise h-full rounded-full transition-all duration-500" style="width: 70%"></div>
+                                    </div>
+                                    <div class="flex justify-between items-center text-[11px] text-gray-500 font-medium pt-1">
+                                        <span class="text-emerald-700 font-bold" id="c1-percent">70% Funded</span>
+                                        <span>42 Beneficiaries</span>
+                                    </div>
+                                </div>
+
+                                <button onclick="selectCampaignAndDonate('Every Child in School')" class="w-full bg-deepTeal hover:bg-turquoise text-white font-bold py-3 px-4 rounded-xl shadow transition-colors flex items-center justify-center gap-2">
+                                    <i data-lucide="heart" class="w-4 h-4"></i>
+                                    <span>Donate to this Cause</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campaign 2 -->
+                    <div class="bg-white rounded-3xl border border-mintBorder overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+                        <div class="h-48 bg-teal-900 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800" alt="Healthy Neighbourhood" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/073F3D/ffffff?text=Healthcare+Campaign'">
+                            <span class="absolute top-4 right-4 bg-white/95 backdrop-blur text-deepTeal font-extrabold text-xs px-3 py-1 rounded-full shadow-sm">
+                                Healthcare
+                            </span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-deepTeal mb-2 group-hover:text-turquoise transition-colors">Healthy Neighbourhood</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                    Organising free mobile health checkups, distribution of essential medicines, and hygiene awareness camps in urban slums.
+                                </p>
+                            </div>
+                            <div>
+                                <!-- Progress -->
+                                <div class="space-y-2 mb-6">
+                                    <div class="flex justify-between text-xs font-bold">
+                                        <span class="text-deepTeal">Raised: <span id="c2-raised">₹28,000</span></span>
+                                        <span class="text-gray-500">Goal: ₹50,000</span>
+                                    </div>
+                                    <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden p-0.5 border border-gray-200">
+                                        <div id="c2-bar" class="bg-turquoise h-full rounded-full transition-all duration-500" style="width: 56%"></div>
+                                    </div>
+                                    <div class="flex justify-between items-center text-[11px] text-gray-500 font-medium pt-1">
+                                        <span class="text-emerald-700 font-bold" id="c2-percent">56% Funded</span>
+                                        <span>350 Checkups Done</span>
+                                    </div>
+                                </div>
+
+                                <button onclick="selectCampaignAndDonate('Healthy Neighbourhood')" class="w-full bg-deepTeal hover:bg-turquoise text-white font-bold py-3 px-4 rounded-xl shadow transition-colors flex items-center justify-center gap-2">
+                                    <i data-lucide="heart" class="w-4 h-4"></i>
+                                    <span>Donate to this Cause</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campaign 3 -->
+                    <div class="bg-white rounded-3xl border border-mintBorder overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+                        <div class="h-48 bg-teal-900 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800" alt="Green Streets Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/073F3D/ffffff?text=Environment+Campaign'">
+                            <span class="absolute top-4 right-4 bg-white/95 backdrop-blur text-deepTeal font-extrabold text-xs px-3 py-1 rounded-full shadow-sm">
+                                Environment
+                            </span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-deepTeal mb-2 group-hover:text-turquoise transition-colors">Green Streets Project</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                    Urban tree plantation drive, rainwater harvesting setups, and community composting units for a cleaner city.
+                                </p>
+                            </div>
+                            <div>
+                                <!-- Progress -->
+                                <div class="space-y-2 mb-6">
+                                    <div class="flex justify-between text-xs font-bold">
+                                        <span class="text-deepTeal">Raised: <span id="c3-raised">₹30,000</span></span>
+                                        <span class="text-gray-500">Goal: ₹40,000</span>
+                                    </div>
+                                    <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden p-0.5 border border-gray-200">
+                                        <div id="c3-bar" class="bg-turquoise h-full rounded-full transition-all duration-500" style="width: 75%"></div>
+                                    </div>
+                                    <div class="flex justify-between items-center text-[11px] text-gray-500 font-medium pt-1">
+                                        <span class="text-emerald-700 font-bold" id="c3-percent">75% Funded</span>
+                                        <span>500 Saplings Planted</span>
+                                    </div>
+                                </div>
+
+                                <button onclick="selectCampaignAndDonate('Green Streets Project')" class="w-full bg-deepTeal hover:bg-turquoise text-white font-bold py-3 px-4 rounded-xl shadow transition-colors flex items-center justify-center gap-2">
+                                    <i data-lucide="heart" class="w-4 h-4"></i>
+                                    <span>Donate to this Cause</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- DONATION TRANSPARENCY & EXPENSE BREAKDOWN SECTION -->
+        <section id="transparency" class="py-16 bg-white border-b border-mintBorder">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="bg-lightMint text-turquoise text-xs font-extrabold px-3 py-1 rounded-full border border-mintBorder uppercase tracking-wider">
+                        100% Financial Accountability
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-deepTeal mt-3">Donation Transparency & Expense Tracker</h2>
+                    <p class="text-gray-600 mt-2 text-sm sm:text-base">
+                        We balance every single rupee. Here is the verified mathematical distribution of our ₹1,00,000 total received donations.
+                    </p>
+                </div>
+
+                <!-- Balanced Formula Banner -->
+                <div class="bg-mint-gradient rounded-2xl p-4 sm:p-6 mb-10 border border-mintBorder text-center shadow-xs">
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-sm sm:text-lg font-bold text-deepTeal">
+                        <div class="bg-white px-4 py-2 rounded-xl shadow-xs border border-mintBorder">
+                            <span class="text-xs text-gray-500 block font-normal">Amount Deployed</span>
+                            <span class="text-emerald-700">₹65,000 Spent</span>
+                        </div>
+                        <span class="text-xl text-turquoise">+</span>
+                        <div class="bg-white px-4 py-2 rounded-xl shadow-xs border border-mintBorder">
+                            <span class="text-xs text-gray-500 block font-normal">Funds in Reserve</span>
+                            <span class="text-warmOrange">₹35,000 Remaining</span>
+                        </div>
+                        <span class="text-xl text-turquoise">=</span>
+                        <div class="bg-deepTeal text-white px-5 py-2 rounded-xl shadow-sm">
+                            <span class="text-xs text-lightMint block font-normal">Total Verified Pool</span>
+                            <span id="transparencyTotal">₹1,00,000 Total</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- Chart Column -->
+                    <div class="lg:col-span-5 bg-white p-6 rounded-3xl border border-mintBorder shadow-sm flex flex-col items-center">
+                        <h4 class="text-base font-bold text-deepTeal mb-4 text-center">Fund Allocation Breakdown</h4>
+                        <div class="w-full max-w-[320px] aspect-square relative">
+                            <canvas id="expenseChart"></canvas>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4 text-center">
+                            *Updated in real-time as expense receipts are verified by independent auditors.
+                        </p>
+                    </div>
+
+                    <!-- Itemized Expenses List -->
+                    <div class="lg:col-span-7 space-y-4">
+                        <h3 class="text-xl font-bold text-deepTeal mb-2">Itemized Expense Ledger</h3>
+                        
+                        <!-- Expense Item 1 -->
+                        <div class="p-4 bg-gray-50 hover:bg-lightMint/50 rounded-2xl border border-gray-100 transition-colors flex items-center justify-between gap-4">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-sm">
+                                    1
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-deepTeal text-sm">Educational Supplies & Tech Kits</h4>
+                                    <p class="text-xs text-gray-500">Every Child in School • 30 Tablets & Books</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-bold text-deepTeal text-base">₹30,000</span>
+                                <span class="block text-[10px] text-emerald-600 font-bold flex items-center justify-end gap-1">
+                                    <i data-lucide="check-circle" class="w-3 h-3"></i> Verified Receipt
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Expense Item 2 -->
+                        <div class="p-4 bg-gray-50 hover:bg-lightMint/50 rounded-2xl border border-gray-100 transition-colors flex items-center justify-between gap-4">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-sm">
+                                    2
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-deepTeal text-sm">Health Camps & Medical Consumables</h4>
+                                    <p class="text-xs text-gray-500">Healthy Neighbourhood • Diagnostics & Doctors</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-bold text-deepTeal text-base">₹20,000</span>
+                                <span class="block text-[10px] text-emerald-600 font-bold flex items-center justify-end gap-1">
+                                    <i data-lucide="check-circle" class="w-3 h-3"></i> Verified Receipt
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Expense Item 3 -->
+                        <div class="p-4 bg-gray-50 hover:bg-lightMint/50 rounded-2xl border border-gray-100 transition-colors flex items-center justify-between gap-4">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-sm">
+                                    3
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-deepTeal text-sm">Tree Plantation & Eco Tools</h4>
+                                    <p class="text-xs text-gray-500">Green Streets Project • 500 Saplings & Compost</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-bold text-deepTeal text-base">₹10,000</span>
+                                <span class="block text-[10px] text-emerald-600 font-bold flex items-center justify-end gap-1">
+                                    <i data-lucide="check-circle" class="w-3 h-3"></i> Verified Receipt
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Expense Item 4 -->
+                        <div class="p-4 bg-gray-50 hover:bg-lightMint/50 rounded-2xl border border-gray-100 transition-colors flex items-center justify-between gap-4">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-sm">
+                                    4
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-deepTeal text-sm">Administrative & Local Logistics</h4>
+                                    <p class="text-xs text-gray-500">Platform operational costs & field transport</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-bold text-deepTeal text-base">₹5,000</span>
+                                <span class="block text-[10px] text-emerald-600 font-bold flex items-center justify-end gap-1">
+                                    <i data-lucide="check-circle" class="w-3 h-3"></i> Audit Approved
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- RECENT DONATIONS TABLE SECTION -->
+        <section class="py-16 bg-gray-50/60 border-b border-mintBorder">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                    <div>
+                        <span class="text-xs font-bold text-turquoise uppercase tracking-widest">Public Ledger</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-deepTeal mt-1">Recent Transparent Donations</h2>
+                    </div>
+
+                    <!-- Search Filter -->
+                    <div class="relative w-full md:w-72">
+                        <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-3"></i>
+                        <input type="text" id="donationSearchInput" onkeyup="filterDonationTable()" placeholder="Search donor or campaign..." class="w-full pl-9 pr-4 py-2 bg-white border border-mintBorder rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-turquoise">
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl border border-mintBorder overflow-hidden shadow-sm">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse" id="donationsTable">
+                            <thead>
+                                <tr class="bg-lightMint/60 border-b border-mintBorder text-xs uppercase font-extrabold text-deepTeal">
+                                    <th class="py-4 px-6">Donor Name</th>
+                                    <th class="py-4 px-6">Campaign</th>
+                                    <th class="py-4 px-6">Date</th>
+                                    <th class="py-4 px-6">Amount</th>
+                                    <th class="py-4 px-6 text-right">Verification Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100 text-sm" id="donationTableBody">
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="py-4 px-6 font-bold text-deepTeal">Rahul Sharma</td>
+                                    <td class="py-4 px-6 text-gray-600">Every Child in School</td>
+                                    <td class="py-4 px-6 text-gray-500 text-xs">10 Nov 2026</td>
+                                    <td class="py-4 px-6 font-extrabold text-deepTeal">₹15,000</td>
+                                    <td class="py-4 px-6 text-right">
+                                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+                                            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i> Verified
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="py-4 px-6 font-bold text-deepTeal">Priya Nair</td>
+                                    <td class="py-4 px-6 text-gray-600">Healthy Neighbourhood</td>
+                                    <td class="py-4 px-6 text-gray-500 text-xs">08 Nov 2026</td>
+                                    <td class="py-4 px-6 font-extrabold text-deepTeal">₹10,000</td>
+                                    <td class="py-4 px-6 text-right">
+                                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+                                            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i> Verified
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="py-4 px-6 font-bold text-deepTeal">Aarav Patel</td>
+                                    <td class="py-4 px-6 text-gray-600">Green Streets Project</td>
+                                    <td class="py-4 px-6 text-gray-500 text-xs">05 Nov 2026</td>
+                                    <td class="py-4 px-6 font-extrabold text-deepTeal">₹12,000</td>
+                                    <td class="py-4 px-6 text-right">
+                                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+                                            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i> Verified
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="py-4 px-6 font-bold text-deepTeal">Sneha Verma</td>
+                                    <td class="py-4 px-6 text-gray-600">Every Child in School</td>
+                                    <td class="py-4 px-6 text-gray-500 text-xs">02 Nov 2026</td>
+                                    <td class="py-4 px-6 font-extrabold text-deepTeal">₹8,000</td>
+                                    <td class="py-4 px-6 text-right">
+                                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+                                            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i> Verified
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="py-4 px-6 font-bold text-deepTeal">Vikram Roy</td>
+                                    <td class="py-4 px-6 text-gray-600">Green Streets Project</td>
+                                    <td class="py-4 px-6 text-gray-500 text-xs">28 Oct 2026</td>
+                                    <td class="py-4 px-6 font-extrabold text-deepTeal">₹20,000</td>
+                                    <td class="py-4 px-6 text-right">
+                                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+                                            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i> Verified
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VOLUNTEER OPPORTUNITIES & INTERACTIVE MATCHING ASSISTANT -->
+        <section id="volunteers" class="py-16 bg-white border-b border-mintBorder">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="bg-lightMint text-turquoise text-xs font-extrabold px-3 py-1 rounded-full border border-mintBorder uppercase tracking-wider">
+                        Get Involved
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-deepTeal mt-3">Volunteer Opportunities & Matching Tool</h2>
+                    <p class="text-gray-600 mt-2 text-sm sm:text-base">
+                        Lend your time and talent. Use our smart Assistant to find roles tailored specifically to your skill set and available time.
+                    </p>
+                </div>
+
+                <!-- INTERACTIVE PLUGIN: VOLUNTEER MATCHING ASSISTANT -->
+                <div class="bg-mint-gradient p-6 sm:p-8 rounded-3xl border border-mintBorder mb-12 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-deepTeal text-white flex items-center justify-center">
+                            <i data-lucide="sparkles" class="w-5 h-5 text-warmOrange"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-deepTeal">Volunteer Matching Assistant</h3>
+                            <p class="text-xs text-gray-600">Select your skill set and availability to see your best matching opportunities</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 bg-white p-6 rounded-2xl border border-mintBorder shadow-xs">
+                        
+                        <!-- Filter 1: Skills -->
+                        <div class="md:col-span-6 space-y-3">
+                            <label class="block text-xs font-extrabold text-deepTeal uppercase tracking-wider">Your Skills:</label>
+                            <div class="flex flex-wrap gap-2" id="skillsFilterGroup">
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" value="Teaching" onchange="filterVolunteerOpportunities()" class="peer hidden">
+                                    <span class="px-3 py-1.5 rounded-xl border border-gray-200 text-xs font-semibold text-gray-600 peer-checked:bg-turquoise peer-checked:text-white peer-checked:border-turquoise transition-colors block">Teaching</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" value="Tech" onchange="filterVolunteerOpportunities()" class="peer hidden">
+                                    <span class="px-3 py-1.5 rounded-xl border border-gray-200 text-xs font-semibold text-gray-600 peer-checked:bg-turquoise peer-checked:text-white peer-checked:border-turquoise transition-colors block">Tech Basics</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" value="Photography" onchange="filterVolunteerOpportunities()" class="peer hidden">
+                                    <span class="px-3 py-1.5 rounded-xl border border-gray-200 text-xs font-semibold text-gray-600 peer-checked:bg-turquoise peer-checked:text-white peer-checked:border-turquoise transition-colors block">Photography</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" value="Social Media" onchange="filterVolunteerOpportunities()" class="peer hidden">
+                                    <span class="px-3 py-1.5 rounded-xl border border-gray-200 text-xs font-semibold text-gray-600 peer-checked:bg-turquoise peer-checked:text-white peer-checked:border-turquoise transition-colors block">Social Media</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" value="Gardening" onchange="filterVolunteerOpportunities()" class="peer hidden">
+                                    <span class="px-3 py-1.5 rounded-xl border border-gray-200 text-xs font-semibold text-gray-600 peer-checked:bg-turquoise peer-checked:text-white peer-checked:border-turquoise transition-colors block">Gardening</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" value="Outreach" onchange="filterVolunteerOpportunities()" class="peer hidden">
+                                    <span class="px-3 py-1.5 rounded-xl border border-gray-200 text-xs font-semibold text-gray-600 peer-checked:bg-turquoise peer-checked:text-white peer-checked:border-turquoise transition-colors block">Outreach</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Filter 2: Availability -->
+                        <div class="md:col-span-6 space-y-3">
+                            <label class="block text-xs font-extrabold text-deepTeal uppercase tracking-wider">Your Availability:</label>
+                            <div class="flex flex-wrap gap-2" id="availabilityFilterGroup">
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" value="Weekends" onchange="filterVolunteerOpportunities()" class="peer hidden">
+                                    <span class="px-3 py-1.5 rounded-xl border border-gray-200 text-xs font-semibold text-gray-600 peer-checked:bg-deepTeal peer-checked:text-white peer-checked:border-deepTeal transition-colors block">Weekends</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" value="Flexible" onchange="filterVolunteerOpportunities()" class="peer hidden">
+                                    <span class="px-3 py-1.5 rounded-xl border border-gray-200 text-xs font-semibold text-gray-600 peer-checked:bg-deepTeal peer-checked:text-white peer-checked:border-deepTeal transition-colors block">Flexible Hours</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" value="Saturday" onchange="filterVolunteerOpportunities()" class="peer hidden">
+                                    <span class="px-3 py-1.5 rounded-xl border border-gray-200 text-xs font-semibold text-gray-600 peer-checked:bg-deepTeal peer-checked:text-white peer-checked:border-deepTeal transition-colors block">Saturday Mornings</span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- VOLUNTEER CARDS GRID -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="volunteerCardsContainer">
+                    
+                    <!-- Opportunity 1 -->
+                    <div class="volunteer-card bg-white rounded-3xl border border-mintBorder p-6 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between"
+                         data-skills="Teaching Tech" data-availability="Weekends">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="p-3 bg-lightMint text-turquoise rounded-2xl">
+                                    <i data-lucide="book-open" class="w-6 h-6"></i>
+                                </span>
+                                <span class="bg-emerald-50 text-emerald-700 font-extrabold text-xs px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1">
+                                    <i data-lucide="check-circle" class="w-3 h-3"></i> 95% Match
+                                </span>
+                            </div>
+                            <h3 class="text-xl font-bold text-deepTeal mb-2">Digital Learning Buddy</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                Tutor young students in basic computer skills, coding logic, and internet literacy in weekend workshops.
+                            </p>
+                            
+                            <div class="space-y-2 mb-6">
+                                <div class="text-xs">
+                                    <span class="font-bold text-deepTeal">Required Skills:</span>
+                                    <div class="flex flex-wrap gap-1.5 mt-1">
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-md font-medium">Teaching</span>
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-md font-medium">Tech Basics</span>
+                                    </div>
+                                </div>
+                                <div class="text-xs">
+                                    <span class="font-bold text-deepTeal">Availability:</span>
+                                    <span class="text-gray-600 block mt-0.5">Weekends • 4 hrs/week</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="applyVolunteer('Digital Learning Buddy')" class="w-full bg-lightMint hover:bg-turquoise text-turquoise hover:text-white font-bold py-3 px-4 rounded-xl border border-mintBorder transition-colors flex items-center justify-center gap-2">
+                            <i data-lucide="user-plus" class="w-4 h-4"></i>
+                            <span>Apply as Volunteer</span>
+                        </button>
+                    </div>
+
+                    <!-- Opportunity 2 -->
+                    <div class="volunteer-card bg-white rounded-3xl border border-mintBorder p-6 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between"
+                         data-skills="Photography Social Media" data-availability="Flexible">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="p-3 bg-amber-50 text-warmOrange rounded-2xl">
+                                    <i data-lucide="camera" class="w-6 h-6"></i>
+                                </span>
+                                <span class="bg-emerald-50 text-emerald-700 font-extrabold text-xs px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1">
+                                    <i data-lucide="check-circle" class="w-3 h-3"></i> 90% Match
+                                </span>
+                            </div>
+                            <h3 class="text-xl font-bold text-deepTeal mb-2">Community Storyteller</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                Capture impact stories, photo essays, and social media reels highlighting local grassroots transformations.
+                            </p>
+                            
+                            <div class="space-y-2 mb-6">
+                                <div class="text-xs">
+                                    <span class="font-bold text-deepTeal">Required Skills:</span>
+                                    <div class="flex flex-wrap gap-1.5 mt-1">
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-md font-medium">Photography</span>
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-md font-medium">Social Media</span>
+                                    </div>
+                                </div>
+                                <div class="text-xs">
+                                    <span class="font-bold text-deepTeal">Availability:</span>
+                                    <span class="text-gray-600 block mt-0.5">Flexible • 3 hrs/week</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="applyVolunteer('Community Storyteller')" class="w-full bg-lightMint hover:bg-turquoise text-turquoise hover:text-white font-bold py-3 px-4 rounded-xl border border-mintBorder transition-colors flex items-center justify-center gap-2">
+                            <i data-lucide="user-plus" class="w-4 h-4"></i>
+                            <span>Apply as Volunteer</span>
+                        </button>
+                    </div>
+
+                    <!-- Opportunity 3 -->
+                    <div class="volunteer-card bg-white rounded-3xl border border-mintBorder p-6 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between"
+                         data-skills="Gardening Outreach" data-availability="Saturday">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="p-3 bg-emerald-50 text-emerald-700 rounded-2xl">
+                                    <i data-lucide="sprout" class="w-6 h-6"></i>
+                                </span>
+                                <span class="bg-emerald-50 text-emerald-700 font-extrabold text-xs px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1">
+                                    <i data-lucide="check-circle" class="w-3 h-3"></i> 88% Match
+                                </span>
+                            </div>
+                            <h3 class="text-xl font-bold text-deepTeal mb-2">Green Streets Volunteer</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                Hands-on tree planting, urban garden maintenance, and mobilizing neighborhood eco-awareness drives.
+                            </p>
+                            
+                            <div class="space-y-2 mb-6">
+                                <div class="text-xs">
+                                    <span class="font-bold text-deepTeal">Required Skills:</span>
+                                    <div class="flex flex-wrap gap-1.5 mt-1">
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-md font-medium">Community Outreach</span>
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-md font-medium">Gardening</span>
+                                    </div>
+                                </div>
+                                <div class="text-xs">
+                                    <span class="font-bold text-deepTeal">Availability:</span>
+                                    <span class="text-gray-600 block mt-0.5">Saturday Mornings • 5 hrs/week</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="applyVolunteer('Green Streets Volunteer')" class="w-full bg-lightMint hover:bg-turquoise text-turquoise hover:text-white font-bold py-3 px-4 rounded-xl border border-mintBorder transition-colors flex items-center justify-center gap-2">
+                            <i data-lucide="user-plus" class="w-4 h-4"></i>
+                            <span>Apply as Volunteer</span>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- REPORTS & AUDIT DOWNLOAD SECTION -->
+        <section id="reports" class="py-16 bg-gray-50/60 border-b border-mintBorder">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-deepTeal rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-xl">
+                    <div class="grid lg:grid-cols-12 gap-8 items-center relative z-10">
+                        <div class="lg:col-span-8 space-y-4">
+                            <span class="bg-turquoise/30 text-lightMint text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                Transparency Compliance
+                            </span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Public Audits & Tax Exemption Documents</h2>
+                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                                GiveTrack maintains full financial compliance. All donations qualify for 80G tax benefit certificate under Indian Income Tax Act. Access certified third-party audit reports below.
+                            </p>
+                        </div>
+                        <div class="lg:col-span-4 flex flex-col gap-3">
+                            <button onclick="downloadReport('Q3_2026_Audit_Report.pdf')" class="w-full bg-warmOrange hover:bg-amber-600 text-white font-bold py-3.5 px-6 rounded-xl shadow transition-all flex items-center justify-between">
+                                <span class="flex items-center gap-2"><i data-lucide="file-text" class="w-5 h-5"></i> Q3 Financial Audit</span>
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                            </button>
+                            <button onclick="downloadReport('80G_Tax_Exemption_Certificate.pdf')" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3.5 px-6 rounded-xl border border-white/20 transition-all flex items-center justify-between">
+                                <span class="flex items-center gap-2"><i data-lucide="award" class="w-5 h-5"></i> 80G Certificate</span>
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-deepTeal text-white border-t border-teal-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+                
+                <!-- Brand Info -->
+                <div class="lg:col-span-2 space-y-4">
+                    <img src="image_dbcec3.jpg" alt="GiveTrack Logo" class="h-10 w-auto object-contain brightness-0 invert" onerror="this.src='https://placehold.co/180x50/ffffff/073F3D?text=GiveTrack'">
+                    <p class="text-xs text-gray-300 leading-relaxed max-w-sm">
+                        GiveTrack is a technology-first non-profit transparency and volunteer deployment engine. Ensuring zero financial leakages and maximum community impact.
+                    </p>
+                    <div class="flex items-center gap-3 text-gray-300 pt-2">
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-turquoise transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-turquoise transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-turquoise transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-turquoise transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h4 class="text-sm font-bold text-warmOrange uppercase tracking-wider mb-4">Platform</h4>
+                    <ul class="space-y-2.5 text-xs text-gray-300">
+                        <li><a href="#home" class="hover:text-white transition-colors">Home Dashboard</a></li>
+                        <li><a href="#campaigns" class="hover:text-white transition-colors">Active Causes</a></li>
+                        <li><a href="#transparency" class="hover:text-white transition-colors">Expense Breakdown</a></li>
+                        <li><a href="#volunteers" class="hover:text-white transition-colors">Volunteer Opportunities</a></li>
+                        <li><a href="#reports" class="hover:text-white transition-colors">Quarterly Audits</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-sm font-bold text-warmOrange uppercase tracking-wider mb-4">HQ Contact</h4>
+                    <ul class="space-y-2.5 text-xs text-gray-300">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-turquoise shrink-0 mt-0.5"></i>
+                            <span>GiveTrack Foundation, Indiranagar, Bengaluru, KA 560038, India</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-turquoise shrink-0"></i>
+                            <span>transparency@givetrack.org</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-turquoise shrink-0"></i>
+                            <span>+91 80 4920 1100</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Legal & Compliance -->
+                <div>
+                    <h4 class="text-sm font-bold text-warmOrange uppercase tracking-wider mb-4">Legal & Governance</h4>
+                    <ul class="space-y-2.5 text-xs text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Donor Refund Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">80G Compliance</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+                <p>&copy; 2026 GiveTrack Foundation. All Rights Reserved.</p>
+                <p class="flex items-center gap-1">Designed with <i data-lucide="heart" class="w-3.5 h-3.5 text-warmOrange fill-warmOrange"></i> for Radical Social Impact.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE DONATION MODAL POPUP -->
+    <div id="donationModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl border border-mintBorder animate-in zoom-in-95 duration-200">
+            <button onclick="closeDonationModal()" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-lightMint text-turquoise flex items-center justify-center">
+                    <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-deepTeal">Make a Donation</h3>
+                    <p class="text-xs text-gray-500">100% Tax Deductible (80G Verified)</p>
+                </div>
+            </div>
+
+            <form id="donationForm" onsubmit="handleDonationSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-deepTeal mb-1">Donor Full Name</label>
+                    <input type="text" id="donorName" required placeholder="e.g. Ananya Kapoor" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-turquoise focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-deepTeal mb-1">Select Campaign</label>
+                    <select id="donorCampaign" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-turquoise focus:outline-none bg-white">
+                        <option value="Every Child in School">Every Child in School</option>
+                        <option value="Healthy Neighbourhood">Healthy Neighbourhood</option>
+                        <option value="Green Streets Project">Green Streets Project</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-deepTeal mb-1">Donation Amount (₹)</label>
+                    <div class="relative">
+                        <span class="absolute left-3.5 top-2.5 text-gray-500 font-bold">₹</span>
+                        <input type="number" id="donorAmount" min="100" required placeholder="2000" class="w-full pl-8 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-turquoise focus:outline-none font-bold text-deepTeal">
+                    </div>
+                </div>
+
+                <!-- Preset Amount Buttons -->
+                <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="setPresetAmount(1000)" class="flex-1 py-1.5 bg-lightMint hover:bg-turquoise hover:text-white text-turquoise text-xs font-bold rounded-lg border border-mintBorder transition-colors">₹1,000</button>
+                    <button type="button" onclick="setPresetAmount(2500)" class="flex-1 py-1.5 bg-lightMint hover:bg-turquoise hover:text-white text-turquoise text-xs font-bold rounded-lg border border-mintBorder transition-colors">₹2,500</button>
+                    <button type="button" onclick="setPresetAmount(5000)" class="flex-1 py-1.5 bg-lightMint hover:bg-turquoise hover:text-white text-turquoise text-xs font-bold rounded-lg border border-mintBorder transition-colors">₹5,000</button>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-100 text-emerald-800 text-xs flex items-center gap-2">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                    <span>Receipt will be automatically issued and recorded in the audit log.</span>
+                </div>
+
+                <button type="submit" class="w-full bg-warmOrange hover:bg-amber-600 text-white font-bold py-3 rounded-xl shadow transition-colors flex items-center justify-center gap-2">
+                    <span>Complete Demo Donation</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast" class="hidden fixed bottom-6 right-6 z-50 bg-deepTeal text-white px-5 py-4 rounded-2xl shadow-2xl border border-turquoise flex items-center gap-3 animate-bounce">
+        <i data-lucide="check-circle" class="w-6 h-6 text-warmOrange"></i>
+        <div>
+            <p class="font-bold text-sm" id="toastTitle">Action Successful</p>
+            <p class="text-xs text-gray-300" id="toastMessage">Your update has been processed.</p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // State variables
+        let totalDonations = 100000;
+        let fundsUtilised = 65000;
+        let campaignStats = {
+            'Every Child in School': { raised: 42000, goal: 60000 },
+            'Healthy Neighbourhood': { raised: 28000, goal: 50000 },
+            'Green Streets Project': { raised: 30000, goal: 40000 }
+        };
+
+        let chartInstance = null;
+
+        // Initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            initExpenseChart();
+        });
+
+        // Initialize Chart.js Doughnut Chart
+        function initExpenseChart() {
+            const ctx = document.getElementById('expenseChart').getContext('2d');
+            chartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        'Educational Supplies',
+                        'Health Camps & Consumables',
+                        'Tree Plantation & Eco Tools',
+                        'Admin & Logistics',
+                        'Remaining Unallocated'
+                    ],
+                    datasets: [{
+                        data: [30000, 20000, 10000, 5000, 35000],
+                        backgroundColor: [
+                            '#073F3D', // Deep Teal
+                            '#0C8277', // Turquoise
+                            '#10B981', // Emerald
+                            '#F59A38', // Orange
+                            '#E2E8F0'  // Light Slate
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { family: 'DM Sans', size: 11 },
+                                boxWidth: 12,
+                                padding: 12
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) { label += ': '; }
+                                    label += '₹' + context.parsed.toLocaleString('en-IN');
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+        }
+
+        // Toggle UI Elements
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function toggleNotificationDropdown() {
+            const panel = document.getElementById('notificationPanel');
+            panel.classList.toggle('hidden');
+        }
+
+        // Modal Controls
+        function openDonationModal() {
+            document.getElementById('donationModal').classList.remove('hidden');
+        }
+
+        function closeDonationModal() {
+            document.getElementById('donationModal').classList.add('hidden');
+        }
+
+        function selectCampaignAndDonate(campaignName) {
+            document.getElementById('donorCampaign').value = campaignName;
+            openDonationModal();
+        }
+
+        function setPresetAmount(amount) {
+            document.getElementById('donorAmount').value = amount;
+        }
+
+        // Dynamic Donation Form Handler
+        function handleDonationSubmit(e) {
+            e.preventDefault();
+            
+            const donorName = document.getElementById('donorName').value.trim();
+            const campaign = document.getElementById('donorCampaign').value;
+            const amount = parseInt(document.getElementById('donorAmount').value, 10);
+
+            if (!donorName || isNaN(amount) || amount <= 0) return;
+
+            // 1. Update State
+            totalDonations += amount;
+            const remaining = totalDonations - fundsUtilised;
+
+            // Update Campaign stats
+            if (campaignStats[campaign]) {
+                campaignStats[campaign].raised += amount;
+            }
+
+            // 2. Update UI Displays
+            document.getElementById('statTotalDonations').innerText = `₹${totalDonations.toLocaleString('en-IN')}`;
+            document.getElementById('statRemainingBalance').innerText = `₹${remaining.toLocaleString('en-IN')}`;
+            document.getElementById('heroTotalDonationsDisplay').innerText = `₹${totalDonations.toLocaleString('en-IN')}`;
+            document.getElementById('heroBalanceDisplay').innerText = `₹${remaining.toLocaleString('en-IN')}`;
+            document.getElementById('transparencyTotal').innerText = `₹${totalDonations.toLocaleString('en-IN')} Total`;
+
+            // Update Campaign Cards
+            if (campaign === 'Every Child in School') {
+                const c = campaignStats[campaign];
+                const pct = Math.min(100, Math.round((c.raised / c.goal) * 100));
+                document.getElementById('c1-raised').innerText = `₹${c.raised.toLocaleString('en-IN')}`;
+                document.getElementById('c1-bar').style.width = `${pct}%`;
+                document.getElementById('c1-percent').innerText = `${pct}% Funded`;
+            } else if (campaign === 'Healthy Neighbourhood') {
+                const c = campaignStats[campaign];
+                const pct = Math.min(100, Math.round((c.raised / c.goal) * 100));
+                document.getElementById('c2-raised').innerText = `₹${c.raised.toLocaleString('en-IN')}`;
+                document.getElementById('c2-bar').style.width = `${pct}%`;
+                document.getElementById('c2-percent').innerText = `${pct}% Funded`;
+            } else if (campaign === 'Green Streets Project') {
+                const c = campaignStats[campaign];
+                const pct = Math.min(100, Math.round((c.raised / c.goal) * 100));
+                document.getElementById('c3-raised').innerText = `₹${c.raised.toLocaleString('en-IN')}`;
+                document.getElementById('c3-bar').style.width = `${pct}%`;
+                document.getElementById('c3-percent').innerText = `${pct}% Funded`;
+            }
+
+            // Update Chart remaining balance segment
+            if (chartInstance) {
+                chartInstance.data.datasets[0].data[4] = remaining;
+                chartInstance.update();
+            }
+
+            // 3. Prepend to Recent Donations Table
+            const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            const tableBody = document.getElementById('donationTableBody');
+            const newRow = document.createElement('tr');
+            newRow.className = 'hover:bg-gray-50 transition-colors bg-emerald-50/40 animate-pulse';
+            newRow.innerHTML = `
+                <td class="py-4 px-6 font-bold text-deepTeal">${escapeHTML(donorName)}</td>
+                <td class="py-4 px-6 text-gray-600">${escapeHTML(campaign)}</td>
+                <td class="py-4 px-6 text-gray-500 text-xs">${today}</td>
+                <td class="py-4 px-6 font-extrabold text-deepTeal">₹${amount.toLocaleString('en-IN')}</td>
+                <td class="py-4 px-6 text-right">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i> Verified
+                    </span>
+                </td>
+            `;
+            tableBody.insertBefore(newRow, tableBody.firstChild);
+            lucide.createIcons();
+
+            // 4. Close & Toast
+            closeDonationModal();
+            document.getElementById('donationForm').reset();
+            showToast('Donation Recorded!', `Thank you ${donorName}! Your contribution of ₹${amount.toLocaleString('en-IN')} is verified.`);
+        }
+
+        // Table Search Filter Function
+        function filterDonationTable() {
+            const input = document.getElementById('donationSearchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#donationTableBody tr');
+
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+
+        // Volunteer Opportunities Matching Assistant Plugin
+        function filterVolunteerOpportunities() {
+            const selectedSkills = Array.from(document.querySelectorAll('#skillsFilterGroup input:checked')).map(cb => cb.value);
+            const selectedAvail = Array.from(document.querySelectorAll('#availabilityFilterGroup input:checked')).map(cb => cb.value);
+
+            const cards = document.querySelectorAll('.volunteer-card');
+
+            cards.forEach(card => {
+                const cardSkills = card.getAttribute('data-skills');
+                const cardAvail = card.getAttribute('data-availability');
+
+                let matchSkill = selectedSkills.length === 0 || selectedSkills.some(skill => cardSkills.includes(skill));
+                let matchAvail = selectedAvail.length === 0 || selectedAvail.some(avail => cardAvail.includes(avail));
+
+                if (matchSkill && matchAvail) {
+                    card.style.display = 'flex';
+                    card.classList.add('animate-in', 'fade-in');
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Apply Volunteer Demo
+        function applyVolunteer(opportunityTitle) {
+            showToast('Application Submitted!', `Thank you for volunteering as a ${opportunityTitle}. Our team will contact you.`);
+        }
+
+        // Download Report Demo
+        function downloadReport(fileName) {
+            showToast('Download Started', `Downloading official file: ${fileName}`);
+        }
+
+        // Toast Helper
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').innerText = title;
+            document.getElementById('toastMessage').innerText = message;
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Sanitize string helper
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GiveTrack - NGO Donation Transparency and Volunteer Matching Platform. Donate, Track, and Volunteer with verified 100% financial visibility." />
+  <title>GiveTrack | Donate • Track • Volunteer</title>
+
+  <!-- Google Fonts: Manrope (Headings) & DM Sans (UI/Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Manrope:wght@400..800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            deepTeal: '#073F3D',
+            turquoise: '#0C8277',
+            lightMint: '#EFFAF8',
+            orangeAccent: '#F59A38',
+            ink: '#173B3B'
+          },
+          fontFamily: {
+            heading: ['Manrope', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-[#F4FAF8] text-[#173B3B] font-body min-h-screen flex flex-col antialiased">
+
+  <!-- ====================================================================== -->
+  <!-- A. HEADER                                                              -->
+  <!-- ====================================================================== -->
+  <header class="sticky top-0 z-50 header-glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- GiveTrack Logo -->
+        <a href="#home" class="flex items-center gap-3 focus:outline-none" aria-label="GiveTrack Home">
+          <img src="assets/givetrack-logo.png" alt="GiveTrack Logo" class="brand-logo-img" />
+        </a>
+
+        <!-- Desktop Action Controls & User Profile -->
+        <div class="hidden md:flex items-center gap-4">
+          
+          <!-- Notifications Center -->
+          <div class="relative">
+            <button id="notifications-btn" class="w-10 h-10 rounded-full border border-[#D7EFEA] bg-white text-[#0C8277] hover:bg-[#EFFAF8] transition-colors flex items-center justify-center relative focus:outline-none focus:ring-2 focus:ring-[#0C8277]/30" aria-label="View notifications">
+              <i data-lucide="bell" class="w-5 h-5"></i>
+              <span id="notifications-badge" class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-[#F59A38] rounded-full border-2 border-white pulse-dot"></span>
+            </button>
+
+            <!-- Notifications Dropdown -->
+            <div id="notifications-dropdown" class="hidden absolute right-0 mt-3 w-80 bg-white rounded-2xl shadow-xl border border-[#D7EFEA] p-4 z-50">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#0C8277]">Platform Alerts</span>
+                <button id="mark-notifications-read" class="text-xs text-slate-400 hover:text-[#0C8277] transition-colors">Mark read</button>
+              </div>
+              <div class="divide-y divide-slate-100 mt-2 space-y-2">
+                <div class="pt-2 flex items-start gap-2.5">
+                  <div class="w-7 h-7 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i data-lucide="wallet" class="w-3.5 h-3.5"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-[#073F3D]">New Donation of ₹5,000</p>
+                    <p class="text-[11px] text-slate-500">Rahul M. contributed to Healthy Neighbourhood</p>
+                    <span class="text-[10px] text-slate-400">2 hours ago</span>
+                  </div>
+                </div>
+                <div class="pt-2 flex items-start gap-2.5">
+                  <div class="w-7 h-7 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i data-lucide="trees" class="w-3.5 h-3.5"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-[#073F3D]">Tree Drive Milestone</p>
+                    <p class="text-[11px] text-slate-500">Green Streets Project reached 75% funding goal</p>
+                    <span class="text-[10px] text-slate-400">5 hours ago</span>
+                  </div>
+                </div>
+                <div class="pt-2 flex items-start gap-2.5">
+                  <div class="w-7 h-7 rounded-full bg-teal-50 text-[#0C8277] flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-[#073F3D]">Q3 Audit Completed</p>
+                    <p class="text-[11px] text-slate-500">Independent financial verification reconciled</p>
+                    <span class="text-[10px] text-slate-400">1 day ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="h-8 w-px bg-slate-200"></div>
+
+          <!-- User Profile Section -->
+          <div class="flex items-center gap-3 pl-1">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#073F3D] to-[#0C8277] text-white flex items-center justify-center font-extrabold text-sm shadow-sm ring-2 ring-[#EFFAF8]">
+              GT
+            </div>
+            <div class="text-left hidden lg:block leading-tight">
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-bold text-[#073F3D] font-heading">GiveTrack Member</span>
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              </div>
+              <span class="text-xs text-slate-500 font-medium">NGO Administrator</span>
+            </div>
+          </div>
+
+          <!-- Quick Action CTA -->
+          <a href="#campaigns" class="btn-orange text-xs py-2 px-4 shadow-sm">
+            <span>Donate Now</span>
+            <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="flex items-center gap-2 md:hidden">
+          <button id="menu-toggle" class="p-2 rounded-xl text-[#073F3D] hover:bg-[#EFFAF8] transition-colors focus:outline-none" aria-label="Toggle mobile menu" aria-expanded="false">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================================================================== -->
+    <!-- B. NAVIGATION BAR                                                    -->
+    <!-- ==================================================================== -->
+    <nav id="main-nav" class="hidden md:block border-t border-[#D7EFEA] bg-white/95">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between py-2 md:py-0">
+          <div class="flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
+            <a href="#home" class="nav-item active">Home</a>
+            <a href="#campaigns" class="nav-item">Campaigns</a>
+            <a href="#donations" class="nav-item">Donations</a>
+            <a href="#expenses" class="nav-item">Expenses</a>
+            <a href="#volunteers" class="nav-item">Volunteers</a>
+            <a href="#reports" class="nav-item">Reports</a>
+          </div>
+
+          <!-- Secondary Links / Transparency Status Pill -->
+          <div class="hidden md:flex items-center gap-2 text-xs text-[#0C8277] font-semibold py-2">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFFAF8] border border-[#D7EFEA]">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-[#0C8277]"></i>
+              100% Audited Transparency
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow">
+
+    <!-- ==================================================================== -->
+    <!-- C & D. WELCOME SECTION (HERO) & DASHBOARD STATISTICS (#home)          -->
+    <!-- ==================================================================== -->
+    <section id="home" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 scroll-mt-24">
+      
+      <!-- Welcome Hero Card -->
+      <div class="hero-gradient rounded-3xl p-6 sm:p-10 lg:p-12 text-white shadow-xl relative overflow-hidden mb-10">
+        <!-- Background Ambient Glow Orbs -->
+        <div class="hero-glow-1"></div>
+        <div class="hero-glow-2"></div>
+        <div class="matcher-decor hidden sm:block"></div>
+
+        <div class="relative z-10 max-w-3xl">
+          <!-- Tagline Pill -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/20 text-xs font-bold tracking-wide uppercase text-white/90 mb-4">
+            <span class="w-2 h-2 rounded-full bg-[#F59A38] pulse-dot"></span>
+            Donate • Track • Volunteer
+          </div>
+
+          <!-- Welcome Message -->
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading leading-tight tracking-tight text-white mb-4">
+            Transparent Giving.<br class="hidden sm:inline" />
+            <span class="text-[#F59A38]">Measurable Impact.</span> Community Action.
+          </h1>
+
+          <!-- Short Platform Description -->
+          <p class="text-base sm:text-lg text-white/90 leading-relaxed font-body max-w-2xl mb-8">
+            GiveTrack connects donors, NGOs, and dedicated volunteers under a unified, real-time transparency platform. Follow every single rupee from pledge to project completion, inspect audited expenditures, and discover high-impact volunteer roles tailored to your exact skills.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="#campaigns" class="btn-orange">
+              <span>Explore Campaigns</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+
+            <a href="#volunteers" class="btn-secondary">
+              <i data-lucide="users" class="w-4 h-4 text-[#F59A38]"></i>
+              <span>Become a Volunteer</span>
+            </a>
+
+            <a href="#expenses" class="text-xs sm:text-sm font-semibold text-white/80 hover:text-white underline underline-offset-4 ml-1 flex items-center gap-1">
+              <span>View Financial Ledger</span>
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+          <!-- Live Metrics Bar Inside Hero -->
+          <div class="mt-10 pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-4 text-white/90">
+            <div>
+              <p class="text-xs text-white/70 font-medium">Audited Integrity</p>
+              <p class="text-lg font-extrabold font-heading text-white">100% Verified</p>
+            </div>
+            <div>
+              <p class="text-xs text-white/70 font-medium">Avg. Deployment</p>
+              <p class="text-lg font-extrabold font-heading text-white">48 Hours</p>
+            </div>
+            <div>
+              <p class="text-xs text-white/70 font-medium">Tax Exemption</p>
+              <p class="text-lg font-extrabold font-heading text-white">Sec 80G Active</p>
+            </div>
+            <div>
+              <p class="text-xs text-white/70 font-medium">Active Community</p>
+              <p class="text-lg font-extrabold font-heading text-white">500+ Donors</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Statistics -->
+      <div class="mb-5 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#0C8277]">Financial Pulse</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-[#073F3D]">Dashboard Statistics</h2>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-slate-500">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>Live Verified System Ledger • Financial Year 2026-27</span>
+        </div>
+      </div>
+
+      <!-- Four Statistics Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- 1. Total Donations -->
+        <div class="stat-card">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Total Donations</span>
+            <div class="stat-icon-wrap bg-[#EFFAF8] text-[#0C8277]">
+              <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <p id="stat-total-donations" class="text-3xl font-extrabold font-heading text-[#073F3D] mt-3">₹1,00,000</p>
+          <div class="flex items-center gap-1.5 mt-2 text-xs font-medium text-emerald-700">
+            <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+            <span>+14.2% from previous cycle</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-1">Across 3 active community projects</p>
+        </div>
+
+        <!-- 2. Funds Utilised -->
+        <div class="stat-card">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Funds Utilised</span>
+            <div class="stat-icon-wrap bg-orange-50 text-[#F59A38]">
+              <i data-lucide="receipt" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <p id="stat-funds-utilised" class="text-3xl font-extrabold font-heading text-[#073F3D] mt-3">₹65,000</p>
+          <div class="flex items-center gap-1.5 mt-2 text-xs font-medium text-slate-600">
+            <span class="font-bold text-[#F59A38]">65.0%</span>
+            <span>of total received funds deployed</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-1">100% receipts audited and cleared</p>
+        </div>
+
+        <!-- 3. Remaining Balance -->
+        <div class="stat-card">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Remaining Balance</span>
+            <div class="stat-icon-wrap bg-teal-50 text-teal-700">
+              <i data-lucide="wallet" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <p id="stat-remaining-balance" class="text-3xl font-extrabold font-heading text-[#073F3D] mt-3">₹35,000</p>
+          <div class="flex items-center gap-1.5 mt-2 text-xs font-medium text-teal-700">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5 text-teal-600"></i>
+            <span>35.0% reserved for upcoming milestones</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-1">Escrow held in verified project account</p>
+        </div>
+
+        <!-- 4. Active Volunteers -->
+        <div class="stat-card">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Active Volunteers</span>
+            <div class="stat-icon-wrap bg-emerald-50 text-emerald-700">
+              <i data-lucide="users" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <p id="stat-active-volunteers" class="text-3xl font-extrabold font-heading text-[#073F3D] mt-3">128</p>
+          <div class="flex items-center gap-1.5 mt-2 text-xs font-medium text-emerald-700">
+            <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+            <span>+18 registered this month</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-1">Across 3 core field and hybrid initiatives</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- E. ACTIVE CAMPAIGNS (#campaigns)                                     -->
+    <!-- ==================================================================== -->
+    <section id="campaigns" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#0C8277]">Featured Initiatives</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-[#073F3D]">Active Fundraising Campaigns</h2>
+          <p class="text-sm text-slate-600 mt-1 max-w-xl">Every campaign is tied to transparent ledger records with regular field progress documentation.</p>
+        </div>
+        <a href="#expenses" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0C8277] hover:text-[#073F3D] transition-colors">
+          <span>Review Fund Utilisation</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Campaign 1: Every Child in School -->
+        <div class="gt-card gt-card-interactive flex flex-col overflow-hidden" data-campaign-name="Every Child in School">
+          <div class="campaign-cover cover-edu">
+            <span class="campaign-badge">Education</span>
+            <div class="campaign-icon-orb">
+              <i data-lucide="book-open" class="w-7 h-7"></i>
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                <span>Target: ₹60,000</span>
+                <span class="campaign-donors-val">84 donors</span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-[#073F3D] mb-2">Every Child in School</h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                Providing comprehensive learning kits, STEM textbooks, and classroom supplies for primary students in underserved urban government schools.
+              </p>
+            </div>
+
+            <div class="pt-2">
+              <div class="flex items-baseline justify-between mb-2">
+                <div>
+                  <span class="text-lg font-extrabold font-heading text-[#073F3D] campaign-raised-val">₹42,000</span>
+                  <span class="text-xs text-slate-500">raised</span>
+                </div>
+                <span class="text-xs font-bold text-[#0C8277] campaign-percent-val">70% funded</span>
+              </div>
+
+              <!-- Progress Bar -->
+              <div class="progress-container mb-5">
+                <div class="progress-bar-fill bg-gradient-to-r from-[#0C8277] to-[#159B8B] campaign-progress-bar" style="width: 70%;"></div>
+              </div>
+
+              <!-- Action Button -->
+              <button 
+                class="w-full btn-primary text-sm py-2.5 flex items-center justify-center gap-2"
+                data-donate-campaign="Every Child in School">
+                <span>Donate to this Cause</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campaign 2: Healthy Neighbourhood -->
+        <div class="gt-card gt-card-interactive flex flex-col overflow-hidden" data-campaign-name="Healthy Neighbourhood">
+          <div class="campaign-cover cover-health">
+            <span class="campaign-badge">Healthcare</span>
+            <div class="campaign-icon-orb">
+              <i data-lucide="heart-pulse" class="w-7 h-7"></i>
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                <span>Target: ₹50,000</span>
+                <span class="campaign-donors-val">56 donors</span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-[#073F3D] mb-2">Healthy Neighbourhood</h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                Mobile healthcare camps, essential pediatric check-ups, diagnostic testing, and vital medicines distribution for low-income senior citizens.
+              </p>
+            </div>
+
+            <div class="pt-2">
+              <div class="flex items-baseline justify-between mb-2">
+                <div>
+                  <span class="text-lg font-extrabold font-heading text-[#073F3D] campaign-raised-val">₹28,000</span>
+                  <span class="text-xs text-slate-500">raised</span>
+                </div>
+                <span class="text-xs font-bold text-[#F59A38] campaign-percent-val">56% funded</span>
+              </div>
+
+              <!-- Progress Bar -->
+              <div class="progress-container mb-5">
+                <div class="progress-bar-fill bg-gradient-to-r from-[#F59A38] to-[#FBBF24] campaign-progress-bar" style="width: 56%;"></div>
+              </div>
+
+              <!-- Action Button -->
+              <button 
+                class="w-full btn-orange text-sm py-2.5 flex items-center justify-center gap-2"
+                data-donate-campaign="Healthy Neighbourhood">
+                <span>Donate to this Cause</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campaign 3: Green Streets Project -->
+        <div class="gt-card gt-card-interactive flex flex-col overflow-hidden" data-campaign-name="Green Streets Project">
+          <div class="campaign-cover cover-green">
+            <span class="campaign-badge">Environment</span>
+            <div class="campaign-icon-orb">
+              <i data-lucide="trees" class="w-7 h-7"></i>
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                <span>Target: ₹40,000</span>
+                <span class="campaign-donors-val">72 donors</span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-[#073F3D] mb-2">Green Streets Project</h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                Native tree sapling plantation drives, community composting, and public avenue greening to improve air quality and urban biodiversity.
+              </p>
+            </div>
+
+            <div class="pt-2">
+              <div class="flex items-baseline justify-between mb-2">
+                <div>
+                  <span class="text-lg font-extrabold font-heading text-[#073F3D] campaign-raised-val">₹30,000</span>
+                  <span class="text-xs text-slate-500">raised</span>
+                </div>
+                <span class="text-xs font-bold text-emerald-600 campaign-percent-val">75% funded</span>
+              </div>
+
+              <!-- Progress Bar -->
+              <div class="progress-container mb-5">
+                <div class="progress-bar-fill bg-gradient-to-r from-[#0C8277] to-[#10B981] campaign-progress-bar" style="width: 75%;"></div>
+              </div>
+
+              <!-- Action Button -->
+              <button 
+                class="w-full btn-primary text-sm py-2.5 flex items-center justify-center gap-2"
+                data-donate-campaign="Green Streets Project">
+                <span>Donate to this Cause</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- G. RECENT DONATIONS & DONATIONS OVERVIEW (#donations)                -->
+    <!-- ==================================================================== -->
+    <section id="donations" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-3">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#0C8277]">Public Transaction Ledger</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-[#073F3D]">Recent Donations & Ledger</h2>
+          <p class="text-sm text-slate-600 mt-1">Real-time donation transactions with verified receipt tracking and transparent records.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="btn-orange text-xs py-2 px-3.5 inline-flex items-center gap-1.5 shadow-sm" data-donate-campaign="Every Child in School">
+            <i data-lucide="plus-circle" class="w-4 h-4"></i>
+            <span>Simulate Donation</span>
+          </button>
+          <span class="text-xs bg-[#EFFAF8] text-[#0C8277] px-3 py-1.5 rounded-full font-bold border border-[#D7EFEA] flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 pulse-dot"></span>
+            Real-time Feed
+          </span>
+        </div>
+      </div>
+
+      <div class="gt-card overflow-hidden mb-4">
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[650px] text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50/80 border-b border-slate-100 text-xs uppercase font-extrabold text-slate-500 tracking-wider">
+                <th class="px-5 py-4">Donor Name</th>
+                <th class="px-5 py-4">Campaign Name</th>
+                <th class="px-5 py-4">Donation Date</th>
+                <th class="px-5 py-4 text-right">Donation Amount</th>
+                <th class="px-5 py-4 text-right">Verification Status</th>
+              </tr>
+            </thead>
+            <tbody id="recent-donations-tbody" class="text-sm">
+              <!-- Dynamically populated by script.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- F. DONATION TRANSPARENCY & FUND UTILISATION (#expenses)             -->
+    <!-- ==================================================================== -->
+    <section id="expenses" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#0C8277]">Public Accountability</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-[#073F3D]">Fund Utilisation & Expenditure Audit</h2>
+          <p class="text-sm text-slate-600 mt-1 max-w-xl">Every single rupee received is audited and publicly accounted for with strict mathematical integrity.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="#reports" class="btn-outline-teal text-xs py-2 px-3.5 inline-flex items-center gap-1.5 shadow-sm">
+            <i data-lucide="file-check" class="w-4 h-4"></i>
+            <span>View Verified Reports</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left Column: Chart & Reconciliation Highlight (7 cols) -->
+        <div class="lg:col-span-7 gt-card p-6 sm:p-8">
+          <div class="flex items-center justify-between pb-4 border-b border-[#D7EFEA]">
+            <div>
+              <h3 class="text-lg font-bold font-heading text-[#073F3D]">Fund Utilisation Breakdown</h3>
+              <p class="text-xs text-slate-500">Spent vs. Remaining Balance</p>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-[#EFFAF8] border border-[#D7EFEA] text-[#0C8277] text-xs font-bold">
+              Live Status
+            </span>
+          </div>
+
+          <!-- Visualization Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-6 items-center">
+            
+            <!-- Doughnut Chart Canvas Wrap -->
+            <div class="chart-container-rel">
+              <canvas id="fundDoughnutChart"></canvas>
+              <div class="chart-center-badge">
+                <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Total Received</span>
+                <strong id="chart-center-total" class="text-xl font-extrabold font-heading text-[#073F3D]">₹1,00,000</strong>
+                <span class="text-[10px] text-emerald-700 font-semibold flex items-center gap-0.5 mt-0.5">
+                  <i data-lucide="shield-check" class="w-3 h-3"></i> 100% Balanced
+                </span>
+              </div>
+            </div>
+
+            <!-- Doughnut Legend & Details -->
+            <div class="space-y-4">
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-3.5 h-3.5 rounded-full bg-[#0C8277] flex-shrink-0"></div>
+                  <div>
+                    <p class="text-xs font-bold text-[#073F3D]">Funds Utilised</p>
+                    <p class="text-[11px] text-slate-500">65.0% executed on programmes</p>
+                  </div>
+                </div>
+                <strong class="text-sm font-extrabold font-heading text-[#073F3D]">₹65,000</strong>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-3.5 h-3.5 rounded-full bg-[#F59A38] flex-shrink-0"></div>
+                  <div>
+                    <p class="text-xs font-bold text-[#073F3D]">Remaining Balance</p>
+                    <p class="text-[11px] text-slate-500">35.0% ready in project escrow</p>
+                  </div>
+                </div>
+                <strong class="text-sm font-extrabold font-heading text-[#073F3D]">₹35,000</strong>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-[#EFFAF8] border border-[#D7EFEA] flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-3.5 h-3.5 rounded-full bg-slate-400 flex-shrink-0"></div>
+                  <div>
+                    <p class="text-xs font-bold text-[#073F3D]">Total Donations</p>
+                    <p class="text-[11px] text-slate-500">Aggregate community funds</p>
+                  </div>
+                </div>
+                <strong class="text-sm font-extrabold font-heading text-[#073F3D]">₹1,00,000</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mathematical Reconciliation Verification Banner -->
+          <div class="mt-8 p-4 rounded-2xl bg-gradient-to-r from-[#EFFAF8] to-[#E2F5F1] border border-[#BDE5DD]">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-xl bg-[#0C8277] text-white flex items-center justify-center flex-shrink-0">
+                <i data-lucide="scale" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold uppercase tracking-wider text-[#0C8277]">Audited Equation</span>
+                  <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-extrabold">Verified Match</span>
+                </div>
+                <p class="text-sm font-extrabold font-heading text-[#073F3D] mt-1">
+                  ₹65,000 spent + ₹35,000 remaining = ₹1,00,000 total donations
+                </p>
+                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                  Zero discrepancy detected. All expenditures correspond to approved NGO vouchers, verified vendor receipts, and bank deposit acknowledgments.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Expense Category Breakdown (5 cols) -->
+        <div class="lg:col-span-5 gt-card p-6 sm:p-8">
+          <div class="flex items-center justify-between pb-4 border-b border-[#D7EFEA] mb-5">
+            <div>
+              <h3 class="text-lg font-bold font-heading text-[#073F3D]">Expense Breakdown</h3>
+              <p class="text-xs text-slate-500">How the ₹65,000 was utilised</p>
+            </div>
+            <span class="text-xs font-bold text-[#0C8277]">4 Categories</span>
+          </div>
+
+          <div class="space-y-5">
+            
+            <!-- 1. Education Supplies -->
+            <div>
+              <div class="flex justify-between items-baseline text-sm mb-1.5">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="book-marked" class="w-4 h-4 text-[#0C8277]"></i>
+                  <span class="font-bold text-[#073F3D]">Education supplies</span>
+                </div>
+                <div class="text-right">
+                  <strong class="font-extrabold font-heading text-[#073F3D]">₹30,000</strong>
+                  <span class="text-[11px] text-slate-400 ml-1">(46.15%)</span>
+                </div>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar-fill bg-[#0C8277]" style="width: 46.15%;"></div>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-1">Kits, textbooks, digital tabs, student stationery</p>
+            </div>
+
+            <!-- 2. Healthcare Support -->
+            <div>
+              <div class="flex justify-between items-baseline text-sm mb-1.5">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="stethoscope" class="w-4 h-4 text-[#F59A38]"></i>
+                  <span class="font-bold text-[#073F3D]">Healthcare support</span>
+                </div>
+                <div class="text-right">
+                  <strong class="font-extrabold font-heading text-[#073F3D]">₹20,000</strong>
+                  <span class="text-[11px] text-slate-400 ml-1">(30.77%)</span>
+                </div>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar-fill bg-[#F59A38]" style="width: 30.77%;"></div>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-1">Mobile health vans, diagnostics, pediatric medicines</p>
+            </div>
+
+            <!-- 3. Community Projects -->
+            <div>
+              <div class="flex justify-between items-baseline text-sm mb-1.5">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="sprout" class="w-4 h-4 text-emerald-600"></i>
+                  <span class="font-bold text-[#073F3D]">Community projects</span>
+                </div>
+                <div class="text-right">
+                  <strong class="font-extrabold font-heading text-[#073F3D]">₹10,000</strong>
+                  <span class="text-[11px] text-slate-400 ml-1">(15.38%)</span>
+                </div>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar-fill bg-emerald-600" style="width: 15.38%;"></div>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-1">Native saplings, compost pits, neighborhood tools</p>
+            </div>
+
+            <!-- 4. Administration -->
+            <div>
+              <div class="flex justify-between items-baseline text-sm mb-1.5">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="file-check-2" class="w-4 h-4 text-slate-500"></i>
+                  <span class="font-bold text-[#073F3D]">Administration & Logistics</span>
+                </div>
+                <div class="text-right">
+                  <strong class="font-extrabold font-heading text-[#073F3D]">₹5,000</strong>
+                  <span class="text-[11px] text-slate-400 ml-1">(7.70%)</span>
+                </div>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar-fill bg-slate-400" style="width: 7.7%;"></div>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-1">Field coordinator transport, platform hosting & audit</p>
+            </div>
+
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+            <span>Auditor: V.K. Singhania & Associates</span>
+            <span class="font-bold text-emerald-700 flex items-center gap-1">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+              Audited & Certified
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- H & I. VOLUNTEER OPPORTUNITIES & SMART MATCHER (#volunteers)         -->
+    <!-- ==================================================================== -->
+    <section id="volunteers" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#0C8277]">People-Powered Impact</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-[#073F3D]">Volunteer Opportunities</h2>
+          <p class="text-sm text-slate-600 mt-1 max-w-xl">Lend your time, mentor learners, or lead neighborhood transformation drives.</p>
+        </div>
+        <a href="#volunteer-match-form" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0C8277] hover:text-[#073F3D] transition-colors">
+          <span>Jump to Volunteer Matcher</span>
+          <i data-lucide="sparkles" class="w-4 h-4 text-[#F59A38]"></i>
+        </a>
+      </div>
+
+      <!-- Three Opportunity Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+
+        <!-- Opportunity 1: Digital Learning Buddy -->
+        <div class="gt-card gt-card-interactive p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-teal-50 text-[#0C8277] flex items-center justify-center">
+                <i data-lucide="laptop" class="w-6 h-6"></i>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">
+                Weekend
+              </span>
+            </div>
+            
+            <h3 class="text-xl font-bold font-heading text-[#073F3D] mb-2">Digital Learning Buddy</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Help primary and middle school students with basic computer literacy, online research skills, and introductory coding concepts in our community labs.
+            </p>
+
+            <div class="space-y-3 mb-6">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wide text-slate-400 block mb-1.5">Required Skills</span>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2.5 py-1 rounded-md bg-[#EFFAF8] text-[#0C8277] text-xs font-bold border border-[#D7EFEA]">Teaching</span>
+                  <span class="px-2.5 py-1 rounded-md bg-[#EFFAF8] text-[#0C8277] text-xs font-bold border border-[#D7EFEA]">Technology</span>
+                  <span class="px-2.5 py-1 rounded-md bg-[#EFFAF8] text-[#0C8277] text-xs font-bold border border-[#D7EFEA]">Communication</span>
+                </div>
+              </div>
+
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wide text-slate-400 block mb-1">Availability</span>
+                <div class="flex items-center gap-2 text-xs font-semibold text-[#073F3D]">
+                  <i data-lucide="calendar" class="w-3.5 h-3.5 text-[#0C8277]"></i>
+                  <span>Weekends • 3 hours/week</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-500 mt-1">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400"></i>
+                  <span>Bengaluru / Hybrid</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button 
+            type="button" 
+            class="btn-outline-teal w-full py-2.5 justify-center" 
+            data-apply-role="Digital Learning Buddy">
+            <span>Apply as Volunteer</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Opportunity 2: Community Storyteller -->
+        <div class="gt-card gt-card-interactive p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-orange-50 text-[#F59A38] flex items-center justify-center">
+                <i data-lucide="camera" class="w-6 h-6"></i>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-orange-50 text-orange-700 text-xs font-bold">
+                Flexible
+              </span>
+            </div>
+            
+            <h3 class="text-xl font-bold font-heading text-[#073F3D] mb-2">Community Storyteller</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Capture poignant impact photographs, interview local project beneficiaries, and craft engaging video stories and articles for donor transparency reports.
+            </p>
+
+            <div class="space-y-3 mb-6">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wide text-slate-400 block mb-1.5">Required Skills</span>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2.5 py-1 rounded-md bg-orange-50 text-orange-700 text-xs font-bold border border-orange-100">Photography</span>
+                  <span class="px-2.5 py-1 rounded-md bg-orange-50 text-orange-700 text-xs font-bold border border-orange-100">Writing</span>
+                  <span class="px-2.5 py-1 rounded-md bg-orange-50 text-orange-700 text-xs font-bold border border-orange-100">Storytelling</span>
+                </div>
+              </div>
+
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wide text-slate-400 block mb-1">Availability</span>
+                <div class="flex items-center gap-2 text-xs font-semibold text-[#073F3D]">
+                  <i data-lucide="clock" class="w-3.5 h-3.5 text-[#F59A38]"></i>
+                  <span>Flexible • 2 hours/week</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-500 mt-1">
+                  <i data-lucide="globe" class="w-3.5 h-3.5 text-slate-400"></i>
+                  <span>Hybrid / Remote Dispatch</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button 
+            type="button" 
+            class="btn-outline-teal w-full py-2.5 justify-center" 
+            data-apply-role="Community Storyteller">
+            <span>Apply as Volunteer</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Opportunity 3: Green Streets Volunteer -->
+        <div class="gt-card gt-card-interactive p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                <i data-lucide="trees" class="w-6 h-6"></i>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">
+                Saturday
+              </span>
+            </div>
+            
+            <h3 class="text-xl font-bold font-heading text-[#073F3D] mb-2">Green Streets Volunteer</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Join local neighbourhood tree-planting expeditions, nurture newly planted saplings, and conduct community workshops on home composting and clean streets.
+            </p>
+
+            <div class="space-y-3 mb-6">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wide text-slate-400 block mb-1.5">Required Skills</span>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-100">Environment</span>
+                  <span class="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-100">Fieldwork</span>
+                  <span class="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-100">Teamwork</span>
+                </div>
+              </div>
+
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wide text-slate-400 block mb-1">Availability</span>
+                <div class="flex items-center gap-2 text-xs font-semibold text-[#073F3D]">
+                  <i data-lucide="calendar" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <span>Saturday mornings • 4 hours/week</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-500 mt-1">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400"></i>
+                  <span>Bengaluru City Zones</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button 
+            type="button" 
+            class="btn-outline-teal w-full py-2.5 justify-center" 
+            data-apply-role="Green Streets Volunteer">
+            <span>Apply as Volunteer</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Interactive Plugin: Volunteer Matching Assistant -->
+      <div class="matcher-box p-6 sm:p-10 text-white">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Left Column: Explanation & Value Prop -->
+          <div class="lg:col-span-5 relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur border border-white/20 text-xs font-bold tracking-wide uppercase text-white/90 mb-3">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#F59A38]"></i>
+              GiveTrack Smart Matcher
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold font-heading text-white leading-tight mb-3">
+              Find Your Ideal Volunteer Opportunity in Seconds
+            </h3>
+            <p class="text-sm text-white/85 leading-relaxed mb-6 font-body">
+              Our intelligent frontend matching plugin analyses your unique skillset, time commitments, and preferred work mode to connect you with the most impactful cause.
+            </p>
+
+            <div class="space-y-3 text-xs text-white/80">
+              <div class="flex items-center gap-2.5">
+                <div class="w-6 h-6 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-[#F59A38]"></i>
+                </div>
+                <span>Matches you with vetted community drives</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <div class="w-6 h-6 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-[#F59A38]"></i>
+                </div>
+                <span>Calculates compatibility score instantly</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <div class="w-6 h-6 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-[#F59A38]"></i>
+                </div>
+                <span>One-click direct registration</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Form Plugin -->
+          <div class="lg:col-span-7 bg-white text-[#173B3B] rounded-2xl p-6 sm:p-8 shadow-2xl relative z-10">
+            <h4 class="text-xl font-bold font-heading text-[#073F3D] mb-1">Volunteer Matching Assistant</h4>
+            <p class="text-xs text-slate-500 mb-6">Select your profile preferences to see tailored matches.</p>
+
+            <form id="volunteer-match-form" class="space-y-4">
+              
+              <!-- 1. Skill or Interest Selection -->
+              <div>
+                <label for="match-skill-select" class="block text-xs font-bold uppercase tracking-wider text-[#073F3D] mb-1.5">
+                  1. What is your primary skill or interest? <span class="text-red-500">*</span>
+                </label>
+                <select id="match-skill-select" class="gt-select text-sm" required>
+                  <option value="" disabled selected>Select your key skill / interest</option>
+                  <option value="teaching">Teaching / Education Mentorship</option>
+                  <option value="technology">Technology & Digital Literacy</option>
+                  <option value="photography">Photography & Visual Storytelling</option>
+                  <option value="writing">Creative Writing & Content</option>
+                  <option value="environment">Environmental Conservation & Greening</option>
+                  <option value="community">Community Outreach & Field Support</option>
+                </select>
+              </div>
+
+              <!-- 2. Availability Selection -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="match-availability-select" class="block text-xs font-bold uppercase tracking-wider text-[#073F3D] mb-1.5">
+                    2. When are you available? <span class="text-red-500">*</span>
+                  </label>
+                  <select id="match-availability-select" class="gt-select text-sm" required>
+                    <option value="" disabled selected>Choose your schedule</option>
+                    <option value="weekend">Weekends (Saturday or Sunday)</option>
+                    <option value="saturday">Saturday Only</option>
+                    <option value="flexible">Flexible / Any Day</option>
+                  </select>
+                </div>
+
+                <!-- 3. Preferred Mode Selection -->
+                <div>
+                  <label for="match-mode-select" class="block text-xs font-bold uppercase tracking-wider text-[#073F3D] mb-1.5">
+                    3. Preferred Mode
+                  </label>
+                  <select id="match-mode-select" class="gt-select text-sm">
+                    <option value="any">Any (In-Person or Remote)</option>
+                    <option value="field">On-Field / Direct Community</option>
+                    <option value="hybrid">Hybrid (Lab & Remote)</option>
+                    <option value="remote">Fully Remote</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Submit & Reset Action Buttons -->
+              <div class="flex items-center gap-3 pt-3">
+                <button type="submit" id="submit-match-btn" class="btn-orange flex-1 py-3 justify-center text-sm">
+                  <i data-lucide="search" class="w-4 h-4"></i>
+                  <span>Find Suitable Opportunities</span>
+                </button>
+                <button type="button" id="reset-match-btn" class="btn-outline-teal text-xs py-3 px-4">
+                  Reset
+                </button>
+              </div>
+            </form>
+
+            <!-- Dynamic Match Results Container -->
+            <div id="match-results-container" class="hidden">
+              <!-- Dynamically populated by script.js -->
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- J. REPORTS & AUDITED CERTIFICATION (#reports)                        -->
+    <!-- ==================================================================== -->
+    <section id="reports" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#0C8277]">Governance & Verification</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-[#073F3D]">Audit Reports & Certifications</h2>
+          <p class="text-sm text-slate-600 mt-1 max-w-xl">Transparent audited documentation and statutory certifications available for public review.</p>
+        </div>
+        <button id="download-report-btn" class="btn-primary text-xs py-2.5 px-4 inline-flex items-center gap-2 shadow-sm">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>Download Transparency Statement</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Report Card 1 -->
+        <div class="gt-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-teal-50 text-[#0C8277] flex items-center justify-center mb-4">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold font-heading text-[#073F3D] mb-1">Statutory Audit Report</h3>
+            <p class="text-xs text-slate-500 mb-3">Independent Financial Review • FY 2026-27</p>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              Prepared by V.K. Singhania & Associates. Certified 100% mathematical balance: ₹65,000 utilised + ₹35,000 balance = ₹1,00,000 total received.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-emerald-700 font-bold flex items-center gap-1">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i> Unqualified Opinion
+            </span>
+            <span class="text-slate-400">PDF • 1.2 MB</span>
+          </div>
+        </div>
+
+        <!-- Report Card 2 -->
+        <div class="gt-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-orange-50 text-[#F59A38] flex items-center justify-center mb-4">
+              <i data-lucide="award" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold font-heading text-[#073F3D] mb-1">Section 80G Tax Exemption</h3>
+            <p class="text-xs text-slate-500 mb-3">Income Tax Department Approval</p>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              All contributions to GiveTrack partner campaigns qualify for 50% tax deductions under Section 80G of the Indian Income Tax Act.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-emerald-700 font-bold flex items-center gap-1">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i> Active & Valid
+            </span>
+            <span class="text-slate-400">Cert #80G/2026/09</span>
+          </div>
+        </div>
+
+        <!-- Report Card 3 -->
+        <div class="gt-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-4">
+              <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold font-heading text-[#073F3D] mb-1">Utilisation Certificate (UC)</h3>
+            <p class="text-xs text-slate-500 mb-3">Quarterly Program Outlay Audit</p>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              Detailed breakdown of ₹65,000 disbursement across Education (₹30k), Healthcare (₹20k), Greening (₹10k) and Field Operations (₹5k).
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-emerald-700 font-bold flex items-center gap-1">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i> Vouchers Verified
+            </span>
+            <span class="text-slate-400">Quarter Ended Nov 2026</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- J. FOOTER                                                              -->
+  <!-- ====================================================================== -->
+  <footer class="bg-[#073F3D] text-white border-t border-[#0A534F] mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+        
+        <!-- Column 1: GiveTrack Logo & About Section (4 cols) -->
+        <div class="lg:col-span-4">
+          <div class="footer-logo-wrap mb-4">
+            <img src="assets/givetrack-logo.png" alt="GiveTrack Logo" class="footer-logo-img" />
+          </div>
+          <p class="text-xs font-bold tracking-widest uppercase text-[#F59A38] mb-2">Donate • Track • Volunteer</p>
+          <p class="text-xs text-white/75 leading-relaxed mb-5 font-body">
+            GiveTrack is an independent NGO donation transparency and volunteer matching initiative dedicated to complete financial clarity, verified community metrics, and authentic volunteer engagement.
+          </p>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-[11px] font-semibold text-emerald-300 border border-white/15">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+            Section 80G Certified Non-Profit Partner
+          </div>
+        </div>
+
+        <!-- Column 2: Navigation Links (2 cols) -->
+        <div class="lg:col-span-2">
+          <h4 class="text-sm font-bold font-heading text-white uppercase tracking-wider mb-4">Platform</h4>
+          <ul class="space-y-2.5 text-xs text-white/75 font-medium">
+            <li><a href="#home" class="hover:text-[#F59A38] transition-colors">Home</a></li>
+            <li><a href="#campaigns" class="hover:text-[#F59A38] transition-colors">Campaigns</a></li>
+            <li><a href="#donations" class="hover:text-[#F59A38] transition-colors">Donations</a></li>
+            <li><a href="#expenses" class="hover:text-[#F59A38] transition-colors">Expenses</a></li>
+            <li><a href="#volunteers" class="hover:text-[#F59A38] transition-colors">Volunteers</a></li>
+            <li><a href="#reports" class="hover:text-[#F59A38] transition-colors">Reports</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Contact Information (3 cols) -->
+        <div class="lg:col-span-3">
+          <h4 class="text-sm font-bold font-heading text-white uppercase tracking-wider mb-4">Contact Information</h4>
+          <ul class="space-y-3 text-xs text-white/75">
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="map-pin" class="w-4 h-4 text-[#F59A38] flex-shrink-0 mt-0.5"></i>
+              <span>GiveTrack Centre, 42 Indiranagar 100ft Road, Bengaluru, Karnataka 560038</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i data-lucide="mail" class="w-4 h-4 text-[#F59A38] flex-shrink-0"></i>
+              <a href="mailto:support@givetrack.org" class="hover:text-white transition-colors">support@givetrack.org</a>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i data-lucide="phone" class="w-4 h-4 text-[#F59A38] flex-shrink-0"></i>
+              <a href="tel:+918041235678" class="hover:text-white transition-colors">+91 (80) 4123-5678</a>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i data-lucide="clock" class="w-4 h-4 text-[#F59A38] flex-shrink-0"></i>
+              <span>Mon – Sat: 9:00 AM – 6:00 PM IST</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Social Media & Transparency (3 cols) -->
+        <div class="lg:col-span-3">
+          <h4 class="text-sm font-bold font-heading text-white uppercase tracking-wider mb-4">Connect With Us</h4>
+          <p class="text-xs text-white/75 leading-relaxed mb-4">
+            Follow our weekly audit releases, field photo stories, and upcoming volunteer mobilization campaigns.
+          </p>
+          
+          <!-- Social Media Icons (Restored with clean, properly aligned SVG icons) -->
+          <div class="flex items-center gap-3 mb-6">
+            <!-- Instagram -->
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GiveTrack Instagram">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GiveTrack LinkedIn">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GiveTrack Facebook">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+              </svg>
+            </a>
+
+            <!-- X (Twitter) -->
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GiveTrack X (Twitter)">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+            <p class="text-[11px] text-white/70">
+              Need assistance? Email our community grievance officer at <a href="mailto:grievance@givetrack.org" class="text-[#F59A38] underline">grievance@givetrack.org</a>.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar: Copyright & Privacy Policy -->
+      <div class="mt-12 pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between text-xs text-white/60 gap-4">
+        <p>© 2026 GiveTrack Foundation. All rights reserved. Registered Indian Trust Act 1882.</p>
+        <div class="flex items-center gap-6">
+          <a href="#privacy" class="hover:text-white transition-colors" onclick="alert('GiveTrack Privacy Policy: We maintain zero-knowledge protection on donor identities unless requested for 80G tax receipt issuance. No data is ever sold.')">Privacy Policy</a>
+          <span class="text-white/30">•</span>
+          <a href="#terms" class="hover:text-white transition-colors" onclick="alert('GiveTrack Terms of Service: All donations simulated on this platform are demonstration-grade for academic evaluation.')">Terms of Use</a>
+          <span class="text-white/30">•</span>
+          <a href="#refund" class="hover:text-white transition-colors" onclick="alert('GiveTrack Refund Policy: 100% refund guarantee within 15 days of contribution prior to campaign execution.')">Donation Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================================================================== -->
+  <!-- MODAL: INTERACTIVE DONATION DEMO                                      -->
+  <!-- ====================================================================== -->
+  <div id="donation-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="donation-modal-title">
+    <div class="modal-content p-6 sm:p-8">
+      
+      <!-- Close Button -->
+      <button id="close-donation-modal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-100 transition-colors" aria-label="Close modal">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-2xl bg-orange-50 text-[#F59A38] flex items-center justify-center">
+          <i data-lucide="heart" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#0C8277]">Make a Contribution</span>
+          <h3 id="donation-modal-title" class="text-xl font-bold font-heading text-[#073F3D]">Support a Campaign</h3>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-600 mb-5 leading-relaxed">
+        Your contribution directly accelerates our project goals. Choose a campaign and enter an amount to test the live donation and transparency reconciliation engine.
+      </p>
+
+      <form id="donation-form" class="space-y-4">
+        <div>
+          <label for="donor-name-input" class="block text-xs font-bold uppercase tracking-wider text-[#073F3D] mb-1">
+            Your Name
+          </label>
+          <input type="text" id="donor-name-input" class="gt-input text-sm" placeholder="Enter your name" required />
+        </div>
+
+        <div>
+          <label for="modal-campaign-select" class="block text-xs font-bold uppercase tracking-wider text-[#073F3D] mb-1">
+            Select Campaign
+          </label>
+          <select id="modal-campaign-select" class="gt-select text-sm" required>
+            <option value="Every Child in School">Every Child in School (Education)</option>
+            <option value="Healthy Neighbourhood">Healthy Neighbourhood (Healthcare)</option>
+            <option value="Green Streets Project">Green Streets Project (Environment)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-[#073F3D] mb-1.5">
+            Quick Amount Presets
+          </label>
+          <div class="grid grid-cols-4 gap-2 mb-2">
+            <button type="button" class="amount-pill py-2 text-xs font-bold rounded-xl border border-[#D7EFEA] hover:bg-[#EFFAF8] transition-colors" data-amount="500">₹500</button>
+            <button type="button" class="amount-pill py-2 text-xs font-bold rounded-xl border border-[#D7EFEA] hover:bg-[#EFFAF8] transition-colors" data-amount="1000">₹1,000</button>
+            <button type="button" class="amount-pill py-2 text-xs font-bold rounded-xl border border-[#D7EFEA] hover:bg-[#EFFAF8] transition-colors" data-amount="2500">₹2,500</button>
+            <button type="button" class="amount-pill py-2 text-xs font-bold rounded-xl border border-[#D7EFEA] hover:bg-[#EFFAF8] transition-colors" data-amount="5000">₹5,000</button>
+          </div>
+          
+          <label for="donation-amount-input" class="block text-xs font-bold text-slate-500 mb-1">
+            Custom Amount (₹)
+          </label>
+          <div class="relative">
+            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 font-bold">₹</span>
+            <input type="number" id="donation-amount-input" class="gt-input pl-8 text-sm font-bold text-[#073F3D]" min="50" step="50" placeholder="1000" value="1000" required />
+          </div>
+        </div>
+
+        <div class="pt-2 flex items-center gap-3">
+          <button type="button" id="cancel-donation-btn" class="btn-outline-teal text-xs py-3 px-4">
+            Cancel
+          </button>
+          <button type="submit" class="btn-primary flex-1 py-3 text-sm justify-center">
+            <span>Confirm Demo Donation</span>
+            <i data-lucide="check" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <p class="text-[11px] text-center text-slate-400 mt-2">
+          Demo platform mode. No real payment gateway or credit card required.
+        </p>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- MODAL: VOLUNTEER APPLICATION QUICK REGISTER                           -->
+  <!-- ====================================================================== -->
+  <div id="volunteer-apply-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="volunteer-modal-title">
+    <div class="modal-content p-6 sm:p-8">
+      
+      <button id="close-volunteer-modal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-100 transition-colors" aria-label="Close modal">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-2xl bg-teal-50 text-[#0C8277] flex items-center justify-center">
+          <i data-lucide="user-check" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#0C8277]">Volunteer Enrolment</span>
+          <h3 id="volunteer-modal-title" class="text-xl font-bold font-heading text-[#073F3D]">Join as a Volunteer</h3>
+        </div>
+      </div>
+
+      <div class="p-3 rounded-xl bg-[#EFFAF8] border border-[#D7EFEA] mb-4">
+        <p class="text-xs text-slate-500">Selected Opportunity:</p>
+        <p id="volunteer-target-role" class="text-sm font-bold font-heading text-[#073F3D]">Digital Learning Buddy</p>
+      </div>
+
+      <!-- Volunteer Application Form (All prefilled values removed; clear placeholder text provided) -->
+      <form id="volunteer-apply-form" class="space-y-4">
+        <div>
+          <label for="volunteer-name-input" class="block text-xs font-bold uppercase tracking-wider text-[#073F3D] mb-1">
+            Full Name <span class="text-red-500">*</span>
+          </label>
+          <input type="text" id="volunteer-name-input" class="gt-input text-sm" placeholder="Enter your full name" required />
+        </div>
+
+        <div>
+          <label for="volunteer-email-input" class="block text-xs font-bold uppercase tracking-wider text-[#073F3D] mb-1">
+            Email Address <span class="text-red-500">*</span>
+          </label>
+          <input type="email" id="volunteer-email-input" class="gt-input text-sm" placeholder="Enter your email address" required />
+        </div>
+
+        <div>
+          <label for="volunteer-phone-input" class="block text-xs font-bold uppercase tracking-wider text-[#073F3D] mb-1">
+            Phone / WhatsApp Number
+          </label>
+          <input type="tel" id="volunteer-phone-input" class="gt-input text-sm" placeholder="Enter your phone number" />
+        </div>
+
+        <div>
+          <label for="volunteer-notes-input" class="block text-xs font-bold uppercase tracking-wider text-[#073F3D] mb-1">
+            Relevant Experience or Message
+          </label>
+          <textarea id="volunteer-notes-input" class="gt-input text-sm h-20 resize-none" placeholder="Briefly share why you are enthusiastic about this cause..."></textarea>
+        </div>
+
+        <div class="pt-2 flex items-center gap-3">
+          <button type="button" id="cancel-volunteer-btn" class="btn-outline-teal text-xs py-3 px-4">
+            Cancel
+          </button>
+          <button type="submit" class="btn-orange flex-1 py-3 text-sm justify-center">
+            <span>Submit Application</span>
+            <i data-lucide="send" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

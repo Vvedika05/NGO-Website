@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GiveTrack – Donate, Track, Volunteer</title>
+<meta name="description" content="GiveTrack is an NGO donation transparency and volunteer matching platform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-body text-ink bg-white">
+
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-line">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-[72px] flex items-center justify-between gap-4">
+    <a href="#home" aria-label="GiveTrack home"><img src="assets/givetrack-logo.png" alt="GiveTrack – Donate, Track, Volunteer" class="h-11 w-auto"></a>
+    <nav id="nav" class="hidden lg:flex items-center gap-1" aria-label="Primary">
+      <a href="#home" class="nav-link">Home</a><a href="#campaigns" class="nav-link">Campaigns</a><a href="#donations" class="nav-link">Donations</a>
+      <a href="#expenses" class="nav-link">Expenses</a><a href="#volunteers" class="nav-link">Volunteers</a><a href="#reports" class="nav-link">Reports</a>
+    </nav>
+    <div class="flex items-center gap-2 relative">
+      <button id="bellBtn" class="icon-btn relative" aria-label="Notifications" aria-expanded="false"><i data-lucide="bell"></i><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-orange"></span></button>
+      <div id="bellMenu" class="hidden absolute right-0 top-12 w-72 bg-white border border-line rounded-2xl shadow-lg p-2 text-sm">
+        <p class="px-3 py-2 font-heading font-bold text-teal">Notifications</p>
+        <p class="px-3 py-2 rounded-xl hover:bg-mint">Every Child in School passed ₹40,000.</p>
+        <p class="px-3 py-2 rounded-xl hover:bg-mint">3 new volunteers joined Green Streets.</p>
+        <p class="px-3 py-2 rounded-xl hover:bg-mint">September expense report is ready.</p>
+      </div>
+      <button class="flex items-center gap-2 rounded-full border border-line pl-1 pr-3 py-1 hover:bg-mint" aria-label="Your profile">
+        <span class="w-8 h-8 rounded-full bg-teal text-white grid place-items-center text-sm font-heading font-bold">AR</span><span class="hidden sm:block text-sm font-medium">Asha Rao</span>
+      </button>
+      <button id="menuBtn" class="icon-btn lg:hidden" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu"></i></button>
+    </div>
+  </div>
+  <nav id="mobileNav" class="hidden lg:hidden border-t border-line bg-white px-4 py-2 grid grid-cols-2 gap-1" aria-label="Mobile">
+    <a href="#home" class="nav-link">Home</a><a href="#campaigns" class="nav-link">Campaigns</a><a href="#donations" class="nav-link">Donations</a>
+    <a href="#expenses" class="nav-link">Expenses</a><a href="#volunteers" class="nav-link">Volunteers</a><a href="#reports" class="nav-link">Reports</a>
+  </nav>
+</header>
+
+<main>
+<section id="home" class="bg-mint">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-14 lg:py-20 grid lg:grid-cols-2 gap-10 items-center">
+    <div>
+      <h1 class="font-heading font-extrabold text-teal text-4xl sm:text-5xl leading-[1.1]">Welcome back, Asha. See where every rupee goes.</h1>
+      <p class="mt-5 text-lg text-ink/80 max-w-xl">GiveTrack helps NGOs run fundraising campaigns, publish how each donation is spent, and match volunteers with work that fits their skills and time.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#campaigns" class="btn btn-primary">Explore Campaigns</a>
+        <a href="#volunteers" class="btn btn-outline">Become a Volunteer</a>
+      </div>
+    </div>
+    <div class="bg-white rounded-3xl border border-line shadow-card p-6 sm:p-8">
+      <p class="text-sm text-ink/70">Total donations received</p>
+      <p id="heroTotal" class="font-heading font-extrabold text-teal text-4xl mt-1"></p>
+      <div class="mt-6 h-4 rounded-full bg-mint overflow-hidden flex" role="img" aria-label="Share of funds utilised">
+        <div id="heroBar" class="h-full bg-teal transition-all duration-500"></div>
+      </div>
+      <div class="mt-4 flex justify-between text-sm">
+        <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-teal mr-2"></span>Utilised <b id="heroSpent" class="font-heading"></b></div>
+        <div><span class="inline-block w-2.5 h-2.5 rounded-full bg-turq mr-2"></span>Remaining <b id="heroLeft" class="font-heading"></b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-4 sm:px-6 -mt-2 py-10" aria-label="Dashboard statistics">
+  <div id="stats" class="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
+</section>
+
+<section id="campaigns" class="max-w-6xl mx-auto px-4 sm:px-6 py-10 scroll-mt-24">
+  <h2 class="section-title">Active campaigns</h2>
+  <p class="section-sub">Three campaigns are open for donations right now.</p>
+  <div id="campaignGrid" class="mt-8 grid md:grid-cols-3 gap-6"></div>
+</section>
+
+<section id="expenses" class="bg-mint scroll-mt-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-14">
+    <h2 class="section-title">Donation transparency</h2>
+    <p class="section-sub">₹65,000 spent and ₹35,000 remaining add up to ₹1,00,000 in total donations.</p>
+    <div class="mt-8 grid lg:grid-cols-5 gap-6">
+      <div class="lg:col-span-2 bg-white rounded-3xl border border-line shadow-card p-6">
+        <div class="relative mx-auto max-w-[280px]">
+          <canvas id="donut" aria-label="Doughnut chart of expenses and remaining balance" role="img"></canvas>
+          <div class="absolute inset-0 grid place-items-center pointer-events-none text-center"><div><p class="text-xs text-ink/70">Total donations</p><p id="donutTotal" class="font-heading font-extrabold text-teal text-xl"></p></div></div>
+        </div>
+        <div class="mt-6 grid grid-cols-3 gap-2 text-center text-sm">
+          <div class="rounded-2xl bg-mint p-3"><p class="text-ink/70">Total</p><p id="tTotal" class="font-heading font-bold text-teal"></p></div>
+          <div class="rounded-2xl bg-mint p-3"><p class="text-ink/70">Spent</p><p id="tSpent" class="font-heading font-bold text-teal"></p></div>
+          <div class="rounded-2xl bg-mint p-3"><p class="text-ink/70">Remaining</p><p id="tLeft" class="font-heading font-bold text-teal"></p></div>
+        </div>
+      </div>
+      <div class="lg:col-span-3 bg-white rounded-3xl border border-line shadow-card p-6">
+        <h3 class="font-heading font-bold text-teal text-xl">Expense breakdown</h3>
+        <ul id="expenseList" class="mt-5 space-y-5"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="donations" class="max-w-6xl mx-auto px-4 sm:px-6 py-14 scroll-mt-24">
+  <div class="flex flex-wrap items-end justify-between gap-4">
+    <div><h2 class="section-title">Recent donations</h2><p class="section-sub">Each transaction is checked against the NGO's bank record.</p></div>
+    <button class="btn btn-accent" data-donate="">Make a donation</button>
+  </div>
+  <div class="mt-6 overflow-x-auto rounded-3xl border border-line shadow-card">
+    <table class="w-full text-left text-sm min-w-[640px]">
+      <thead class="bg-mint text-teal font-heading"><tr><th class="p-4">Donor</th><th class="p-4">Campaign</th><th class="p-4">Date</th><th class="p-4 text-right">Amount</th><th class="p-4">Status</th></tr></thead>
+      <tbody id="donationRows" class="divide-y divide-line"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="volunteers" class="bg-mint scroll-mt-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-14">
+    <h2 class="section-title">Volunteer opportunities</h2>
+    <p class="section-sub">Pick the role that fits your skills and the hours you have.</p>
+    <div id="oppGrid" class="mt-8 grid md:grid-cols-3 gap-6"></div>
+
+    <div class="mt-12 bg-white rounded-3xl border border-line shadow-card p-6 sm:p-8">
+      <h3 class="font-heading font-bold text-teal text-2xl">Volunteer matching assistant</h3>
+      <p class="text-ink/75 mt-1">Choose your skills and when you are free. We rank the roles that suit you best.</p>
+      <div class="mt-6 grid lg:grid-cols-2 gap-8">
+        <div>
+          <fieldset><legend class="font-heading font-bold mb-3">Your skills</legend><div id="skillChips" class="flex flex-wrap gap-2"></div></fieldset>
+          <fieldset class="mt-6"><legend class="font-heading font-bold mb-3">Your availability</legend><div id="availChips" class="flex flex-wrap gap-2"></div></fieldset>
+          <button id="matchBtn" class="btn btn-primary mt-6">Find my matches</button>
+        </div>
+        <div id="matchResults" class="space-y-3" aria-live="polite"><p class="text-ink/60 rounded-2xl border border-dashed border-line p-6">Your suggestions will appear here.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reports" class="max-w-6xl mx-auto px-4 sm:px-6 py-14 scroll-mt-24">
+  <h2 class="section-title">Reports</h2>
+  <p class="section-sub">Download the current figures as CSV files for your records or audit.</p>
+  <div class="mt-6 flex flex-wrap gap-3">
+    <button class="btn btn-outline" id="dlDonations"><i data-lucide="download" class="w-4 h-4"></i>Donations report</button>
+    <button class="btn btn-outline" id="dlExpenses"><i data-lucide="download" class="w-4 h-4"></i>Expense report</button>
+  </div>
+</section>
+</main>
+
+<footer class="bg-mint border-t border-line">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 grid md:grid-cols-4 gap-8 text-sm">
+    <div class="md:col-span-2">
+      <div class="inline-block bg-white rounded-2xl p-3 border border-line"><img src="assets/givetrack-logo.png" alt="GiveTrack" class="h-11 w-auto"></div>
+      <h3 class="font-heading font-bold text-teal mt-5">About GiveTrack</h3>
+      <p class="mt-2 max-w-md text-ink/80">GiveTrack gives donors a clear view of how funds are used and gives volunteers a simple way to find where they can help.</p>
+      <div class="mt-5 flex gap-2">
+        <a href="#" class="icon-btn bg-white" aria-label="Facebook"><i data-lucide="facebook"></i></a><a href="#" class="icon-btn bg-white" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        <a href="#" class="icon-btn bg-white" aria-label="Twitter"><i data-lucide="twitter"></i></a><a href="#" class="icon-btn bg-white" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+      </div>
+    </div>
+    <div><h3 class="font-heading font-bold text-teal">Explore</h3>
+      <ul class="mt-3 space-y-2"><li><a class="hover:text-turq" href="#home">Home</a></li><li><a class="hover:text-turq" href="#campaigns">Campaigns</a></li><li><a class="hover:text-turq" href="#donations">Donations</a></li><li><a class="hover:text-turq" href="#expenses">Expenses</a></li><li><a class="hover:text-turq" href="#volunteers">Volunteers</a></li><li><a class="hover:text-turq" href="#reports">Reports</a></li></ul></div>
+    <div><h3 class="font-heading font-bold text-teal">Contact</h3>
+      <ul class="mt-3 space-y-2"><li>hello@givetrack.example</li><li>+91 80 0000 0000</li><li>Bengaluru, Karnataka, India</li></ul></div>
+  </div>
+  <div class="border-t border-line"><div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap justify-between gap-2 text-xs text-ink/70"><p>© 2026 GiveTrack. Demo platform with sample data.</p><a href="#" id="privacyLink" class="hover:text-turq underline">Privacy policy</a></div></div>
+</footer>
+
+<dialog id="donateDlg" class="rounded-3xl p-0 w-[92vw] max-w-md shadow-2xl">
+  <form id="donateForm" method="dialog" class="p-6 space-y-4">
+    <div class="flex justify-between items-start"><h3 class="font-heading font-bold text-teal text-2xl">Make a donation</h3><button type="button" id="closeDlg" class="icon-btn" aria-label="Close"><i data-lucide="x"></i></button></div>
+    <label class="block text-sm font-medium">Your name<input id="fName" required maxlength="40" class="field" placeholder="Full name"></label>
+    <label class="block text-sm font-medium">Campaign<select id="fCampaign" class="field"></select></label>
+    <label class="block text-sm font-medium">Amount (₹)<input id="fAmount" type="number" min="100" step="50" required class="field" placeholder="Minimum ₹100"></label>
+    <div class="flex gap-2" id="quickAmts"><button type="button" class="chip" data-amt="500">₹500</button><button type="button" class="chip" data-amt="1000">₹1,000</button><button type="button" class="chip" data-amt="2500">₹2,500</button></div>
+    <p class="text-xs text-ink/60">Demo only. No payment is taken and nothing is stored.</p>
+    <button class="btn btn-primary w-full" type="submit">Donate now</button>
+  </form>
+</dialog>
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-teal text-white px-5 py-3 rounded-2xl shadow-lg text-sm opacity-0 pointer-events-none transition-opacity z-50" role="status"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GiveTrack makes NGO donations, campaign progress and volunteering opportunities easy to follow." />
+  <title>GiveTrack | Donate. Track. Volunteer.</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#effaf8', 100: '#d8f2ed', 500: '#159b8b', 600: '#0c8277', 700: '#08675f', 900: '#073f3d' },
+            accent: '#f59a38', ink: '#173b3b'
+          },
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          boxShadow: { soft: '0 12px 35px rgba(18, 67, 64, .08)' }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-[#f6faf9] text-ink font-sans">
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-brand-100 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <a href="#home" class="flex items-center" aria-label="GiveTrack home">
+        <img src="assets/givetrack-logo.png" alt="GiveTrack — Donate, Track, Volunteer" class="brand-logo" />
+      </a>
+      <div class="hidden items-center gap-3 md:flex">
+        <button class="icon-button" aria-label="Notifications"><i data-lucide="bell"></i><span class="notification-dot"></span></button>
+        <div class="flex items-center gap-2 border-l border-slate-200 pl-4">
+          <div class="avatar">VJ</div>
+          <div class="leading-tight"><p class="text-sm font-bold">Welcome, Vvedika</p><p class="text-xs text-slate-500">Community member</p></div>
+        </div>
+      </div>
+      <button id="menu-toggle" class="icon-button md:hidden" aria-label="Open navigation" aria-expanded="false"><i data-lucide="menu"></i></button>
+    </div>
+    <!-- Navigation -->
+    <nav id="main-nav" class="hidden border-t border-slate-100 bg-white md:block" aria-label="Main navigation">
+      <div class="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-2 sm:px-6 md:flex-row md:items-center md:gap-7 lg:px-8">
+        <a class="nav-link active" href="#home">Home</a>
+        <a class="nav-link" href="#campaigns">Campaigns</a>
+        <a class="nav-link" href="#donations">Donations</a>
+        <a class="nav-link" href="#expenses">Expenses</a>
+        <a class="nav-link" href="#volunteers">Volunteers</a>
+        <a class="nav-link" href="#reports">Reports</a>
+        <a class="ml-0 mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-5 py-2 text-sm font-bold text-white transition hover:bg-brand-700 md:ml-auto md:mt-0" href="#campaigns">Support a cause <i data-lucide="heart" class="h-4 w-4"></i></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home" class="mx-auto max-w-7xl px-4 py-7 sm:px-6 lg:px-8">
+    <!-- Welcome / hero -->
+    <section class="hero-panel mb-8 overflow-hidden rounded-3xl p-6 text-white shadow-soft sm:p-9">
+      <div class="relative z-10 max-w-2xl">
+        <p class="mb-3 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide"><span class="h-2 w-2 rounded-full bg-emerald-300"></span> SMALL ACTS. MEANINGFUL CHANGE.</p>
+        <h1 class="mb-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl">Make every contribution <span class="text-[#ffd49f]">count.</span></h1>
+        <p class="max-w-xl text-sm leading-6 text-white/85 sm:text-base">Follow the journey of every donation, see the impact of each campaign and find a volunteering opportunity that fits you.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#campaigns" class="rounded-full bg-white px-5 py-3 text-sm font-bold text-brand-900 shadow transition hover:-translate-y-0.5">Explore campaigns <i data-lucide="arrow-up-right" class="ml-1 inline h-4 w-4"></i></a>
+          <a href="#volunteers" class="rounded-full border border-white/50 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10">Become a volunteer</a>
+        </div>
+      </div>
+      <div class="hero-orbit" aria-hidden="true"><div class="orbit-circle orbit-one"></div><div class="orbit-circle orbit-two"></div><div class="hero-heart">♥</div><span class="hero-spark spark-one">✦</span><span class="hero-spark spark-two">✦</span></div>
+    </section>
+
+    <section aria-labelledby="overview-title" class="mb-9">
+      <div class="mb-4 flex flex-wrap items-end justify-between gap-2"><div><p class="eyebrow">YOUR IMPACT AT A GLANCE</p><h2 id="overview-title" class="section-title">Community overview</h2></div><p class="text-xs text-slate-500">Sample dashboard data · November 2026</p></div>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <article class="stat-card"><div class="stat-icon bg-brand-50 text-brand-700"><i data-lucide="hand-heart"></i></div><p class="stat-label">Total donations</p><p class="stat-value">₹1,00,000</p><p class="stat-note"><span class="text-emerald-600">↑ 12%</span> this month</p></article>
+        <article class="stat-card"><div class="stat-icon bg-orange-50 text-orange-600"><i data-lucide="receipt"></i></div><p class="stat-label">Funds utilised</p><p class="stat-value">₹65,000</p><p class="stat-note">65% of funds received</p></article>
+        <article class="stat-card"><div class="stat-icon bg-sky-50 text-sky-700"><i data-lucide="wallet"></i></div><p class="stat-label">Remaining balance</p><p class="stat-value">₹35,000</p><p class="stat-note">Available for approved needs</p></article>
+        <article class="stat-card"><div class="stat-icon bg-violet-50 text-violet-700"><i data-lucide="users"></i></div><p class="stat-label">Active volunteers</p><p class="stat-value">128</p><p class="stat-note"><span class="text-emerald-600">+18</span> joined this month</p></article>
+      </div>
+    </section>
+
+    <section id="campaigns" class="mb-9 scroll-mt-28" aria-labelledby="campaign-title">
+      <div class="mb-4 flex flex-wrap items-end justify-between gap-3"><div><p class="eyebrow">WHERE HELP IS NEEDED</p><h2 id="campaign-title" class="section-title">Active campaigns</h2></div><a href="#campaigns" class="text-sm font-bold text-brand-700 hover:text-brand-900">View all campaigns <i data-lucide="arrow-right" class="ml-1 inline h-4 w-4"></i></a></div>
+      <div class="grid gap-5 lg:grid-cols-3">
+        <article class="campaign-card"><div class="campaign-art art-education"><span class="art-icon"><i data-lucide="book-open"></i></span><span class="campaign-tag">Education</span></div><div class="p-5"><h3 class="card-heading">Every Child in School</h3><p class="mt-1 text-sm leading-5 text-slate-500">Learning kits, books and school supplies for children in underserved communities.</p><div class="mt-5 flex justify-between text-sm"><span class="font-bold text-ink">₹42,000 raised</span><span class="text-slate-500">of ₹60,000</span></div><div class="progress-track mt-2"><div class="progress-fill" style="width:70%"></div></div><div class="mt-4 flex items-center justify-between"><span class="text-xs font-semibold text-brand-700">70% funded</span><button class="donate-button" data-campaign="Every Child in School">Donate <i data-lucide="arrow-up-right" class="ml-1 inline h-3.5 w-3.5"></i></button></div></div></article>
+        <article class="campaign-card"><div class="campaign-art art-health"><span class="art-icon"><i data-lucide="heart-pulse"></i></span><span class="campaign-tag">Healthcare</span></div><div class="p-5"><h3 class="card-heading">Healthy Neighbourhood</h3><p class="mt-1 text-sm leading-5 text-slate-500">Basic health check-ups and essential medicines for families who need support.</p><div class="mt-5 flex justify-between text-sm"><span class="font-bold text-ink">₹28,000 raised</span><span class="text-slate-500">of ₹50,000</span></div><div class="progress-track mt-2"><div class="progress-fill progress-orange" style="width:56%"></div></div><div class="mt-4 flex items-center justify-between"><span class="text-xs font-semibold text-brand-700">56% funded</span><button class="donate-button" data-campaign="Healthy Neighbourhood">Donate <i data-lucide="arrow-up-right" class="ml-1 inline h-3.5 w-3.5"></i></button></div></div></article>
+        <article class="campaign-card"><div class="campaign-art art-environment"><span class="art-icon"><i data-lucide="trees"></i></span><span class="campaign-tag">Environment</span></div><div class="p-5"><h3 class="card-heading">Green Streets Project</h3><p class="mt-1 text-sm leading-5 text-slate-500">Plant native trees and create cleaner, greener public spaces in local areas.</p><div class="mt-5 flex justify-between text-sm"><span class="font-bold text-ink">₹30,000 raised</span><span class="text-slate-500">of ₹40,000</span></div><div class="progress-track mt-2"><div class="progress-fill progress-green" style="width:75%"></div></div><div class="mt-4 flex items-center justify-between"><span class="text-xs font-semibold text-brand-700">75% funded</span><button class="donate-button" data-campaign="Green Streets Project">Donate <i data-lucide="arrow-up-right" class="ml-1 inline h-3.5 w-3.5"></i></button></div></div></article>
+      </div>
+    </section>
+
+    <section id="donations" class="mb-9 scroll-mt-28" aria-labelledby="funds-title">
+      <div class="mb-4"><p class="eyebrow">FOLLOW THE FUNDS</p><h2 id="funds-title" class="section-title">Donation transparency</h2><p class="mt-1 text-sm text-slate-500">A clear view of how community contributions are being used.</p></div>
+      <div class="grid gap-5 lg:grid-cols-5">
+        <article id="expenses" class="panel lg:col-span-3 scroll-mt-28"><div class="mb-5 flex flex-wrap items-center justify-between gap-2"><div><h3 class="card-heading">Fund utilisation</h3><p class="text-xs text-slate-500">Received vs. spent vs. remaining</p></div><span class="rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-700">November 2026</span></div><div class="grid gap-5 sm:grid-cols-[1fr_1.1fr] sm:items-center"><div class="chart-wrap"><canvas id="fundChart" aria-label="Doughnut chart showing 65000 rupees spent and 35000 remaining"></canvas><div class="chart-center"><strong>₹1L</strong><span>Total received</span></div></div><div class="space-y-4"><div class="legend-row"><span class="legend-dot bg-brand-600"></span><div class="flex-1"><p class="text-sm font-semibold">Amount spent</p><p class="text-xs text-slate-500">Programme and operating expenses</p></div><strong class="text-sm">₹65,000</strong></div><div class="legend-row"><span class="legend-dot bg-orange-400"></span><div class="flex-1"><p class="text-sm font-semibold">Remaining balance</p><p class="text-xs text-slate-500">Funds available for allocation</p></div><strong class="text-sm">₹35,000</strong></div><div class="rounded-xl bg-brand-50 p-3"><p class="text-xs font-semibold text-brand-800">Reconciliation check</p><p class="mt-1 text-sm text-brand-900">₹65,000 spent + ₹35,000 remaining = ₹1,00,000 received</p><p class="mt-1 text-xs font-bold text-emerald-700"><i data-lucide="check-circle-2" class="mr-1 inline h-3.5 w-3.5"></i> Figures are balanced</p></div></div></div></article>
+        <article id="reports" class="panel lg:col-span-2 scroll-mt-28"><div class="mb-4"><h3 class="card-heading">Expense breakdown</h3><p class="text-xs text-slate-500">How the ₹65,000 was used</p></div><div class="space-y-5"><div><div class="mb-2 flex justify-between text-sm"><span class="font-medium">Education supplies</span><strong>₹30,000</strong></div><div class="progress-track"><div class="progress-fill" style="width:46.15%"></div></div></div><div><div class="mb-2 flex justify-between text-sm"><span class="font-medium">Healthcare support</span><strong>₹20,000</strong></div><div class="progress-track"><div class="progress-fill progress-orange" style="width:30.77%"></div></div></div><div><div class="mb-2 flex justify-between text-sm"><span class="font-medium">Community projects</span><strong>₹10,000</strong></div><div class="progress-track"><div class="progress-fill progress-green" style="width:15.38%"></div></div></div><div><div class="mb-2 flex justify-between text-sm"><span class="font-medium">Administration</span><strong>₹5,000</strong></div><div class="progress-track"><div class="progress-fill progress-slate" style="width:7.7%"></div></div></div></div><div class="mt-6 border-t border-slate-100 pt-4"><a href="#transactions" class="inline-flex items-center gap-2 text-sm font-bold text-brand-700 hover:text-brand-900">See recent transactions <i data-lucide="arrow-right" class="h-4 w-4"></i></a></div></article>
+      </div>
+    </section>
+
+    <section id="transactions" class="mb-9 scroll-mt-28" aria-labelledby="transactions-title"><div class="mb-4 flex items-end justify-between"><div><p class="eyebrow">RECENT ACTIVITY</p><h2 id="transactions-title" class="section-title">Recent donations</h2></div><span class="text-xs text-slate-500">Latest entries</span></div><div class="panel overflow-hidden"><div class="overflow-x-auto"><table class="w-full min-w-[620px] text-left"><thead><tr class="border-b border-slate-100 text-xs uppercase tracking-wide text-slate-400"><th class="px-5 py-4 font-semibold">Donor</th><th class="px-5 py-4 font-semibold">Campaign</th><th class="px-5 py-4 font-semibold">Date</th><th class="px-5 py-4 text-right font-semibold">Amount</th><th class="px-5 py-4 text-right font-semibold">Status</th></tr></thead><tbody class="divide-y divide-slate-100 text-sm"><tr><td class="px-5 py-4 font-semibold">Ananya Rao</td><td class="px-5 py-4 text-slate-500">Every Child in School</td><td class="px-5 py-4 text-slate-500">05 Nov 2026</td><td class="px-5 py-4 text-right font-bold">₹2,000</td><td class="px-5 py-4 text-right"><span class="status-pill">Verified</span></td></tr><tr><td class="px-5 py-4 font-semibold">Rahul Mehta</td><td class="px-5 py-4 text-slate-500">Healthy Neighbourhood</td><td class="px-5 py-4 text-slate-500">04 Nov 2026</td><td class="px-5 py-4 text-right font-bold">₹5,000</td><td class="px-5 py-4 text-right"><span class="status-pill">Verified</span></td></tr><tr><td class="px-5 py-4 font-semibold">Priya Sharma</td><td class="px-5 py-4 text-slate-500">Green Streets Project</td><td class="px-5 py-4 text-slate-500">03 Nov 2026</td><td class="px-5 py-4 text-right font-bold">₹1,500</td><td class="px-5 py-4 text-right"><span class="status-pill">Verified</span></td></tr></tbody></table></div></div></section>
+
+    <section id="volunteers" class="mb-9 scroll-mt-28" aria-labelledby="volunteer-title"><div class="mb-4"><p class="eyebrow">GIVE YOUR TIME AND SKILLS</p><h2 id="volunteer-title" class="section-title">Volunteer opportunities</h2><p class="mt-1 text-sm text-slate-500">Find a role where your time and skills can make a difference.</p></div><div class="grid gap-4 md:grid-cols-3"><article class="opportunity-card"><div class="flex items-center justify-between"><span class="opportunity-icon bg-sky-50 text-sky-700"><i data-lucide="laptop"></i></span><span class="text-xs font-semibold text-slate-400">Weekend</span></div><h3 class="mt-4 font-bold">Digital Learning Buddy</h3><p class="mt-1 text-sm text-slate-500">Help school students with basic computer skills and online learning.</p><div class="mt-4 flex flex-wrap gap-2"><span class="skill-chip">Teaching</span><span class="skill-chip">Technology</span></div><p class="mt-4 text-xs text-slate-500"><i data-lucide="map-pin" class="mr-1 inline h-3.5 w-3.5"></i>Bengaluru · 3 hours/week</p></article><article class="opportunity-card"><div class="flex items-center justify-between"><span class="opportunity-icon bg-orange-50 text-orange-600"><i data-lucide="camera"></i></span><span class="text-xs font-semibold text-slate-400">Flexible</span></div><h3 class="mt-4 font-bold">Community Storyteller</h3><p class="mt-1 text-sm text-slate-500">Create photos, short videos and stories about community initiatives.</p><div class="mt-4 flex flex-wrap gap-2"><span class="skill-chip">Photography</span><span class="skill-chip">Writing</span></div><p class="mt-4 text-xs text-slate-500"><i data-lucide="map-pin" class="mr-1 inline h-3.5 w-3.5"></i>Hybrid · 2 hours/week</p></article><article class="opportunity-card"><div class="flex items-center justify-between"><span class="opportunity-icon bg-emerald-50 text-emerald-700"><i data-lucide="sprout"></i></span><span class="text-xs font-semibold text-slate-400">Saturday</span></div><h3 class="mt-4 font-bold">Green Streets Volunteer</h3><p class="mt-1 text-sm text-slate-500">Join local tree-planting drives and neighbourhood clean-up events.</p><div class="mt-4 flex flex-wrap gap-2"><span class="skill-chip">Environment</span><span class="skill-chip">Community</span></div><p class="mt-4 text-xs text-slate-500"><i data-lucide="map-pin" class="mr-1 inline h-3.5 w-3.5"></i>Bengaluru · 4 hours/week</p></article></div></section>
+
+    <section class="match-panel mb-9 scroll-mt-28" aria-labelledby="match-title"><div class="grid gap-7 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><p class="eyebrow text-brand-100">GIVETRACK SMART MATCH</p><h2 id="match-title" class="mt-2 font-display text-2xl font-extrabold text-white sm:text-3xl">Find your way to make a difference.</h2><p class="mt-3 max-w-lg text-sm leading-6 text-white/75">Tell us what you enjoy doing. Our volunteer matching assistant will suggest opportunities that fit your interests.</p><div class="mt-5 flex items-center gap-2 text-xs text-white/65"><i data-lucide="sparkles" class="h-4 w-4 text-[#ffc27d]"></i> Interactive demo · Uses sample opportunity data</div></div><div class="rounded-2xl bg-white p-5 shadow-xl sm:p-6"><form id="match-form"><label for="skills" class="mb-2 block text-sm font-bold text-ink">Choose your skill or interest</label><select id="skills" class="form-control" required><option value="">Select an interest</option><option value="teaching">Teaching / Education</option><option value="technology">Technology</option><option value="creative">Photography / Writing</option><option value="environment">Environment</option><option value="community">Community work</option></select><label for="availability" class="mb-2 mt-4 block text-sm font-bold text-ink">When are you available?</label><select id="availability" class="form-control" required><option value="">Select availability</option><option value="weekend">Weekends</option><option value="flexible">Flexible</option><option value="saturday">Saturday</option></select><button type="submit" class="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-700">Find my match <i data-lucide="arrow-right" class="h-4 w-4"></i></button></form><div id="match-result" class="mt-4 hidden rounded-xl border border-brand-100 bg-brand-50 p-4" aria-live="polite"></div></div></div></section>
+  </main>
+
+
+  <footer class="bg-[#073f3d] text-white"><div class="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8"><div><img src="assets/givetrack-logo.png" alt="GiveTrack" class="footer-logo" /><p class="mt-3 max-w-sm text-sm leading-6 text-white/65">A community platform built around transparent giving, meaningful campaigns and people-powered change.</p></div><div><h3 class="mb-3 text-sm font-bold">Explore</h3><div class="grid gap-2 text-sm text-white/65"><a class="footer-link" href="#campaigns">Campaigns</a><a class="footer-link" href="#donations">Donation transparency</a><a class="footer-link" href="#volunteers">Volunteer opportunities</a><a class="footer-link" href="#reports">Reports</a></div></div><div><h3 class="mb-3 text-sm font-bold">Get in touch</h3><div class="grid gap-2 text-sm text-white/65"><a class="footer-link" href="mailto:hello@givetrack.org">hello@givetrack.org</a><span>Bengaluru, India</span><div class="mt-2 flex gap-3"><a class="social-link" href="#home" aria-label="Instagram">ig</a><a class="social-link" href="#home" aria-label="LinkedIn">in</a><a class="social-link" href="#home" aria-label="Facebook">f</a></div></div></div></div><div class="border-t border-white/10"><div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 text-xs text-white/50 sm:px-6 md:flex-row md:justify-between lg:px-8"><span>© 2026 GiveTrack. All rights reserved.</span><span><a class="footer-link" href="#home">Privacy Policy</a> · <a class="footer-link" href="#home">Terms of Use</a></span></div></div></footer>
+
+  <div id="donation-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="donation-title"><div class="modal-card"><button id="close-modal" class="modal-close" aria-label="Close"><i data-lucide="x"></i></button><div class="mb-3 inline-flex rounded-xl bg-orange-50 p-3 text-orange-600"><i data-lucide="heart-handshake"></i></div><h2 id="donation-title" class="font-display text-xl font-extrabold">Support this campaign</h2><p id="selected-campaign" class="mt-1 text-sm text-slate-500">Your contribution can make a difference.</p><form id="donation-form" class="mt-5"><label for="donation-amount" class="mb-2 block text-sm font-semibold">Donation amount (₹)</label><input id="donation-amount" class="form-control" type="number" min="1" placeholder="Enter amount" required /><button class="mt-4 w-full rounded-xl bg-brand-600 px-5 py-3 text-sm font-bold text-white hover:bg-brand-700" type="submit">Continue (demo)</button></form><p id="donation-message" class="mt-3 text-sm font-semibold text-emerald-700" aria-live="polite"></p><p class="mt-3 text-xs text-slate-400">Demo only. No payment will be processed.</p></div></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
