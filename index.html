@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GiveTrack - NGO Donation Transparency and Volunteer Matching Platform. Real-time fund tracking, verified vouchers, and community empowerment." />
+  <title>GiveTrack | NGO Donation Transparency & Volunteer Platform</title>
+
+  <!-- Google Fonts: Manrope (Headings) & DM Sans (UI/Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Manrope:wght@400..800&display=swap" rel="stylesheet" />
+
+  <!-- 100% Pure Vanilla CSS (No Frameworks, Zero JavaScript) -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ====================================================================== -->
+  <!-- ACCESSIBLE PURE CSS CONTROLS (Zero JavaScript)                         -->
+  <!-- ====================================================================== -->
+  <!-- 1. Pure CSS Theme Toggle Checkbox -->
+  <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Toggle Dark Mode Theme" />
+
+  <!-- 2. Pure CSS Mobile Navigation Drawer Checkbox -->
+  <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox" aria-label="Toggle Mobile Navigation Menu" />
+
+  <!-- ====================================================================== -->
+  <!-- A. HEADER & PURE CSS NAVIGATION                                        -->
+  <!-- ====================================================================== -->
+  <header class="header-glass">
+    <div class="max-w-7xl header-inner">
+      
+      <!-- GiveTrack Original Logo -->
+      <a href="#home" class="brand-logo-link" aria-label="GiveTrack Home">
+        <img src="assets/givetrack-logo.png" alt="GiveTrack Logo — Donate, Track, Volunteer" class="brand-logo-img" />
+      </a>
+
+      <!-- Mobile Hamburger Toggle Label -->
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Open Navigation Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </label>
+
+      <!-- Main Navigation Menu -->
+      <nav class="main-navigation" aria-label="Main Navigation">
+        <a href="#home" class="nav-item active">Home</a>
+        <a href="#campaigns" class="nav-item">Campaigns</a>
+        <a href="#transparency" class="nav-item">Donations</a>
+        <a href="#expenses" class="nav-item">Expenses</a>
+        <a href="#volunteers" class="nav-item">Volunteers</a>
+        <a href="#expense-submission" class="nav-item">Submit Bill</a>
+        <a href="#reports" class="nav-item">Reports</a>
+      </nav>
+
+      <!-- Header Actions: Theme Switcher & Section 80G Certified Badge -->
+      <div class="header-actions">
+        <!-- Pure CSS Theme Toggle Control -->
+        <label for="theme-toggle" class="theme-toggle-btn" tabindex="0" title="Switch Theme (Light / Dark)" aria-label="Toggle site theme">
+          <span class="theme-icon-light" aria-hidden="true">☀ <span style="font-weight: 800;">Light</span></span>
+          <span class="theme-icon-dark" aria-hidden="true">🌙 <span style="font-weight: 800;">Dark</span></span>
+        </label>
+
+        <span class="badge-audited">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          Section 80G Certified
+        </span>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="max-w-7xl">
+
+    <!-- Print-Only Document Header (Active only in @media print) -->
+    <div class="print-only-header" aria-hidden="true">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2pt solid #073B36; padding-bottom: 8pt; margin-bottom: 12pt;">
+        <div>
+          <h1 style="font-size: 16pt; font-weight: 800; color: #073B36; margin: 0; letter-spacing: -0.01em;">GiveTrack™ Financial Transparency &amp; Audit Report</h1>
+          <p style="font-size: 8.5pt; color: #334155; margin: 2pt 0 0;">Official Statutory Expenditure Reconciliation &bull; Community Food Support Programme</p>
+        </div>
+        <div style="text-align: right; font-size: 7.5pt; color: #475569; line-height: 1.35;">
+          <strong>A4 Archival Report</strong><br>
+          Date: 11 November 2026 &bull; Status: Reconciled
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================================================================== -->
+    <!-- B. HOMEPAGE WELCOME HERO                                                -->
+    <!-- ==================================================================== -->
+    <section id="home" class="welcome-hero" aria-labelledby="home-hero-heading">
+      <div class="hero-grid">
+
+        <!-- Left: Platform Mission & Quick Actions -->
+        <div class="hero-content">
+          <div class="tagline-pill">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span>Donate • Track • Volunteer</span>
+          </div>
+
+          <h1 id="home-hero-heading" class="hero-title">
+            Empowering Community Impact with Radical Financial Transparency
+          </h1>
+
+          <p class="hero-lead">
+            Welcome to GiveTrack — India's verified NGO platform connecting generous donors with impactful grassroots initiatives. Every rupee received is matched against auditor-inspected vendor bills, purchase vouchers, and transparent distribution logs.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="hero-cta-group">
+            <a href="#campaigns" class="btn-orange">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              Explore Campaigns
+            </a>
+            <a href="#volunteers" class="btn-outline-white">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Become a Volunteer
+            </a>
+          </div>
+
+          <!-- Mandatory Financial Accounting Balance Formula -->
+          <div class="reconciliation-card">
+            <p class="reconciliation-formula">
+              Audited Reconciliation:
+              <span>₹85,000 Verified Spent</span> + <span>₹35,000 Remaining</span> = <span>₹1,20,000 Total Raised</span>
+            </p>
+            <p style="font-size: 0.825rem; color: rgba(255, 255, 255, 0.9); margin-top: 0.4rem;">
+              Status: 100% Balanced • Target: ₹1,50,000 (80% achieved) • 320 Verified Backers
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Authentic Documentary Field Photography with Pure CSS Zoom Interaction -->
+        <figure class="hero-photo-wrap" aria-label="GiveTrack community relief distribution hub">
+          <input type="checkbox" id="hero-img-zoom" class="img-zoom-toggle" aria-label="Toggle enlarged photo inspection view" />
+          <label for="hero-img-zoom" class="img-zoom-container" tabindex="0" title="Click, tap, or press Space to inspect photo" role="button" aria-pressed="false">
+            <picture>
+              <source media="(width < 40rem)" srcset="assets/campaign-mobile.jpg" />
+              <source media="(width >= 40rem)" srcset="assets/campaign-desktop.jpg" />
+              <img
+                src="assets/campaign-desktop.jpg"
+                alt="GiveTrack volunteers organising nutrition kits at Bengaluru community relief hub"
+                class="hero-photo-img"
+                width="580"
+                height="340"
+                loading="eager" />
+            </picture>
+            <span class="img-zoom-hint" aria-hidden="true">🔍 Tap / Click to Inspect</span>
+            <span class="img-zoom-close" aria-hidden="true">✕ Click to Close</span>
+          </label>
+          <figcaption class="hero-photo-badge">
+            <span><strong>Bengaluru Logistics Hub:</strong> Ration Assembly</span>
+            <span>Audited Nov 2026</span>
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- C. DASHBOARD STATISTICS CARDS                                         -->
+    <!-- ==================================================================== -->
+    <section class="stats-grid" aria-label="Campaign Financial Statistics">
+      <div class="stat-box">
+        <p class="stat-label">Total Contributions</p>
+        <p class="stat-val">₹1,20,000</p>
+        <p class="stat-note">From 320 verified donors</p>
+      </div>
+
+      <div class="stat-box">
+        <p class="stat-label">Verified Expenses</p>
+        <p class="stat-val">₹85,000</p>
+        <p class="stat-note">70.83% of funds utilised</p>
+      </div>
+
+      <div class="stat-box">
+        <p class="stat-label">Remaining Balance</p>
+        <p class="stat-val">₹35,000</p>
+        <p class="stat-note">Reserved for Phase 2 distribution</p>
+      </div>
+
+      <div class="stat-box">
+        <p class="stat-label">Active Volunteers</p>
+        <p class="stat-val">128</p>
+        <p class="stat-note">Across 4 community programmes</p>
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- D. ACTIVE CAMPAIGNS PORTFOLIO                                         -->
+    <!-- ==================================================================== -->
+    <section id="campaigns" style="margin-bottom: 3.5rem;" aria-labelledby="campaigns-heading">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 1.25rem;">
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-turquoise);">Active Portfolio</span>
+          <h2 id="campaigns-heading" style="font-size: 1.6rem; font-weight: 800; color: var(--color-deep-teal);">
+            Active Fundraising Campaigns
+          </h2>
+          <p style="font-size: 0.875rem; color: var(--color-muted);">
+            Every campaign is backed by verified supplier invoices and transparent balance records.
+          </p>
+        </div>
+        <a href="#simulate-donation" class="btn-orange">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          Make a Donation
+        </a>
+      </div>
+
+      <!-- Portfolio Consolidated Rollup Banner -->
+      <div style="background-color: var(--color-surface); border: 1px solid var(--color-mint-border); border-left: 4px solid var(--color-turquoise); border-radius: var(--radius-md); padding: 0.9rem 1.25rem; margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem;">
+        <div>
+          <strong style="color: var(--color-deep-teal); font-size: 0.9rem;">GiveTrack Organization Portfolio Summary:</strong>
+          <span style="font-size: 0.85rem; color: var(--color-muted); margin-left: 0.5rem;">4 Active Programmes • ₹2,20,000 Total Raised Across All Causes • 532 Total Backers</span>
+        </div>
+        <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-turquoise); background-color: var(--color-light-mint); padding: 0.25rem 0.65rem; border-radius: var(--radius-full);">
+          Detailed Audit Below Focuses on Flagship: Community Food Support
+        </span>
+      </div>
+
+      <div class="campaigns-portfolio-grid">
+        <!-- Campaign 0: Community Food Support Programme (Featured Flagship) -->
+        <article class="campaign-card" style="border: 2px solid var(--color-turquoise);" aria-labelledby="c0-title">
+          <div class="campaign-card-header" style="background-color: var(--color-surface-alt);">
+            <span class="campaign-category-badge badge-flagship">★ Featured Flagship</span>
+            <span class="campaign-donor-count">320 active donors</span>
+          </div>
+          <div class="campaign-card-body">
+            <div>
+              <h3 id="c0-title" class="campaign-card-title">Community Food Support</h3>
+              <p class="campaign-card-desc">
+                Providing 320 monthly nutrition kits, fortified grains, and warm meals for underserved urban families in Bengaluru with audited voucher accounting.
+              </p>
+            </div>
+            <div>
+              <div class="campaign-meta-row">
+                <span style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--color-deep-teal);">₹1,20,000</span>
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-turquoise);">80% of ₹1,50,000</span>
+              </div>
+              <div class="campaign-progress-bar">
+                <div class="campaign-progress-fill fill-turquoise" style="width: 80%;"></div>
+              </div>
+              <a href="#simulate-donation" class="btn-primary btn-block">Support Flagship Campaign</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Campaign 1: Every Child in School -->
+        <article class="campaign-card" aria-labelledby="c1-title">
+          <div class="campaign-card-header">
+            <span class="campaign-category-badge badge-edu">Education</span>
+            <span class="campaign-donor-count">84 active donors</span>
+          </div>
+          <div class="campaign-card-body">
+            <div>
+              <h3 id="c1-title" class="campaign-card-title">Every Child in School</h3>
+              <p class="campaign-card-desc">
+                Providing comprehensive learning kits, STEM textbooks, and classroom supplies for primary students in underserved urban government schools.
+              </p>
+            </div>
+            <div>
+              <div class="campaign-meta-row">
+                <span style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--color-deep-teal);">₹42,000</span>
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-turquoise);">70% of ₹60,000</span>
+              </div>
+              <div class="campaign-progress-bar">
+                <div class="campaign-progress-fill fill-turquoise" style="width: 70%;"></div>
+              </div>
+              <a href="#simulate-donation" class="btn-primary btn-block">Support This Cause</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Campaign 2: Healthy Neighbourhood -->
+        <article class="campaign-card" aria-labelledby="c2-title">
+          <div class="campaign-card-header">
+            <span class="campaign-category-badge badge-health">Healthcare</span>
+            <span class="campaign-donor-count">56 active donors</span>
+          </div>
+          <div class="campaign-card-body">
+            <div>
+              <h3 id="c2-title" class="campaign-card-title">Healthy Neighbourhood</h3>
+              <p class="campaign-card-desc">
+                Mobile healthcare camps, essential pediatric check-ups, diagnostic testing, and vital medicines distribution for low-income senior citizens.
+              </p>
+            </div>
+            <div>
+              <div class="campaign-meta-row">
+                <span style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--color-deep-teal);">₹28,000</span>
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-orange);">56% of ₹50,000</span>
+              </div>
+              <div class="campaign-progress-bar">
+                <div class="campaign-progress-fill fill-orange" style="width: 56%;"></div>
+              </div>
+              <a href="#simulate-donation" class="btn-orange btn-block">Support This Cause</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Campaign 3: Green Streets Project -->
+        <article class="campaign-card" aria-labelledby="c3-title">
+          <div class="campaign-card-header">
+            <span class="campaign-category-badge badge-env">Environment</span>
+            <span class="campaign-donor-count">72 active donors</span>
+          </div>
+          <div class="campaign-card-body">
+            <div>
+              <h3 id="c3-title" class="campaign-card-title">Green Streets Project</h3>
+              <p class="campaign-card-desc">
+                Urban mini-forest afforestation, native sapling plantation, compost pits, and community waste segregation across 12 high-density residential wards.
+              </p>
+            </div>
+            <div>
+              <div class="campaign-meta-row">
+                <span style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--color-deep-teal);">₹30,000</span>
+                <span style="font-size: 0.8rem; font-weight: 700; color: #059669;">75% of ₹40,000</span>
+              </div>
+              <div class="campaign-progress-bar">
+                <div class="campaign-progress-fill fill-emerald" style="width: 75%;"></div>
+              </div>
+              <a href="#simulate-donation" class="btn-primary btn-block">Support This Cause</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- E. CAMPAIGN IMPACT MEDIA: VIDEO, CAPTIONS & RESPONSIVE PICTURE        -->
+    <!-- ==================================================================== -->
+    <section class="media-section-grid" aria-labelledby="media-section-heading">
+      
+      <!-- Video Element with Custom WebVTT Captions -->
+      <figure class="media-figure">
+        <video 
+          controls 
+          preload="metadata" 
+          poster="assets/video-poster.jpg" 
+          width="600" 
+          height="340">
+          <source src="assets/campaign-impact.mp4" type="video/mp4" />
+          <track 
+            kind="captions" 
+            src="captions/campaign-impact.vtt" 
+            srclang="en" 
+            label="English Captions" 
+            default />
+          Your browser does not support HTML5 video.
+        </video>
+        <figcaption class="media-caption">
+          <div class="media-meta">
+            <span class="media-badge">Documentary Excerpt</span>
+            <span class="media-desc-title">Field Dispatch &amp; Community Distribution</span>
+          </div>
+          <span class="media-tech-tag">English Closed Captions</span>
+        </figcaption>
+      </figure>
+
+      <!-- Context-Aware Picture (Desktop vs Mobile Different Images) -->
+      <figure class="media-figure">
+        <picture>
+          <!-- Mobile view (width < 40rem) uses focused close-up food kit handover -->
+          <source media="(width < 40rem)" srcset="assets/campaign-mobile.jpg" />
+          <!-- Desktop wide distribution hub view -->
+          <source media="(width >= 40rem)" srcset="assets/campaign-desktop.jpg" />
+          <img 
+            src="assets/campaign-desktop.jpg" 
+            alt="GiveTrack Community Food Support central logistics hub in Bengaluru" 
+            width="600" 
+            height="340" />
+        </picture>
+        <figcaption class="media-caption">
+          <div class="media-meta">
+            <span class="media-badge">Adaptive Media</span>
+            <span class="media-desc-title">Logistics Hub (Desktop) / Kit Detail (Mobile)</span>
+          </div>
+          <span class="media-tech-tag">Field Photography</span>
+        </figcaption>
+      </figure>
+
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- F. DONATION TRANSPARENCY & FUND UTILISATION                           -->
+    <!-- ==================================================================== -->
+    <section id="transparency" class="transparency-layout" aria-labelledby="transparency-heading">
+      
+      <!-- Left Card: Fund Utilisation Visualisation (Pure CSS Conic Doughnut) -->
+      <div class="gt-card">
+        <h2 id="transparency-heading" style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem;">
+          Fund Utilisation Ratio
+        </h2>
+        <p style="font-size: 0.875rem; color: var(--color-muted); margin-bottom: 1.5rem;">
+          Visual representation of deployed capital versus reserve balances.
+        </p>
+
+        <!-- Pure CSS Conic Gradient Doughnut -->
+        <div class="css-doughnut" role="img" aria-label="Doughnut chart showing 70.83% funds utilised (₹85,000) and 29.17% remaining balance (₹35,000)">
+          <div class="css-doughnut-label">
+            <strong>₹1,20,000</strong>
+            <span>Total Raised</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.5rem; display: flex; justify-content: space-around; text-align: center; font-size: 0.85rem;">
+          <div>
+            <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--color-turquoise); margin-right: 4px;"></span>
+            <strong>₹85,000</strong>
+            <p style="color: var(--color-muted); font-size: 0.775rem;">Utilised (70.83%)</p>
+          </div>
+          <div>
+            <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--color-orange); margin-right: 4px;"></span>
+            <strong>₹35,000</strong>
+            <p style="color: var(--color-muted); font-size: 0.775rem;">Remaining (29.17%)</p>
+          </div>
+        </div>
+
+        <!-- Overall Campaign Target Progress Bar -->
+        <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--color-mint-border);">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700;">
+            <span>Target Progress</span>
+            <span style="color: var(--color-turquoise);">80% Achieved (₹1.2L / ₹1.5L)</span>
+          </div>
+          <div class="progress-track-css" aria-label="Campaign 80% funded">
+            <div class="progress-fill-css"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Card: Expense Category Breakdown -->
+      <div class="gt-card">
+        <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem;">
+          Expenditure Breakdown
+        </h2>
+        <p style="font-size: 0.875rem; color: var(--color-muted); margin-bottom: 1.25rem;">
+          Audited disbursement across key food procurement categories.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+              <span style="font-weight: 700;">Fortified Grains & Pulses</span>
+              <strong>₹40,000 <span style="font-size: 0.775rem; color: var(--color-muted); font-weight: 400;">(47.06%)</span></strong>
+            </div>
+            <div class="progress-track-css" style="margin: 0; height: 8px;">
+              <div class="progress-fill-css" style="width: 47.06%; background: var(--color-turquoise);"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+              <span style="font-weight: 700;">Fresh Vegetables & Edible Oil</span>
+              <strong>₹25,000 <span style="font-size: 0.775rem; color: var(--color-muted); font-weight: 400;">(29.41%)</span></strong>
+            </div>
+            <div class="progress-track-css" style="margin: 0; height: 8px;">
+              <div class="progress-fill-css" style="width: 29.41%; background: var(--color-orange);"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+              <span style="font-weight: 700;">Eco-Packaging & Storage Kits</span>
+              <strong>₹15,000 <span style="font-size: 0.775rem; color: var(--color-muted); font-weight: 400;">(17.65%)</span></strong>
+            </div>
+            <div class="progress-track-css" style="margin: 0; height: 8px;">
+              <div class="progress-fill-css" style="width: 17.65%; background: var(--color-turquoise-light);"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+              <span style="font-weight: 700;">Cold Chain Transport & Logistics</span>
+              <strong>₹5,000 <span style="font-size: 0.775rem; color: var(--color-muted); font-weight: 400;">(5.88%)</span></strong>
+            </div>
+            <div class="progress-track-css" style="margin: 0; height: 8px;">
+              <div class="progress-fill-css" style="width: 5.88%; background: var(--color-muted);"></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--color-mint-border); font-size: 0.85rem; color: var(--color-muted); display: flex; justify-content: space-between;">
+          <span>Audited Total: <strong style="color: var(--color-deep-teal);">₹85,000</strong></span>
+          <span style="color: var(--color-success); font-weight: 800;">100% Invoices Verified</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- G. RECENT DONATIONS & INFLOW LEDGER                                   -->
+    <!-- ==================================================================== -->
+    <section id="donations" class="gt-card" style="margin-bottom: 3.5rem;" aria-labelledby="donations-heading">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 1rem;">
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-turquoise);">Public Inflow Ledger</span>
+          <h2 id="donations-heading" style="font-size: 1.4rem; font-weight: 800;">
+            Recent Donations & Public Ledger
+          </h2>
+          <p style="font-size: 0.875rem; color: var(--color-muted);">
+            Verified contributions recorded from our 320 active campaign backers. Demonstrates reconciled payment records across all active programmes.
+          </p>
+        </div>
+        <span style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; font-weight: 700; color: var(--color-turquoise); background-color: var(--color-light-mint); padding: 0.35rem 0.85rem; border-radius: var(--radius-full); border: 1px solid var(--color-mint-border);">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          Audited Inflow Feed
+        </span>
+      </div>
+
+      <div class="table-wrap">
+        <table class="expense-table" aria-label="Recent donor contributions table">
+          <thead>
+            <tr>
+              <th scope="col">Donor Name</th>
+              <th scope="col">Campaign Name</th>
+              <th scope="col">Donation Date</th>
+              <th scope="col">Donation Amount</th>
+              <th scope="col">Verification Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Indiranagar Residents Welfare</strong></td>
+              <td>Community Food Support</td>
+              <td>06 Nov 2026</td>
+              <td><strong>₹10,000</strong></td>
+              <td><span class="status-pill status-verified">Verified</span></td>
+            </tr>
+            <tr>
+              <td><strong>Bengaluru Tech Community Pledges</strong></td>
+              <td>Community Food Support</td>
+              <td>05 Nov 2026</td>
+              <td><strong>₹15,000</strong></td>
+              <td><span class="status-pill status-verified">Verified</span></td>
+            </tr>
+            <tr>
+              <td><strong>Ananya Rao</strong></td>
+              <td>Every Child in School</td>
+              <td>05 Nov 2026</td>
+              <td><strong>₹2,000</strong></td>
+              <td><span class="status-pill status-verified">Verified</span></td>
+            </tr>
+            <tr>
+              <td><strong>Rahul Mehta</strong></td>
+              <td>Healthy Neighbourhood</td>
+              <td>04 Nov 2026</td>
+              <td><strong>₹5,000</strong></td>
+              <td><span class="status-pill status-verified">Verified</span></td>
+            </tr>
+            <tr>
+              <td><strong>Priya Sharma</strong></td>
+              <td>Green Streets Project</td>
+              <td>03 Nov 2026</td>
+              <td><strong>₹1,500</strong></td>
+              <td><span class="status-pill status-verified">Verified</span></td>
+            </tr>
+            <tr>
+              <td><strong>Kavita Nair</strong></td>
+              <td>Every Child in School</td>
+              <td>02 Nov 2026</td>
+              <td><strong>₹3,500</strong></td>
+              <td><span class="status-pill status-verified">Verified</span></td>
+            </tr>
+            <tr>
+              <td><strong>Vikram Joshi</strong></td>
+              <td>Healthy Neighbourhood</td>
+              <td>01 Nov 2026</td>
+              <td><strong>₹2,500</strong></td>
+              <td><span class="status-pill status-verified">Verified</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- H. EXPENSE VERIFICATION LEDGER (High Contrast Certified)             -->
+    <!-- ==================================================================== -->
+    <section id="expenses" class="gt-card" style="margin-bottom: 3.5rem;" aria-labelledby="expense-table-heading">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 0.5rem;">
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-turquoise);">Disbursement Audit</span>
+          <h2 id="expense-table-heading" style="font-size: 1.4rem; font-weight: 800;">
+            Expense Verification Ledger
+          </h2>
+          <p style="font-size: 0.875rem; color: var(--color-muted);">
+            Itemised expenditure records, voucher audit trails, and reconciliation statements.
+          </p>
+        </div>
+        <span style="font-size: 0.75rem; color: var(--color-muted);">
+          Audited independently under statutory non-profit guidelines.
+        </span>
+      </div>
+
+      <!-- Domain-Specific Alert Banner Activated via #expenses:has(.status-pending) -->
+      <div class="ledger-audit-banner" role="alert">
+        <span class="ledger-alert-icon" aria-hidden="true">⚠</span>
+        <div>
+          <strong>Action Required: Pending Voucher Inspection Detected</strong>
+          <p style="margin: 0.2rem 0 0; font-size: 0.825rem;">
+            The ledger contains unverified disbursements held in escrow. Highlighted rows require independent auditor review and receipt verification before deduction from the remaining balance.
+          </p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="expense-table" aria-label="Itemised voucher verification table">
+          <thead>
+            <tr>
+              <th scope="col">Expense ID</th>
+              <th scope="col">Description</th>
+              <th scope="col">Category</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Date</th>
+              <th scope="col">Verification Status</th>
+              <th scope="col">Bill Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row 1: Verified -->
+            <tr>
+              <td><code><a href="#voucher-01" class="voucher-id-link" title="Open voucher details modal for EXP-CFSP-01">EXP-CFSP-01</a></code></td>
+              <td>Bulk Fortified Rice & Lentils (3,000 kg)</td>
+              <td>Grains & Pulses</td>
+              <td><strong>₹40,000</strong></td>
+              <td>02 Nov 2026</td>
+              <td><span class="status-pill status-verified">Verified</span></td>
+              <td><a href="assets/vouchers/EXP-CFSP-01.pdf" class="voucher-link" target="_blank" download="EXP-CFSP-01-INV-BLR-8841.pdf" title="Download official verified voucher PDF">INV-BLR-8841</a></td>
+            </tr>
+
+            <!-- Row 2: Verified -->
+            <tr>
+              <td><code><a href="#voucher-02" class="voucher-id-link" title="Open voucher details modal for EXP-CFSP-02">EXP-CFSP-02</a></code></td>
+              <td>Fresh Seasonal Vegetables & Cooking Oil</td>
+              <td>Produce</td>
+              <td><strong>₹25,000</strong></td>
+              <td>03 Nov 2026</td>
+              <td><span class="status-pill status-verified">Verified</span></td>
+              <td><a href="assets/vouchers/EXP-CFSP-02.pdf" class="voucher-link" target="_blank" download="EXP-CFSP-02-INV-MKT-1092.pdf" title="Download official verified voucher PDF">INV-MKT-1092</a></td>
+            </tr>
+
+            <!-- Row 3: Verified -->
+            <tr>
+              <td><code><a href="#voucher-03" class="voucher-id-link" title="Open voucher details modal for EXP-CFSP-03">EXP-CFSP-03</a></code></td>
+              <td>Biodegradable Packaging & Ration Bags</td>
+              <td>Packaging</td>
+              <td><strong>₹15,000</strong></td>
+              <td>04 Nov 2026</td>
+              <td><span class="status-pill status-verified">Verified</span></td>
+              <td><a href="assets/vouchers/EXP-CFSP-03.pdf" class="voucher-link" target="_blank" download="EXP-CFSP-03-INV-ECO-3390.pdf" title="Download official verified voucher PDF">INV-ECO-3390</a></td>
+            </tr>
+
+            <!-- Row 4: Verified -->
+            <tr>
+              <td><code><a href="#voucher-04" class="voucher-id-link" title="Open voucher details modal for EXP-CFSP-04">EXP-CFSP-04</a></code></td>
+              <td>Refrigerated Van Fuel & Driver Allowance</td>
+              <td>Logistics</td>
+              <td><strong>₹5,000</strong></td>
+              <td>05 Nov 2026</td>
+              <td><span class="status-pill status-verified">Verified</span></td>
+              <td><a href="assets/vouchers/EXP-CFSP-04.pdf" class="voucher-link" target="_blank" download="EXP-CFSP-04-INV-LOG-4412.pdf" title="Download official verified voucher PDF">INV-LOG-4412</a></td>
+            </tr>
+
+            <!-- Row 5: Pending Verification State -->
+            <tr>
+              <td><code><a href="#voucher-05" class="voucher-id-link" title="Open voucher details modal for EXP-CFSP-05">EXP-CFSP-05</a></code></td>
+              <td>Logistics Hub Sanitation & Pest Barrier</td>
+              <td>Maintenance</td>
+              <td><strong>₹8,500</strong></td>
+              <td>08 Nov 2026</td>
+              <td><span class="status-pill status-pending">Pending</span></td>
+              <td><a href="assets/vouchers/EXP-CFSP-05.pdf" class="voucher-link" target="_blank" download="EXP-CFSP-05-INV-CL-9920.pdf" title="Download official pending voucher PDF">INV-CL-9920</a></td>
+            </tr>
+
+            <!-- Row 6: Rejected State -->
+            <tr>
+              <td><code><a href="#voucher-06" class="voucher-id-link" title="Open voucher details modal for EXP-CFSP-06">EXP-CFSP-06</a></code></td>
+              <td>Unapproved Private Taxi Conveyance</td>
+              <td>Travel</td>
+              <td><strong>₹3,200</strong></td>
+              <td>09 Nov 2026</td>
+              <td><span class="status-pill status-rejected">Rejected</span></td>
+              <td><a href="assets/vouchers/EXP-CFSP-06.pdf" class="voucher-link" target="_blank" download="EXP-CFSP-06-TAX-DIS-1102.pdf" title="Download official rejected voucher PDF">TAX-DIS-1102</a></td>
+            </tr>
+          </tbody>
+
+          <!-- Table Footer: Audited vs Pending vs Disallowed Distinction -->
+          <tfoot>
+            <tr class="tfoot-verified-row">
+              <td colspan="3">
+                <strong>Audited & Verified Disbursements (Deducted from Campaign Fund)</strong>
+              </td>
+              <td style="font-size: 1.05rem;">
+                <strong>₹85,000</strong>
+              </td>
+              <td colspan="3" style="font-size: 0.825rem; font-weight: 700;">
+                ✓ 4 Vouchers Audited & Reconciled (₹85k + ₹35k Reserve = ₹1,20k Total)
+              </td>
+            </tr>
+            <tr class="tfoot-pending-row">
+              <td colspan="3">
+                Pending Auditor Review (Held in escrow — NOT deducted from remaining balance)
+              </td>
+              <td>
+                <strong>₹8,500</strong>
+              </td>
+              <td colspan="3">
+                EXP-CFSP-05 Under Inspection (Vendor invoice verification ongoing)
+              </td>
+            </tr>
+            <tr class="tfoot-rejected-row">
+              <td colspan="3">
+                Auditor Disallowed / Rejected Claims (Non-compliant with NGO procurement policy)
+              </td>
+              <td>
+                <strong>₹3,200</strong>
+              </td>
+              <td colspan="3">
+                EXP-CFSP-06 Disallowed (Zero organization liability, NOT disbursed)
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- I. VOLUNTEER SECTION & PURE CSS SHIFT REGISTRATION                   -->
+    <!-- ==================================================================== -->
+    <section id="volunteers" class="volunteer-section gt-card volunteer-shifts-container" style="margin-bottom: 3.5rem;" aria-labelledby="volunteer-heading">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 1.5rem;">
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-turquoise);">Community Mobilisation</span>
+          <h2 id="volunteer-heading" style="font-size: 1.4rem; font-weight: 800;">
+            Volunteer Coordination & Field Shift Portal
+          </h2>
+          <p style="font-size: 0.875rem; color: var(--color-muted);">
+            Join our 128 active grassroots volunteers. Select an upcoming operational shift to inspect reporting instructions.
+          </p>
+        </div>
+        <a href="#apply-volunteer" class="btn-primary">
+          + Register as General Volunteer
+        </a>
+      </div>
+
+      <!-- 4 Realistic NGO Volunteer Opportunities Grid -->
+      <div class="volunteer-roster-grid">
+        
+        <!-- Opportunity 1: Food Distribution & Logistics -->
+        <label class="shift-card" for="shift-food">
+          <input type="radio" id="shift-food" name="volunteer-shift" class="shift-radio" aria-label="Select Ration Kit Assembly shift" />
+          <div class="shift-header">
+            <span class="role-tag-pill tag-food">Food Distribution</span>
+            <span class="shift-status-pill status-open">6 slots open</span>
+          </div>
+          <h3 class="shift-title">Ration Kit Assembly & Quality Check</h3>
+          <p class="shift-desc">
+            Organising and packaging monthly nutrition provisions (grains, pulses, fortified oil) into standardised family ration kits at the relief warehouse.
+          </p>
+          <div class="shift-meta-list">
+            <div class="shift-meta-item">
+              <strong>Location:</strong> Bengaluru Central Hub, Yeshwanthpur Industrial Area
+            </div>
+            <div class="shift-meta-item">
+              <strong>Shift Timing:</strong> Saturday, 15 Nov 2026 | 08:30 – 12:30 (Morning)
+            </div>
+            <div class="shift-meta-item">
+              <strong>Required Skills:</strong> No prior experience needed; basic physical agility for inventory packaging
+            </div>
+          </div>
+        </label>
+
+        <!-- Opportunity 2: Education & Mentorship -->
+        <label class="shift-card" for="shift-edu">
+          <input type="radio" id="shift-edu" name="volunteer-shift" class="shift-radio" aria-label="Select Remedial Tutoring shift" />
+          <div class="shift-header">
+            <span class="role-tag-pill tag-edu">Education</span>
+            <span class="shift-status-pill status-open">4 slots open</span>
+          </div>
+          <h3 class="shift-title">Remedial Mathematics & Reading Tutor</h3>
+          <p class="shift-desc">
+            Conducting weekend foundational numeracy and reading coaching sessions for primary students (Grades 4–7) in community learning centres.
+          </p>
+          <div class="shift-meta-list">
+            <div class="shift-meta-item">
+              <strong>Location:</strong> Community Study Centre, Shivaji Nagar
+            </div>
+            <div class="shift-meta-item">
+              <strong>Shift Timing:</strong> Saturday, 15 Nov 2026 | 14:00 – 17:30 (Afternoon)
+            </div>
+            <div class="shift-meta-item">
+              <strong>Required Skills:</strong> High school mathematics; basic spoken Kannada / English; patient mentorship
+            </div>
+          </div>
+        </label>
+
+        <!-- Opportunity 3: Healthcare Support -->
+        <label class="shift-card" for="shift-health">
+          <input type="radio" id="shift-health" name="volunteer-shift" class="shift-radio" aria-label="Select Primary Health Camp shift" />
+          <div class="shift-header">
+            <span class="role-tag-pill tag-health">Healthcare</span>
+            <span class="shift-status-pill status-open">3 slots open</span>
+          </div>
+          <h3 class="shift-title">Primary Health Camp Triage Assistant</h3>
+          <p class="shift-desc">
+            Managing patient intake registration, vital signs queue coordination, and providing elder mobility accompaniment at free community health screenings.
+          </p>
+          <div class="shift-meta-list">
+            <div class="shift-meta-item">
+              <strong>Location:</strong> Ward 84 Community Health Hall, Rajajinagar
+            </div>
+            <div class="shift-meta-item">
+              <strong>Shift Timing:</strong> Sunday, 16 Nov 2026 | 09:00 – 13:30 (Morning)
+            </div>
+            <div class="shift-meta-item">
+              <strong>Required Skills:</strong> Basic spoken Kannada / Hindi; compassionate communication; basic record entry
+            </div>
+          </div>
+        </label>
+
+        <!-- Opportunity 4: Environmental Action (DISABLED - FULL) -->
+        <label class="shift-card shift-card-disabled" for="shift-env">
+          <input type="radio" id="shift-env" name="volunteer-shift" class="shift-radio" disabled aria-disabled="true" aria-label="Urban Mini-Forest shift full" />
+          <div class="shift-header">
+            <span class="role-tag-pill tag-env">Environment</span>
+            <span class="shift-status-pill status-full">Shift Full (0 slots)</span>
+          </div>
+          <h3 class="shift-title">Urban Mini-Forest Sapling Plantation</h3>
+          <p class="shift-desc">
+            Ground preparation, pit digging, native sapling plantation, organic mulching, and setup of community drip irrigation along stormwater drains.
+          </p>
+          <div class="shift-meta-list">
+            <div class="shift-meta-item">
+              <strong>Location:</strong> Vrishabhavathi River Basin Greenway, Kengeri
+            </div>
+            <div class="shift-meta-item">
+              <strong>Shift Timing:</strong> Sunday, 16 Nov 2026 | 06:30 – 10:30 (Early Morning)
+            </div>
+            <div class="shift-meta-item">
+              <strong>Required Skills:</strong> Outdoor fieldwork interest; sturdy footwear required (Waitlist Closed)
+            </div>
+          </div>
+        </label>
+
+      </div>
+
+      <!-- Pure CSS Interactive Shift Confirmation & Instructions Area -->
+      <div class="shift-status-container" role="status" aria-live="polite">
+        <!-- Default State: No shift selected -->
+        <div class="shift-msg shift-msg-default">
+          <span class="shift-msg-icon" aria-hidden="true">ℹ</span>
+          <div>
+            <strong>Select a shift slot above:</strong> Choose any open volunteer shift to preview induction timing, reporting address, and field orientation guidelines.
+          </div>
+        </div>
+
+        <!-- Shift 1 Selection State -->
+        <div class="shift-msg shift-msg-food">
+          <span class="shift-msg-icon" aria-hidden="true">✓</span>
+          <div>
+            <strong>Shift Selected: Ration Kit Assembly & Quality Check (Saturday 08:30–12:30)</strong>
+            <p style="margin: 0.35rem 0 0.25rem; font-size: 0.85rem;">
+              Reporting Address: Bengaluru Central Hub, Yeshwanthpur Industrial Area. Please arrive 15 minutes prior to shift time with government photo ID and wear comfortable closed-toe shoes. Gloves and sanitised aprons are provided on-site.
+            </p>
+            <p class="shift-disclaimer" style="margin: 0.35rem 0 0; font-size: 0.775rem;">
+              To confirm your attendance and receive induction materials, please submit your registration using the "Register as General Volunteer" button above.
+            </p>
+          </div>
+        </div>
+
+        <!-- Shift 2 Selection State -->
+        <div class="shift-msg shift-msg-edu">
+          <span class="shift-msg-icon" aria-hidden="true">✓</span>
+          <div>
+            <strong>Shift Selected: Remedial Mathematics & Reading Tutor (Saturday 14:00–17:30)</strong>
+            <p style="margin: 0.35rem 0 0.25rem; font-size: 0.85rem;">
+              Reporting Address: Community Study Centre, Shivaji Nagar. Tutor briefing and learning material distribution commence promptly at 13:45. Flashcards and worksheets will be provided by the education coordinator.
+            </p>
+            <p class="shift-disclaimer" style="margin: 0.35rem 0 0; font-size: 0.775rem;">
+              To confirm your attendance and receive induction materials, please submit your registration using the "Register as General Volunteer" button above.
+            </p>
+          </div>
+        </div>
+
+        <!-- Shift 3 Selection State -->
+        <div class="shift-msg shift-msg-health">
+          <span class="shift-msg-icon" aria-hidden="true">✓</span>
+          <div>
+            <strong>Shift Selected: Primary Health Camp Triage Assistant (Sunday 09:00–13:30)</strong>
+            <p style="margin: 0.35rem 0 0.25rem; font-size: 0.85rem;">
+              Reporting Address: Ward 84 Community Health Hall, Rajajinagar. Triage protocol orientation begins at 08:45 sharp. Protective masks, hand sanitiser, and volunteer badges will be issued at the registration desk.
+            </p>
+            <p class="shift-disclaimer" style="margin: 0.35rem 0 0; font-size: 0.775rem;">
+              To confirm your attendance and receive induction materials, please submit your registration using the "Register as General Volunteer" button above.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- J. SUBMIT EXPENSE VOUCHER (Interactive Form Validation Demo)         -->
+    <!-- ==================================================================== -->
+    <section id="expense-submission" class="expense-form-wrap" aria-labelledby="form-heading">
+      <div>
+        <span class="badge-audited" style="margin-bottom: 0.5rem;">Auditor Portal</span>
+        <h2 id="form-heading" style="font-size: 1.4rem; font-weight: 800;">
+          Submit Expense Voucher (Interactive Validation Demo)
+        </h2>
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          Authorised coordinators can test expense voucher submission. Form fields demonstrate native HTML5 constraint validation and pure-CSS feedback states. Submitted data is validated locally in your browser and is not stored or sent to auditors.
+        </p>
+      </div>
+
+      <form id="expense-voucher-form">
+        <div class="form-grid">
+          
+          <!-- Field 1: Description -->
+          <div class="form-group full-width">
+            <label class="form-label" for="exp-desc">
+              Expense Description <span style="color: var(--color-danger);">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="exp-desc" 
+              name="exp-desc" 
+              class="form-control" 
+              placeholder="e.g. 500 kg Refined Cooking Oil" 
+              required 
+              minlength="5" />
+            <span class="error-msg">Description must be at least 5 characters long.</span>
+            <span class="valid-indicator">✓ Valid description</span>
+          </div>
+
+          <!-- Field 2: Amount -->
+          <div class="form-group">
+            <label class="form-label" for="exp-amount">
+              Amount (₹) <span style="color: var(--color-danger);">*</span>
+            </label>
+            <input 
+              type="number" 
+              id="exp-amount" 
+              name="exp-amount" 
+              class="form-control" 
+              placeholder="Min ₹100" 
+              required 
+              min="100" 
+              max="100000" />
+            <span class="error-msg">Amount must be between ₹100 and ₹1,00,000.</span>
+            <span class="valid-indicator">✓ Valid amount</span>
+          </div>
+
+          <!-- Field 3: Category -->
+          <div class="form-group">
+            <label class="form-label" for="exp-cat">
+              Expense Category <span style="color: var(--color-danger);">*</span>
+            </label>
+            <select id="exp-cat" name="exp-cat" class="form-control" required>
+              <option value="" disabled selected>Select category</option>
+              <option value="grains">Grains & Pulses</option>
+              <option value="produce">Fresh Produce</option>
+              <option value="packaging">Packaging Kits</option>
+              <option value="transport">Logistics & Cold Storage</option>
+            </select>
+            <span class="error-msg">Please select an expense category.</span>
+            <span class="valid-indicator">✓ Category selected</span>
+          </div>
+
+          <!-- Field 4: Expense Date -->
+          <div class="form-group">
+            <label class="form-label" for="exp-date">
+              Voucher Date <span style="color: var(--color-danger);">*</span>
+            </label>
+            <input 
+              type="date" 
+              id="exp-date" 
+              name="exp-date" 
+              class="form-control" 
+              required />
+            <span class="error-msg">Please select a valid voucher date.</span>
+            <span class="valid-indicator">✓ Valid date</span>
+          </div>
+
+          <!-- Field 5: Invoice Reference ID -->
+          <div class="form-group">
+            <label class="form-label" for="exp-ref">
+              Bill / Invoice Reference Number <span style="color: var(--color-danger);">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="exp-ref" 
+              name="exp-ref" 
+              class="form-control" 
+              placeholder="e.g. INV-BLR-9901" 
+              required 
+              pattern="^[A-Z0-9-]{6,16}$" />
+            <span class="error-msg">Must be 6-16 characters uppercase letters, numbers, or hyphens (e.g. INV-BLR-9901).</span>
+            <span class="valid-indicator">✓ Valid reference format</span>
+          </div>
+
+        </div>
+
+        <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <button type="submit" class="btn-submit-expense">
+            Validate Voucher Entry
+          </button>
+          <span style="font-size: 0.775rem; color: var(--color-muted);">
+            Demonstration mode: Validates input format locally. No records are saved to the ledger or sent to auditors.
+          </span>
+        </div>
+      </form>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- K. AUDIT CERTIFICATIONS & REPORTS                                    -->
+    <!-- ==================================================================== -->
+    <section id="reports" aria-labelledby="reports-heading">
+      <div style="margin-bottom: 1.5rem;">
+        <span class="badge-audited" style="margin-bottom: 0.5rem;">Statutory Governance</span>
+        <h2 id="reports-heading" style="font-size: 1.4rem; font-weight: 800;">
+          Audit Statements & Certifications
+        </h2>
+        <p style="font-size: 0.875rem; color: var(--color-muted);">
+          Official statutory opinions, income tax certifications, and expenditure reconciliation statements.
+        </p>
+      </div>
+
+      <div class="reports-grid">
+        <div class="report-card">
+          <div>
+            <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.35rem; color: var(--color-deep-teal);">Statutory Audit Opinion</h3>
+            <p style="font-size: 0.8rem; color: var(--color-muted); margin-bottom: 0.75rem;">Independent Chartered Accountant</p>
+            <ul class="report-list" style="font-size: 0.85rem; color: var(--color-ink); padding-left: 1.25rem; line-height: 1.6;">
+              <li>Unqualified true-and-fair audit opinion</li>
+              <li>Reconciliation matches ₹1,20,000 ledger</li>
+              <li>Quarter ended November 2026</li>
+            </ul>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--color-turquoise); font-weight: 700;">Ref: AUD/CFSP/2026-92</p>
+        </div>
+
+        <div class="report-card">
+          <div>
+            <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.35rem; color: var(--color-deep-teal);">Income Tax Section 80G</h3>
+            <p style="font-size: 0.8rem; color: var(--color-muted); margin-bottom: 0.75rem;">Tax Exemption Certification</p>
+            <ul class="report-list" style="font-size: 0.85rem; color: var(--color-ink); padding-left: 1.25rem; line-height: 1.6;">
+              <li>50% deduction eligibility for all donors</li>
+              <li>Unique Reg: AABTG9012CF20261</li>
+              <li>Valid through Assessment Year 2028-29</li>
+            </ul>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--color-turquoise); font-weight: 700;">Active 80G Status</p>
+        </div>
+
+        <div class="report-card">
+          <div>
+            <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.35rem; color: var(--color-deep-teal);">Utilisation Certificate (UC)</h3>
+            <p style="font-size: 0.8rem; color: var(--color-muted); margin-bottom: 0.75rem;">Direct Beneficiary Ledger</p>
+            <ul class="report-list" style="font-size: 0.85rem; color: var(--color-ink); padding-left: 1.25rem; line-height: 1.6;">
+              <li>₹85,000 disbursement certified</li>
+              <li>320 family nutrition kits distributed</li>
+              <li>Zero administrative overhead deducted</li>
+            </ul>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--color-turquoise); font-weight: 700;">Form 10BD Filed</p>
+        </div>
+      </div>
+
+      <!-- Dedicated Print Action Callout -->
+      <div class="print-action-card gt-card" style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border: 2px dashed var(--color-turquoise);">
+        <div>
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--color-deep-teal); margin-bottom: 0.25rem;">
+            📄 Official A4 Financial Transparency Report
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">
+            Review campaign contributions, verified expenditure, pending claims and remaining balances in a printable financial statement. Formatted for standard A4 archival export.
+          </p>
+        </div>
+        <a href="#expenses" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem;" title="Review itemised expenditure records in printable view">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <span>Print Financial Report</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Official Statutory Print Declaration (Displayed only when printing) -->
+    <div class="print-footer-declaration">
+      <p><strong>GIVETRACK STATUTORY AUDIT DECLARATION (A4 ARCHIVAL PRINT RECORD):</strong></p>
+      <p>This document certifies the financial position of the GiveTrack Community Food Support Programme as on 11 November 2026. Total community donations received: ₹1,20,000. Verified programme disbursements: ₹85,000. Uncommitted balance held in escrow: ₹35,000. All vouchers, vendor invoices, and distribution logs have been verified in accordance with open non-profit financial transparency standards. Sample educational demonstration record.</p>
+    </div>
+
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- L. FOOTER & ACCESSIBLE SOCIAL LINKS                                    -->
+  <!-- ====================================================================== -->
+  <footer class="site-footer">
+    <div class="max-w-7xl footer-grid">
+      
+      <!-- Column 1: GiveTrack Logo & Description -->
+      <div>
+        <div class="footer-logo-wrap">
+          <img src="assets/givetrack-logo.png" alt="GiveTrack Logo" class="footer-logo-img" />
+        </div>
+        <p style="font-size: 0.8rem; font-weight: 800; color: #FBBF24; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+          Donate • Track • Volunteer
+        </p>
+        <p style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.9); line-height: 1.6; max-width: 22rem;">
+          GiveTrack is an open NGO donation transparency and volunteer management platform empowering donors with real-time voucher-verified records.
+        </p>
+        <div class="social-links" aria-label="GiveTrack Social Channels">
+          <a href="https://instagram.com/givetrack" target="_blank" rel="noopener" class="social-pill" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="https://linkedin.com/company/givetrack" target="_blank" rel="noopener" class="social-pill" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="https://facebook.com/givetrack" target="_blank" rel="noopener" class="social-pill" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Platform Links -->
+      <div>
+        <p class="footer-col-title">Platform</p>
+        <ul class="footer-links-list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#campaigns">Active Campaigns</a></li>
+          <li><a href="#transparency">Fund Utilisation</a></li>
+          <li><a href="#donations">Recent Donations</a></li>
+          <li><a href="#expenses">Expense Ledger</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Governance & Audits -->
+      <div>
+        <p class="footer-col-title">Governance</p>
+        <ul class="footer-links-list">
+          <li><a href="#reports">Statutory Audit</a></li>
+          <li><a href="#reports">Section 80G Certificate</a></li>
+          <li><a href="#reports">Utilisation Certificate</a></li>
+          <li><a href="#volunteers">Volunteer Opportunities</a></li>
+          <li><a href="#expense-submission">Auditor Voucher Submission</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Tax Exemption & Contact -->
+      <div>
+        <p class="footer-col-title">Tax Exemption</p>
+        <p style="font-size: 0.825rem; color: rgba(255, 255, 255, 0.85); line-height: 1.55; margin-bottom: 0.75rem;">
+          Donations are eligible for 50% deduction under Section 80G of the Income Tax Act. Unique Reg: AABTG9012CF20261.
+        </p>
+        <p style="font-size: 0.825rem; color: #FBBF24; font-weight: 700;">
+          Bengaluru Urban Relief Hub, Karnataka
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="max-w-7xl footer-bottom-bar">
+      <span>&copy; 2026 GiveTrack Foundation. All Rights Reserved.</span>
+      <span>Donate • Track • Volunteer &nbsp;|&nbsp; Community Transparency Platform</span>
+    </div>
+  </footer>
+
+  <!-- ====================================================================== -->
+  <!-- MODAL 1: MAKE A DONATION PLEDGE                                         -->
+  <!-- ====================================================================== -->
+  <aside id="simulate-donation" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-donate-title">
+    <div class="modal-dialog">
+      <a href="#" class="modal-close-btn" aria-label="Close Donation Modal">&times;</a>
+      
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--color-light-mint); display: flex; align-items: center; justify-content: center; color: var(--color-turquoise);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div>
+          <h3 id="modal-donate-title" style="font-size: 1.25rem; font-weight: 800; color: var(--color-deep-teal); margin: 0;">
+            Make a Donation
+          </h3>
+          <p style="font-size: 0.8rem; color: var(--color-muted); margin: 0;">
+            Support community welfare programmes through transparent, auditable contributions.
+          </p>
+        </div>
+      </div>
+
+      <form action="#donations" method="get">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="sim-donor-name">Your Full Name</label>
+          <input type="text" id="sim-donor-name" class="form-control" placeholder="Enter your full name" required />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="sim-campaign">Select Campaign</label>
+          <select id="sim-campaign" class="form-control" required>
+            <option value="cfsp">Community Food Support Programme (Bengaluru Hub)</option>
+            <option value="edu">Every Child in School</option>
+            <option value="health">Healthy Neighbourhood</option>
+            <option value="env">Green Streets Project</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label class="form-label" for="sim-amount">Donation Amount (₹ INR)</label>
+          <input type="number" id="sim-amount" class="form-control" placeholder="e.g. 2500" min="100" step="100" required />
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
+          <a href="#" class="btn-outline">Cancel</a>
+          <button type="submit" class="btn-primary">Submit Demo Pledge</button>
+        </div>
+        <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.85rem; text-align: center; border-top: 1px dashed var(--color-mint-border); padding-top: 0.6rem; line-height: 1.45;">
+          Demonstration only — this form does not process real payments or store donor information. Contact GiveTrack Foundation to complete an official contribution.
+        </p>
+      </form>
+    </div>
+  </aside>
+
+  <!-- ====================================================================== -->
+  <!-- MODAL 2: APPLY AS VOLUNTEER                                             -->
+  <!-- ====================================================================== -->
+  <aside id="apply-volunteer" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-vol-title">
+    <div class="modal-dialog">
+      <a href="#" class="modal-close-btn" aria-label="Close Volunteer Application">&times;</a>
+      
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: #FEF3E7; display: flex; align-items: center; justify-content: center; color: var(--color-orange);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <h3 id="modal-vol-title" style="font-size: 1.25rem; font-weight: 800; color: var(--color-deep-teal); margin: 0;">
+            Volunteer Registration
+          </h3>
+          <p style="font-size: 0.8rem; color: var(--color-muted); margin: 0;">
+            Join 128 active community volunteers making a measurable impact.
+          </p>
+        </div>
+      </div>
+
+      <form action="#volunteers" method="get">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="vol-name">Full Name</label>
+          <input type="text" id="vol-name" class="form-control" placeholder="Enter your full name" required />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="vol-email">Email Address</label>
+          <input type="email" id="vol-email" class="form-control" placeholder="Enter your email address" required />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="vol-role">Preferred Role</label>
+          <select id="vol-role" class="form-control" required>
+            <option value="dl">Digital Learning Buddy (Education & Tech)</option>
+            <option value="story">Community Storyteller (Media & Outreach)</option>
+            <option value="green">Green Streets Volunteer (Environment)</option>
+            <option value="pack">Ration Packing & Logistics</option>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.25rem;">
+          <a href="#" class="btn-outline">Cancel</a>
+          <button type="submit" class="btn-orange">Submit Demo Registration</button>
+        </div>
+        <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.85rem; text-align: center; border-top: 1px dashed var(--color-mint-border); padding-top: 0.6rem; line-height: 1.45;">
+          Demonstration only — this form previews volunteer role selection and does not store personal details or submit records to an external database. Contact GiveTrack Foundation to join official field programmes.
+        </p>
+      </form>
+    </div>
+  </aside>
+
+  <!-- ====================================================================== -->
+  <!-- EXPENSE VOUCHER DETAILS MODALS (Self-Contained Audit Verification)     -->
+  <!-- ====================================================================== -->
+
+  <!-- Voucher 01: INV-BLR-8841 -->
+  <aside id="voucher-01" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="v01-title">
+    <div class="modal-dialog voucher-modal-dialog">
+      <a href="#expenses" class="modal-close-btn" aria-label="Close Voucher Details">&times;</a>
+      
+      <div class="voucher-modal-header">
+        <div class="voucher-modal-icon icon-verified" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </div>
+        <div>
+          <h3 id="v01-title" class="voucher-modal-title">Expense Voucher Details</h3>
+          <p class="voucher-modal-meta">
+            Invoice: <strong>INV-BLR-8841</strong> &bull; Expense ID: <strong>EXP-CFSP-01</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="voucher-details-grid">
+        <div class="voucher-field voucher-field-full">
+          <span class="voucher-field-label">Expense Description</span>
+          <p class="voucher-field-value">Bulk Fortified Rice &amp; Lentils (3,000 kg)</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Budget Category</span>
+          <p class="voucher-field-value">Grains &amp; Pulses</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Disbursement Date</span>
+          <p class="voucher-field-value">02 Nov 2026</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Amount Reconciled</span>
+          <p class="voucher-amount-value">₹40,000</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Audit Verification Status</span>
+          <div>
+            <span class="status-pill status-verified">Verified</span>
+          </div>
+        </div>
+        <div class="voucher-field voucher-field-full">
+          <span class="voucher-field-label">Auditor Verification &amp; Escrow Notes</span>
+          <div class="voucher-audit-box">
+            <p class="voucher-audit-text">
+              Audited and reconciled against vendor invoice and warehouse entry register. Inspected by field operations coordinator. Deducted from campaign fund.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="voucher-actions">
+        <a href="#expenses" class="btn-return-ledger">
+          &larr; Return to Expense Ledger
+        </a>
+        <a href="assets/vouchers/EXP-CFSP-01.pdf" download="EXP-CFSP-01-INV-BLR-8841.pdf" class="btn-download-voucher" title="Download official verified voucher PDF document">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Download Voucher PDF</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Voucher 02: INV-MKT-1092 -->
+  <aside id="voucher-02" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="v02-title">
+    <div class="modal-dialog voucher-modal-dialog">
+      <a href="#expenses" class="modal-close-btn" aria-label="Close Voucher Details">&times;</a>
+      
+      <div class="voucher-modal-header">
+        <div class="voucher-modal-icon icon-verified" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </div>
+        <div>
+          <h3 id="v02-title" class="voucher-modal-title">Expense Voucher Details</h3>
+          <p class="voucher-modal-meta">
+            Invoice: <strong>INV-MKT-1092</strong> &bull; Expense ID: <strong>EXP-CFSP-02</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="voucher-details-grid">
+        <div class="voucher-field voucher-field-full">
+          <span class="voucher-field-label">Expense Description</span>
+          <p class="voucher-field-value">Fresh Seasonal Vegetables &amp; Cooking Oil</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Budget Category</span>
+          <p class="voucher-field-value">Produce</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Disbursement Date</span>
+          <p class="voucher-field-value">03 Nov 2026</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Amount Reconciled</span>
+          <p class="voucher-amount-value">₹25,000</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Audit Verification Status</span>
+          <div>
+            <span class="status-pill status-verified">Verified</span>
+          </div>
+        </div>
+        <div class="voucher-field voucher-field-full">
+          <span class="voucher-field-label">Auditor Verification &amp; Escrow Notes</span>
+          <div class="voucher-audit-box">
+            <p class="voucher-audit-text">
+              Audited and reconciled against wholesale mandi receipts and dispatch manifests. Inspected by logistics coordinator. Deducted from campaign fund.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="voucher-actions">
+        <a href="#expenses" class="btn-return-ledger">
+          &larr; Return to Expense Ledger
+        </a>
+        <a href="assets/vouchers/EXP-CFSP-02.pdf" download="EXP-CFSP-02-INV-MKT-1092.pdf" class="btn-download-voucher" title="Download official verified voucher PDF document">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Download Voucher PDF</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Voucher 03: INV-ECO-3390 -->
+  <aside id="voucher-03" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="v03-title">
+    <div class="modal-dialog voucher-modal-dialog">
+      <a href="#expenses" class="modal-close-btn" aria-label="Close Voucher Details">&times;</a>
+      
+      <div class="voucher-modal-header">
+        <div class="voucher-modal-icon icon-verified" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </div>
+        <div>
+          <h3 id="v03-title" class="voucher-modal-title">Expense Voucher Details</h3>
+          <p class="voucher-modal-meta">
+            Invoice: <strong>INV-ECO-3390</strong> &bull; Expense ID: <strong>EXP-CFSP-03</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="voucher-details-grid">
+        <div class="voucher-field voucher-field-full">
+          <span class="voucher-field-label">Expense Description</span>
+          <p class="voucher-field-value">Biodegradable Packaging &amp; Ration Bags</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Budget Category</span>
+          <p class="voucher-field-value">Packaging</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Disbursement Date</span>
+          <p class="voucher-field-value">04 Nov 2026</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Amount Reconciled</span>
+          <p class="voucher-amount-value">₹15,000</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Audit Verification Status</span>
+          <div>
+            <span class="status-pill status-verified">Verified</span>
+          </div>
+        </div>
+        <div class="voucher-field voucher-field-full">
+          <span class="voucher-field-label">Auditor Verification &amp; Escrow Notes</span>
+          <div class="voucher-audit-box">
+            <p class="voucher-audit-text">
+              Audited and verified against supplier GST tax invoice and physical inventory count at Bengaluru Central Hub. Deducted from campaign fund.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="voucher-actions">
+        <a href="#expenses" class="btn-return-ledger">
+          &larr; Return to Expense Ledger
+        </a>
+        <a href="assets/vouchers/EXP-CFSP-03.pdf" download="EXP-CFSP-03-INV-ECO-3390.pdf" class="btn-download-voucher" title="Download official verified voucher PDF document">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Download Voucher PDF</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Voucher 04: INV-LOG-4412 -->
+  <aside id="voucher-04" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="v04-title">
+    <div class="modal-dialog voucher-modal-dialog">
+      <a href="#expenses" class="modal-close-btn" aria-label="Close Voucher Details">&times;</a>
+      
+      <div class="voucher-modal-header">
+        <div class="voucher-modal-icon icon-verified" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </div>
+        <div>
+          <h3 id="v04-title" class="voucher-modal-title">Expense Voucher Details</h3>
+          <p class="voucher-modal-meta">
+            Invoice: <strong>INV-LOG-4412</strong> &bull; Expense ID: <strong>EXP-CFSP-04</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="voucher-details-grid">
+        <div class="voucher-field voucher-field-full">
+          <span class="voucher-field-label">Expense Description</span>
+          <p class="voucher-field-value">Refrigerated Van Fuel &amp; Driver Allowance</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Budget Category</span>
+          <p class="voucher-field-value">Logistics</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Disbursement Date</span>
+          <p class="voucher-field-value">05 Nov 2026</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Amount Reconciled</span>
+          <p class="voucher-amount-value">₹5,000</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Audit Verification Status</span>
+          <div>
+            <span class="status-pill status-verified">Verified</span>
+          </div>
+        </div>
+        <div class="voucher-field voucher-field-full">
+          <span class="voucher-field-label">Auditor Verification &amp; Escrow Notes</span>
+          <div class="voucher-audit-box">
+            <p class="voucher-audit-text">
+              Audited and verified against GPS fleet log, electronic toll receipts, and driver vouchers. Reconciled under statutory guidelines. Deducted from campaign fund.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="voucher-actions">
+        <a href="#expenses" class="btn-return-ledger">
+          &larr; Return to Expense Ledger
+        </a>
+        <a href="assets/vouchers/EXP-CFSP-04.pdf" download="EXP-CFSP-04-INV-LOG-4412.pdf" class="btn-download-voucher" title="Download official verified voucher PDF document">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Download Voucher PDF</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Voucher 05: INV-CL-9920 (Pending) -->
+  <aside id="voucher-05" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="v05-title">
+    <div class="modal-dialog voucher-modal-dialog">
+      <a href="#expenses" class="modal-close-btn" aria-label="Close Voucher Details">&times;</a>
+      
+      <div class="voucher-modal-header">
+        <div class="voucher-modal-icon icon-pending" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <div>
+          <h3 id="v05-title" class="voucher-modal-title">Expense Voucher Details</h3>
+          <p class="voucher-modal-meta">
+            Invoice: <strong>INV-CL-9920</strong> &bull; Expense ID: <strong>EXP-CFSP-05</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="voucher-details-grid">
+        <div class="voucher-field voucher-field-full">
+          <span class="voucher-field-label">Expense Description</span>
+          <p class="voucher-field-value">Logistics Hub Sanitation &amp; Pest Barrier</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Budget Category</span>
+          <p class="voucher-field-value">Maintenance</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Submission Date</span>
+          <p class="voucher-field-value">08 Nov 2026</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Claimed Amount</span>
+          <p class="voucher-amount-value amount-pending">₹8,500</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Audit Verification Status</span>
+          <div>
+            <span class="status-pill status-pending">Pending</span>
+          </div>
+        </div>
+        <div class="voucher-field voucher-field-full">
+          <span class="voucher-field-label">Auditor Verification &amp; Escrow Notes</span>
+          <div class="voucher-audit-box">
+            <p class="voucher-audit-text">
+              Held in escrow reserve. Pending vendor invoice matching and facility manager sign-off. ZERO funds deducted from campaign balance.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="voucher-actions">
+        <a href="#expenses" class="btn-return-ledger">
+          &larr; Return to Expense Ledger
+        </a>
+        <a href="assets/vouchers/EXP-CFSP-05.pdf" download="EXP-CFSP-05-INV-CL-9920.pdf" class="btn-download-voucher" title="Download official pending voucher PDF document">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Download Voucher PDF</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Voucher 06: TAX-DIS-1102 (Rejected) -->
+  <aside id="voucher-06" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="v06-title">
+    <div class="modal-dialog voucher-modal-dialog">
+      <a href="#expenses" class="modal-close-btn" aria-label="Close Voucher Details">&times;</a>
+      
+      <div class="voucher-modal-header">
+        <div class="voucher-modal-icon icon-rejected" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+        </div>
+        <div>
+          <h3 id="v06-title" class="voucher-modal-title">Expense Voucher Details</h3>
+          <p class="voucher-modal-meta">
+            Invoice: <strong>TAX-DIS-1102</strong> &bull; Expense ID: <strong>EXP-CFSP-06</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="voucher-details-grid">
+        <div class="voucher-field voucher-field-full">
+          <span class="voucher-field-label">Expense Description</span>
+          <p class="voucher-field-value">Unapproved Private Taxi Conveyance</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Budget Category</span>
+          <p class="voucher-field-value">Travel</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Review Date</span>
+          <p class="voucher-field-value">09 Nov 2026</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Disallowed Amount</span>
+          <p class="voucher-amount-value amount-rejected">₹3,200</p>
+        </div>
+        <div class="voucher-field">
+          <span class="voucher-field-label">Audit Verification Status</span>
+          <div>
+            <span class="status-pill status-rejected">Rejected</span>
+          </div>
+        </div>
+        <div class="voucher-field voucher-field-full">
+          <span class="voucher-field-label">Auditor Verification &amp; Escrow Notes</span>
+          <div class="voucher-audit-box">
+            <p class="voucher-audit-text">
+              Disallowed by audit committee under NGO procurement policy (unauthorized personal conveyance). Zero organization liability; zero funds disbursed.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="voucher-actions">
+        <a href="#expenses" class="btn-return-ledger">
+          &larr; Return to Expense Ledger
+        </a>
+        <a href="assets/vouchers/EXP-CFSP-06.pdf" download="EXP-CFSP-06-TAX-DIS-1102.pdf" class="btn-download-voucher" title="Download official rejected voucher PDF document">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Download Voucher PDF</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+</body>
+</html>
