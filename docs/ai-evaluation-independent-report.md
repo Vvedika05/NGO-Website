@@ -870,8 +870,4 @@ Report only tests that actually ran and passed.
 Keep the project README accurate, concise enough to navigate, and detailed enough for the examiner to locate every JavaScript concept in the source.
 ```
 
-### C.4 Prompt provenance note
 
-The three correction prompts above are ChatGPT-authored prompts from the project conversation. Appendix C.2 uses the project-documentation wording requested for the final audit; it is not presented as an untouched transcript of the earlier title wording. The initial Antigravity generation prompt remains a brief because the complete verbatim prompt is not available in the current record.
-
-The prompts in this appendix must be attributed to ChatGPT as independent review instructions, not to Antigravity. Antigravity is the development assistant that received the instructions and generated or modified the project files.
