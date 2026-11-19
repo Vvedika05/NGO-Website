@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GiveTrack - NGO Donation Transparency and Volunteer Matching Platform. Real-time fund tracking, verified vouchers, and community empowerment." />
+  <title>GiveTrack | NGO Donation Transparency & Volunteer Platform</title>
+
+  <!-- Google Fonts: Manrope (Headings) & DM Sans (UI/Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Manrope:wght@400..800&display=swap" rel="stylesheet" />
+
+  <!-- Vanilla CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Accessible Theme & Mobile Navigation Controls -->
+  <!-- 1. Theme Toggle Checkbox -->
+  <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Toggle Dark Mode Theme" />
+
+  <!-- 2. Mobile Navigation Drawer Checkbox -->
+  <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox" aria-label="Toggle Mobile Navigation Menu" />
+
+  <!-- ====================================================================== -->
+  <!-- A. HEADER & PLATFORM NAVIGATION                                        -->
+  <!-- ====================================================================== -->
+  <header class="header-glass">
+    <div class="max-w-7xl header-inner">
+      
+      <!-- GiveTrack Original Logo -->
+      <a href="#home" class="brand-logo-link" onclick="AppEvents.navigateTo('dashboard')" aria-label="GiveTrack Home">
+        <img src="assets/givetrack-logo.png" alt="GiveTrack Logo — Donate, Track, Volunteer" class="brand-logo-img" />
+      </a>
+
+      <!-- Mobile Hamburger Toggle Label -->
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Open Navigation Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </label>
+
+      <!-- Main Navigation Menu (Supports Tab Switching & Deep Links) -->
+      <nav class="main-navigation" aria-label="Main Navigation">
+        <button type="button" class="nav-item app-nav-btn active" data-view="dashboard">Dashboard</button>
+        <button type="button" class="nav-item app-nav-btn" data-view="campaigns">Campaigns</button>
+        <button type="button" class="nav-item app-nav-btn" data-view="donations">Donations</button>
+        <button type="button" class="nav-item app-nav-btn" data-view="expenses">Expenses</button>
+        <button type="button" class="nav-item app-nav-btn" data-view="volunteers">Volunteers &amp; Matching</button>
+        <button type="button" class="nav-item app-nav-btn" data-view="sentinel">Integrity Sentinel</button>
+        <button type="button" class="nav-item app-nav-btn" data-view="reports">Audit Reports</button>
+      </nav>
+
+      <!-- Header Actions: Theme Switcher & Audited Non-Profit Badge -->
+      <div class="header-actions">
+        <!-- Theme Toggle Control -->
+        <label for="theme-toggle" class="theme-toggle-btn" tabindex="0" title="Switch Theme (Light / Dark)" aria-label="Toggle site theme">
+          <span class="theme-icon-light" aria-hidden="true">☀️ <span style="font-weight: 800;">Light</span></span>
+          <span class="theme-icon-dark" aria-hidden="true">🌙 <span style="font-weight: 800;">Dark</span></span>
+        </label>
+
+        <span class="badge-audited">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          Demonstration Non-Profit Platform
+        </span>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="max-w-7xl">
+
+    <!-- Print-Only Document Header (Active only in @media print) -->
+    <div class="print-only-header" aria-hidden="true">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2pt solid #073B36; padding-bottom: 8pt; margin-bottom: 12pt;">
+        <div>
+          <h1 style="font-size: 16pt; font-weight: 800; color: #073B36; margin: 0; letter-spacing: -0.01em;">GiveTrack™ Financial Transparency &amp; Audit Report</h1>
+          <p style="font-size: 8.5pt; color: #334155; margin: 2pt 0 0;">Demonstration Expenditure Reconciliation &bull; Community Food Support Programme</p>
+        </div>
+        <div style="text-align: right; font-size: 7.5pt; color: #475569; line-height: 1.35;">
+          <strong>A4 Demonstration Report</strong><br>
+          Generated: Academic Non-Profit Ledger Prototype
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Interactive Application Controls Toolbar -->
+    <div class="gt-app-toolbar">
+      <div class="toolbar-left">
+        <span class="toolbar-status-dot"></span>
+        <span class="toolbar-status-text">GiveTrack Live Interactive Application &bull; Local Storage Synchronized</span>
+      </div>
+      <div class="toolbar-actions">
+        <button type="button" id="btn-toggle-failure" class="btn-toolbar-toggle" onclick="AppEvents.toggleSimulatedFailure()">⚡ Network Error: OFF</button>
+        <button type="button" id="btn-reset-data" class="btn-toolbar-reset" onclick="AppEvents.resetDemoData()">↺ Reset Demo Data</button>
+      </div>
+    </div>
+
+    <!-- ==================================================================== -->
+    <!-- VIEW 1: INTELLIGENT DASHBOARD (Flagship Overview & Dynamic Analytics) -->
+    <!-- ==================================================================== -->
+    <section id="view-dashboard" class="app-view-section active-view">
+
+      <!-- Flagship Welcome Hero -->
+      <div class="welcome-hero" style="margin-bottom: 2rem;">
+        <div class="hero-grid">
+          <!-- Left: Platform Mission & Quick Actions -->
+          <div class="hero-content">
+            <span class="badge-audited" style="margin-bottom: 0.75rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              100% Reconciled Financial Ledger
+            </span>
+
+            <h1 class="hero-title">
+              Every Contribution. <span class="hero-highlight">Accounted For.</span>
+            </h1>
+
+            <p class="hero-subtitle hero-lead">
+              GiveTrack links every simulated donation to illustrative expense vouchers, verified vendors, and community impact records. Explore our live financial reconciliation statement and volunteer matching opportunities below.
+            </p>
+
+            <div class="hero-cta-group">
+              <button type="button" class="btn-primary" onclick="AppEvents.openAddDonationModal()">
+                Record Contribution
+              </button>
+              <button type="button" class="btn-orange" onclick="AppEvents.openRegisterVolunteerModal()">
+                Join as Volunteer
+              </button>
+              <button type="button" class="btn-subtle" onclick="AppEvents.openAddExpenseModal()">
+                Log Expense Voucher
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Authentic Documentary Field Photography -->
+          <div class="hero-photo-wrap">
+            <picture>
+              <source media="(width < 40rem)" srcset="assets/campaign-mobile.jpg" />
+              <source media="(width >= 40rem)" srcset="assets/campaign-desktop.jpg" />
+              <img
+                src="assets/campaign-desktop.jpg"
+                alt="Community volunteers distributing nutritional ration kits to families in Bengaluru"
+                class="hero-photo-img"
+                loading="eager"
+                width="800"
+                height="533" />
+            </picture>
+            <div class="hero-photo-badge">
+              <span>Verified Field Impact &bull; Bengaluru Urban Relief Hub</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Academic Demonstration Reconciliation Formula Bar -->
+      <div class="reconciliation-card" style="margin-bottom: 2rem;">
+        <div class="reconciliation-formula">
+          Ledger Parity Invariant: <span id="formula-spent">₹1,88,000 Verified Disbursements</span> + <span id="formula-reserve">₹87,000 Remaining Reserve</span> = <span id="formula-raised">₹2,75,000 Total Contributions</span>
+        </div>
+        <p style="margin: 0.5rem 0 0; font-size: 0.85rem; color: var(--color-muted);">
+          Academic Demonstration Mode: Every simulated disbursement corresponds to illustrative voucher records. Unallocated funds represent simulated uncommitted project reserves. GiveTrack is an educational prototype and does not process real payments or hold funds in bank custody.
+        </p>
+      </div>
+
+      <!-- Key Dynamic Financial Metrics Grid -->
+      <div class="stats-grid" style="margin-bottom: 2rem;">
+        <div class="stat-box">
+          <span class="stat-label">Total Backer Contributions</span>
+          <div class="stat-val text-turquoise" id="metric-total-donations">₹2,75,000</div>
+          <span class="stat-note">Across active programmes</span>
+        </div>
+
+        <div class="stat-box">
+          <span class="stat-label">Verified Disbursements</span>
+          <div class="stat-val text-deep-teal" id="metric-total-expenses">₹1,88,000</div>
+          <span class="stat-note">Reconciled via verified vouchers</span>
+        </div>
+
+        <div class="stat-box">
+          <span class="stat-label">Uncommitted Reserve Balance</span>
+          <div class="stat-val text-orange" id="metric-remaining-funds">₹87,000</div>
+          <span class="stat-note">Simulated project balance</span>
+        </div>
+
+        <div class="stat-box">
+          <span class="stat-label">Fund Deployment Ratio</span>
+          <div class="stat-val text-success" id="metric-fund-ratio">68.4%</div>
+          <span class="stat-note">Target efficiency &gt; 65%</span>
+        </div>
+
+        <div class="stat-box">
+          <span class="stat-label">Active Campaigns</span>
+          <div class="stat-val" id="metric-active-campaigns">4</div>
+          <span class="stat-note">Open for public funding</span>
+        </div>
+
+        <div class="stat-box">
+          <span class="stat-label">Verified Donors</span>
+          <div class="stat-val" id="metric-total-donors">6</div>
+          <span class="stat-note">Unique backer IDs</span>
+        </div>
+
+        <div class="stat-box">
+          <span class="stat-label">Registered Volunteers</span>
+          <div class="stat-val" id="metric-total-volunteers">6</div>
+          <span class="stat-note">Active community roster</span>
+        </div>
+
+        <div class="stat-box">
+          <span class="stat-label">Pending Shift Applications</span>
+          <div class="stat-val" id="metric-pending-apps">1</div>
+          <span class="stat-note">Awaiting field induction</span>
+        </div>
+      </div>
+
+      <!-- Integrity Sentinel Alert Summary Banner -->
+      <div id="dashboard-sentinel-banner" class="sentinel-summary-banner status-all-clear"></div>
+
+      <!-- Interactive Responsive SVG Charts -->
+      <div class="transparency-layout" style="margin-bottom: 2rem;">
+        <div class="gt-card">
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.35rem;">
+            Campaign Contributions vs Verified Expenses
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--color-muted); margin-bottom: 1rem;">
+            Comparative visual breakdown of donor capital inflow versus verified vendor disbursements.
+          </p>
+          <div id="chart-donations-vs-expenses"></div>
+        </div>
+
+        <div class="gt-card">
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.35rem;">
+            Expense Category Allocation
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--color-muted); margin-bottom: 1rem;">
+            Proportional breakdown of verified expenditures across functional budget categories.
+          </p>
+          <div id="chart-category-allocation"></div>
+        </div>
+      </div>
+
+      <!-- Recent Ledger Activity Feed -->
+      <div class="gt-card" style="margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 0.25rem;">Recent Ledger Activity</h3>
+            <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">Real-time stream of recorded contributions and verified disbursements.</p>
+          </div>
+          <button type="button" class="btn-subtle" onclick="AppEvents.navigateTo('donations')">Full Ledger &rarr;</button>
+        </div>
+        <div id="dashboard-recent-activity"></div>
+      </div>
+
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- VIEW 2: CAMPAIGN PORTFOLIO MANAGEMENT                                -->
+    <!-- ==================================================================== -->
+    <section id="view-campaigns" class="app-view-section">
+      <div class="section-toolbar">
+        <div>
+          <h2 style="font-size: 1.4rem; font-weight: 800; margin: 0 0 0.25rem;">Campaign Portfolio &amp; Capital Allocation</h2>
+          <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">Manage initiatives, track fundraising progress, and monitor remaining fund balances.</p>
+        </div>
+        <button type="button" class="btn-primary" onclick="AppEvents.openAddCampaignModal()">+ Create Campaign</button>
+      </div>
+
+      <!-- Filters & Sorting -->
+      <div class="section-toolbar" style="margin-top: 0;">
+        <div class="filter-group">
+          <input type="text" id="filter-campaign-search" class="filter-input" placeholder="Search campaigns by name, ID..." />
+          <select id="filter-campaign-category" class="filter-select">
+            <option value="all">All Categories</option>
+          </select>
+          <select id="filter-campaign-status" class="filter-select">
+            <option value="all">All Statuses</option>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+            <option value="paused">Paused</option>
+          </select>
+          <select id="filter-campaign-sort" class="filter-select">
+            <option value="progress_desc">Sort by Progress (High &rarr; Low)</option>
+            <option value="progress_asc">Sort by Progress (Low &rarr; High)</option>
+            <option value="target_desc">Sort by Target (High &rarr; Low)</option>
+            <option value="name_asc">Sort by Name (A &rarr; Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Dynamic Campaigns Grid -->
+      <div id="campaigns-grid-container" class="campaigns-interactive-grid"></div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- VIEW 3: DONATION MANAGEMENT & INFLOW LEDGER                          -->
+    <!-- ==================================================================== -->
+    <section id="view-donations" class="app-view-section">
+      <div class="section-toolbar">
+        <div>
+          <h2 style="font-size: 1.4rem; font-weight: 800; margin: 0 0 0.25rem;">Donations Ledger &amp; Inflow Registry</h2>
+          <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">Immutable record of community contributions with unique transaction reference enforcement.</p>
+        </div>
+        <button type="button" class="btn-primary" onclick="AppEvents.openAddDonationModal()">+ Record Contribution</button>
+      </div>
+
+      <!-- Filters & Sorting -->
+      <div class="section-toolbar" style="margin-top: 0;">
+        <div class="filter-group">
+          <input type="text" id="filter-donation-search" class="filter-input" placeholder="Search by donor, tx code, ID..." />
+          <select id="filter-donation-campaign" class="filter-select">
+            <option value="all">All Campaigns</option>
+          </select>
+          <div style="display: inline-flex; align-items: center; gap: 0.35rem;">
+            <label for="filter-donation-date-from" style="font-size: 0.75rem; color: var(--color-muted); font-weight: 600;">From:</label>
+            <input type="date" id="filter-donation-date-from" class="filter-input" style="max-width: 135px; padding: 0.35rem 0.5rem;" />
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 0.35rem;">
+            <label for="filter-donation-date-to" style="font-size: 0.75rem; color: var(--color-muted); font-weight: 600;">To:</label>
+            <input type="date" id="filter-donation-date-to" class="filter-input" style="max-width: 135px; padding: 0.35rem 0.5rem;" />
+          </div>
+          <select id="filter-donation-sort" class="filter-select">
+            <option value="date_desc">Newest First</option>
+            <option value="date_asc">Oldest First</option>
+            <option value="amount_desc">Highest Amount</option>
+            <option value="amount_asc">Lowest Amount</option>
+          </select>
+        </div>
+        <span id="donations-filtered-total" class="filter-count-badge"></span>
+      </div>
+
+      <!-- Donations Table -->
+      <div class="table-wrap gt-card" style="padding: 0; overflow-x: auto;">
+        <table class="gt-data-table">
+          <thead>
+            <tr>
+              <th>Donation ID</th>
+              <th>Donor Name</th>
+              <th>Campaign Name</th>
+              <th>Amount (₹)</th>
+              <th>Date</th>
+              <th>Transaction Ref</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="donations-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- VIEW 4: EXPENSE MANAGEMENT & VOUCHER LEDGER                          -->
+    <!-- ==================================================================== -->
+    <section id="view-expenses" class="app-view-section">
+      <div class="section-toolbar">
+        <div>
+          <h2 style="font-size: 1.4rem; font-weight: 800; margin: 0 0 0.25rem;">Expenditure Vouchers &amp; Disbursement Ledger</h2>
+          <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">Demonstration disbursement records with automated deficit protection and missing invoice flags.</p>
+        </div>
+        <button type="button" class="btn-primary" onclick="AppEvents.openAddExpenseModal()">+ Log Expense Voucher</button>
+      </div>
+
+      <!-- Filters & Sorting -->
+      <div class="section-toolbar" style="margin-top: 0;">
+        <div class="filter-group">
+          <input type="text" id="filter-expense-search" class="filter-input" placeholder="Search by title, bill ref, ID..." />
+          <select id="filter-expense-campaign" class="filter-select">
+            <option value="all">All Campaigns</option>
+          </select>
+          <select id="filter-expense-category" class="filter-select">
+            <option value="all">All Categories</option>
+            <option value="Grains & Pulses">Grains & Pulses</option>
+            <option value="Produce">Produce & Vegetables</option>
+            <option value="Packaging">Packaging Kits</option>
+            <option value="Logistics">Logistics & Transportation</option>
+            <option value="Maintenance">Maintenance & Sanitation</option>
+          </select>
+        </div>
+        <span id="expenses-filtered-total" class="filter-count-badge"></span>
+      </div>
+
+      <!-- Expenses Table -->
+      <div class="table-wrap gt-card" style="padding: 0; overflow-x: auto;">
+        <table class="gt-data-table">
+          <thead>
+            <tr>
+              <th>Voucher ID</th>
+              <th>Disbursement Item</th>
+              <th>Campaign</th>
+              <th>Category</th>
+              <th>Amount (₹)</th>
+              <th>Date</th>
+              <th>Audit Status</th>
+              <th>Bill Reference</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="expenses-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- VIEW 5: VOLUNTEERS & RULE-BASED SKILL MATCHING                       -->
+    <!-- ==================================================================== -->
+    <section id="view-volunteers" class="app-view-section">
+      <div class="section-toolbar">
+        <div>
+          <h2 style="font-size: 1.4rem; font-weight: 800; margin: 0 0 0.25rem;">Volunteer Community &amp; Opportunity Dispatch</h2>
+          <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">Register community volunteers, schedule field shifts, and run rule-based skill matching.</p>
+        </div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button type="button" class="btn-primary" onclick="AppEvents.openCreateOpportunityModal()">+ Create Opportunity</button>
+          <button type="button" class="btn-orange" onclick="AppEvents.openRegisterVolunteerModal()">+ Register Volunteer</button>
+        </div>
+      </div>
+
+      <!-- Volunteer Roster Section -->
+      <div style="margin-top: 1.5rem;">
+        <div class="section-toolbar" style="margin-top: 0; padding: 0.5rem 0;">
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0;">Registered Volunteer Roster</h3>
+          <div class="filter-group">
+            <input type="text" id="filter-volunteer-search" class="filter-input" placeholder="Search by name, email..." />
+            <select id="filter-volunteer-skill" class="filter-select">
+              <option value="all">All Skills</option>
+            </select>
+            <select id="filter-volunteer-status" class="filter-select">
+              <option value="all">All Statuses</option>
+              <option value="active">Active</option>
+              <option value="pending">Pending</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+        </div>
+        <div id="volunteers-grid-container" class="volunteers-interactive-grid"></div>
+      </div>
+
+      <!-- Volunteer Opportunities Section -->
+      <div style="margin-top: 2.5rem;">
+        <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0 0 0.75rem;">Field Opportunities &amp; Upcoming Shifts</h3>
+        <div id="opportunities-grid-container" class="opportunities-interactive-grid"></div>
+      </div>
+
+      <!-- Skill Matcher Engine Results Panel -->
+      <div style="margin-top: 2.5rem;">
+        <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0 0 0.5rem;">Rule-Based Skill Matcher Engine</h3>
+        <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0 0 1rem;">
+          Calculates transparent deterministic match percentages using <code>(Matched Skills / Total Required Skills) &times; 100</code> with itemised skill tags.
+        </p>
+        <div id="skill-matching-results" class="skill-matching-panel"></div>
+      </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- VIEW 6: INTEGRITY SENTINEL (Financial Anomaly Detection)              -->
+    <!-- ==================================================================== -->
+    <section id="view-sentinel" class="app-view-section">
+      <div class="section-toolbar">
+        <div>
+          <h2 style="font-size: 1.4rem; font-weight: 800; margin: 0 0 0.25rem;">GiveTrack Integrity Sentinel</h2>
+          <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">Continuous automated financial anomaly engine safeguarding donor capital and audit integrity.</p>
+        </div>
+        <div class="filter-group">
+          <select id="filter-sentinel-severity" class="filter-select">
+            <option value="all">All Severities</option>
+            <option value="HIGH">High Severity</option>
+            <option value="MEDIUM">Medium Severity</option>
+            <option value="LOW">Low Severity</option>
+          </select>
+          <select id="filter-sentinel-category" class="filter-select">
+            <option value="all">All Anomaly Rules</option>
+            <option value="Duplicate Reference">Duplicate Reference</option>
+            <option value="Missing Invoice Reference">Missing Invoice Reference</option>
+            <option value="Campaign Deficit">Campaign Deficit</option>
+            <option value="Independent Sum Reconciliation">Independent Sum Reconciliation</option>
+            <option value="Statistical Outlier">Statistical Outlier</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="gt-card" style="margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--color-deep-teal);">
+          Automated Sentinel Verification Rules
+        </h3>
+        <ul style="font-size: 0.85rem; color: var(--color-ink); line-height: 1.7; padding-left: 1.25rem; margin: 0;">
+          <li><strong>Duplicate Transaction References:</strong> Flags identical bank/UPI transfer codes to prevent double-counting of donor capital.</li>
+          <li><strong>Missing Bill References:</strong> Detects disbursements logged without invoice numbers or vendor receipts.</li>
+          <li><strong>Overdrawn Campaign Balances:</strong> Identifies any campaign where verified expenditures exceed total raised contributions.</li>
+          <li><strong>Reconciliation Imbalance:</strong> Verifies that <code>Total Raised = Verified Spent + Remaining Reserve</code> holds across all records.</li>
+          <li><strong>Statistical Outlier Detection:</strong> Flags individual disbursements exceeding 2.5&times; the historical category average for administrative review.</li>
+        </ul>
+      </div>
+
+      <!-- Sentinel Anomaly Cards Container -->
+      <div id="sentinel-alerts-container"></div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- VIEW 7: DYNAMIC REPORTS & ARCHIVAL STATEMENTS                         -->
+    <!-- ==================================================================== -->
+    <section id="view-reports" class="app-view-section">
+      <div class="section-toolbar">
+        <div>
+          <h2 style="font-size: 1.4rem; font-weight: 800; margin: 0 0 0.25rem;">Financial Transparency Reports &amp; Archival Statements</h2>
+          <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">Live demonstration statements, campaign allocation breakdowns, and ink-efficient A4 print exports.</p>
+        </div>
+        <button type="button" class="btn-primary" onclick="window.print()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 0.4rem;"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          Print Financial Report (Ctrl + P)
+        </button>
+      </div>
+
+      <!-- Dynamic Statement Container -->
+      <div id="reports-summary-container"></div>
+
+      <!-- Governance & Academic Demonstration Cards -->
+      <div class="reports-grid" style="margin-top: 1.5rem;">
+        <div class="report-card">
+          <div>
+            <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.35rem; color: var(--color-deep-teal);">Demonstration Ledger Review</h3>
+            <p style="font-size: 0.8rem; color: var(--color-muted); margin-bottom: 0.75rem;">Academic Demonstration Ledger Model</p>
+            <ul class="report-list" style="font-size: 0.85rem; color: var(--color-ink); padding-left: 1.25rem; line-height: 1.6;">
+              <li>Automated mathematical reconciliation matches verified ledger</li>
+              <li>Illustrative voucher audit trail with itemised category allocation</li>
+              <li>Generated for educational and laboratory evaluation only</li>
+            </ul>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--color-turquoise); font-weight: 700;">Ref: LAB3-DEMO-AUDIT-2026</p>
+        </div>
+
+        <div class="report-card">
+          <div>
+            <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.35rem; color: var(--color-deep-teal);">Tax Exemption Disclosure</h3>
+            <p style="font-size: 0.8rem; color: var(--color-muted); margin-bottom: 0.75rem;">Educational Simulation Notice</p>
+            <ul class="report-list" style="font-size: 0.85rem; color: var(--color-ink); padding-left: 1.25rem; line-height: 1.6;">
+              <li>Illustrative receipts generated for non-profit workflow demonstration</li>
+              <li>No real tax exemption benefits or statutory filings implied</li>
+              <li>All donor names, IDs, and financial figures are simulated data</li>
+            </ul>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--color-turquoise); font-weight: 700;">Educational Prototype</p>
+        </div>
+
+        <div class="report-card">
+          <div>
+            <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.35rem; color: var(--color-deep-teal);">Fund Allocation &amp; Safety Notice</h3>
+            <p style="font-size: 0.8rem; color: var(--color-muted); margin-bottom: 0.75rem;">Illustrative Beneficiary Model</p>
+            <ul class="report-list" style="font-size: 0.85rem; color: var(--color-ink); padding-left: 1.25rem; line-height: 1.6;">
+              <li>Disbursements illustrate direct family ration and medical allocations</li>
+              <li>Automated deficit prevention prohibits unbacked fund transfers</li>
+              <li>Application does not process real banking payments or hold funds</li>
+            </ul>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--color-turquoise); font-weight: 700;">Demonstration Only • Zero Real Funds</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Academic Demonstration Print Declaration (Displayed only when printing) -->
+    <div class="print-footer-declaration">
+      <p><strong>GIVETRACK DEMONSTRATION AUDIT STATEMENT (A4 ARCHIVAL PRINT RECORD):</strong></p>
+      <p>Academic Prototype Declaration: This document illustrates automated ledger reconciliation for the GiveTrack NGO platform demonstration. Simulated donor contributions: ₹2,75,000. Verified programme disbursements: ₹1,88,000. Simulated uncommitted reserve balance: ₹87,000. All vouchers and expense records represent illustrative data for laboratory evaluation. GiveTrack does not process real financial transactions or hold funds in bank custody.</p>
+    </div>
+
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- FOOTER & SOCIAL LINKS                                                  -->
+  <!-- ====================================================================== -->
+  <footer class="site-footer">
+    <div class="max-w-7xl footer-grid">
+      <div>
+        <div class="footer-logo-wrap">
+          <img src="assets/givetrack-logo.png" alt="GiveTrack Logo" class="footer-logo-img" />
+        </div>
+        <p style="font-size: 0.8rem; font-weight: 800; color: #FBBF24; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+          Donate • Track • Volunteer
+        </p>
+        <p style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.9); line-height: 1.6; max-width: 22rem;">
+          GiveTrack is an open NGO donation transparency and volunteer management platform empowering donors with real-time voucher-verified records.
+        </p>
+        <div class="social-links" aria-label="GiveTrack Social Channels">
+          <a href="https://instagram.com/givetrack" target="_blank" rel="noopener" class="social-pill" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="https://linkedin.com/company/givetrack" target="_blank" rel="noopener" class="social-pill" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="https://facebook.com/givetrack" target="_blank" rel="noopener" class="social-pill" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Platform</p>
+        <ul class="footer-links-list">
+          <li><a href="#dashboard" onclick="AppEvents.navigateTo('dashboard')">Dashboard</a></li>
+          <li><a href="#campaigns" onclick="AppEvents.navigateTo('campaigns')">Active Campaigns</a></li>
+          <li><a href="#donations" onclick="AppEvents.navigateTo('donations')">Donations Ledger</a></li>
+          <li><a href="#expenses" onclick="AppEvents.navigateTo('expenses')">Expense Ledger</a></li>
+          <li><a href="#volunteers" onclick="AppEvents.navigateTo('volunteers')">Volunteer Matching</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Governance</p>
+        <ul class="footer-links-list">
+          <li><a href="#reports" onclick="AppEvents.navigateTo('reports')">Audit Reports</a></li>
+          <li><a href="#reports" onclick="AppEvents.navigateTo('reports')">Tax Exemption Notice</a></li>
+          <li><a href="#reports" onclick="AppEvents.navigateTo('reports')">Fund Allocation Model</a></li>
+          <li><a href="#sentinel" onclick="AppEvents.navigateTo('sentinel')">Integrity Sentinel</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Demonstration Ledger</p>
+        <p style="font-size: 0.825rem; color: rgba(255, 255, 255, 0.85); line-height: 1.55; margin-bottom: 0.75rem;">
+          Donation receipts and financial records are generated for academic demonstration and ledger tracking only. The application does not process real payments or hold funds in bank custody.
+        </p>
+        <p style="font-size: 0.825rem; color: #FBBF24; font-weight: 700;">
+          Bengaluru Urban Relief Hub, Karnataka
+        </p>
+      </div>
+    </div>
+
+    <div class="max-w-7xl footer-bottom-bar">
+      <span>&copy; 2026 GiveTrack Foundation. All Rights Reserved.</span>
+      <span>Donate • Track • Volunteer &nbsp;|&nbsp; Community Transparency Platform</span>
+    </div>
+  </footer>
+
+  <!-- ====================================================================== -->
+  <!-- MODALS: CAMPAIGN, DONATION, EXPENSE, VOLUNTEER, OPPORTUNITY            -->
+  <!-- ====================================================================== -->
+
+  <!-- Modal 1: Campaign Form -->
+  <aside id="modal-campaign" class="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-campaign-title">
+    <div class="app-modal-dialog">
+      <button type="button" class="app-modal-close" onclick="ModalManager.closeAll()" aria-label="Close Modal">&times;</button>
+      <h3 id="modal-campaign-title" style="margin: 0 0 1rem; color: var(--color-deep-teal); font-weight: 800;">Create New Campaign</h3>
+      <form id="form-campaign">
+        <input type="hidden" id="campaign-id" name="campaign-id" />
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="campaign-name">Campaign Name *</label>
+          <input type="text" id="campaign-name" name="campaign-name" class="form-control" required minlength="3" placeholder="e.g. Clean Drinking Water Initiative" />
+        </div>
+        <div class="form-row" style="margin-bottom: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="campaign-category">Category *</label>
+            <select id="campaign-category" name="campaign-category" class="form-control" required>
+              <option value="Food Security">Food Security</option>
+              <option value="Education">Education</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Environment">Environment</option>
+              <option value="Disaster Relief">Disaster Relief</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="campaign-target">Fundraising Target (₹) *</label>
+            <input type="number" id="campaign-target" name="campaign-target" class="form-control" required min="1000" step="100" placeholder="e.g. 150000" />
+          </div>
+        </div>
+        <div class="form-row" style="margin-bottom: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="campaign-start-date">Start Date *</label>
+            <input type="date" id="campaign-start-date" name="campaign-start-date" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="campaign-end-date">End Date *</label>
+            <input type="date" id="campaign-end-date" name="campaign-end-date" class="form-control" required />
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="campaign-status">Campaign Status *</label>
+          <select id="campaign-status" name="campaign-status" class="form-control" required>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+            <option value="paused">Paused</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="campaign-desc">Campaign Description</label>
+          <textarea id="campaign-desc" name="campaign-desc" class="form-control" rows="3" placeholder="Explain the community welfare goals and target beneficiaries..."></textarea>
+        </div>
+        <div class="form-modal-actions">
+          <button type="button" class="btn-subtle" onclick="ModalManager.closeAll()">Cancel</button>
+          <button type="submit" class="btn-primary">Save Campaign</button>
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <!-- Modal 2: Campaign Details View -->
+  <aside id="modal-campaign-details" class="app-modal" role="dialog" aria-modal="true" aria-labelledby="details-campaign-name">
+    <div class="app-modal-dialog">
+      <button type="button" class="app-modal-close" onclick="ModalManager.closeAll()" aria-label="Close Details">&times;</button>
+      <h3 id="details-campaign-name" style="margin: 0 0 0.25rem; color: var(--color-deep-teal); font-weight: 800;">Campaign Details</h3>
+      <p style="font-size: 0.8rem; color: var(--color-muted); margin-bottom: 1.25rem;">ID: <code id="details-campaign-id"></code></p>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 1.25rem; background: var(--color-surface-alt); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--color-mint-border);">
+        <div><span style="font-size: 0.75rem; color: var(--color-muted); display: block;">Target</span><strong id="details-campaign-target" style="font-size: 1rem;"></strong></div>
+        <div><span style="font-size: 0.75rem; color: var(--color-muted); display: block;">Total Raised</span><strong id="details-campaign-raised" class="amount-green" style="font-size: 1rem;"></strong></div>
+        <div><span style="font-size: 0.75rem; color: var(--color-muted); display: block;">Verified Spent</span><strong id="details-campaign-spent" style="font-size: 1rem;"></strong></div>
+        <div><span style="font-size: 0.75rem; color: var(--color-muted); display: block;">Remaining Balance</span><strong id="details-campaign-balance" class="text-success" style="font-size: 1rem;"></strong></div>
+      </div>
+
+      <div style="margin-bottom: 1.25rem;">
+        <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-deep-teal); display: block; margin-bottom: 0.25rem;">Description</span>
+        <p id="details-campaign-desc" style="font-size: 0.85rem; color: var(--color-ink); line-height: 1.5; margin: 0;"></p>
+      </div>
+
+      <div class="form-modal-actions">
+        <button type="button" class="btn-primary" onclick="ModalManager.closeAll()">Close</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Modal 3: Donation Form -->
+  <aside id="modal-donation" class="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-donation-title">
+    <div class="app-modal-dialog">
+      <button type="button" class="app-modal-close" onclick="ModalManager.closeAll()" aria-label="Close Modal">&times;</button>
+      <h3 id="modal-donation-title" style="margin: 0 0 1rem; color: var(--color-deep-teal); font-weight: 800;">Record Donor Contribution</h3>
+      <form id="form-donation">
+        <input type="hidden" id="donation-id" name="donation-id" />
+        <input type="hidden" id="donor-id" name="donor-id" />
+        
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="donor-name">Donor Full Name *</label>
+          <input type="text" id="donor-name" name="donor-name" class="form-control" required minlength="2" placeholder="e.g. Radhika Sharma" />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="donation-campaign">Select Campaign *</label>
+          <select id="donation-campaign" name="donation-campaign" class="form-control" required></select>
+        </div>
+
+        <div class="form-row" style="margin-bottom: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="donation-amount">Donation Amount (₹) *</label>
+            <input type="number" id="donation-amount" name="donation-amount" class="form-control" required min="10" step="10" placeholder="e.g. 5000" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="donation-method">Payment Method *</label>
+            <select id="donation-method" name="donation-method" class="form-control" required>
+              <option value="UPI">UPI</option>
+              <option value="Net Banking">Net Banking / NEFT</option>
+              <option value="Bank Transfer">Bank Transfer</option>
+              <option value="Debit Card">Debit Card</option>
+              <option value="Cheque">Cheque</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row" style="margin-bottom: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="donation-tx-ref">Transaction Reference ID *</label>
+            <input type="text" id="donation-tx-ref" name="donation-tx-ref" class="form-control" required minlength="5" placeholder="e.g. TXN-UPI-884012" />
+            <small class="form-help">Must be unique across all transactions.</small>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="donation-date">Contribution Date *</label>
+            <input type="date" id="donation-date" name="donation-date" class="form-control" required />
+          </div>
+        </div>
+
+        <div class="form-modal-actions">
+          <button type="button" class="btn-subtle" onclick="ModalManager.closeAll()">Cancel</button>
+          <button type="submit" class="btn-primary">Record Contribution</button>
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <!-- Modal 4: Expense Form -->
+  <aside id="modal-expense" class="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-expense-title">
+    <div class="app-modal-dialog">
+      <button type="button" class="app-modal-close" onclick="ModalManager.closeAll()" aria-label="Close Modal">&times;</button>
+      <h3 id="modal-expense-title" style="margin: 0 0 1rem; color: var(--color-deep-teal); font-weight: 800;">Log Expenditure Voucher</h3>
+      <form id="form-expense">
+        <input type="hidden" id="expense-id" name="expense-id" />
+        
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="expense-campaign">Select Campaign *</label>
+          <select id="expense-campaign" name="expense-campaign" class="form-control" required></select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="expense-title">Disbursement Item Title *</label>
+          <input type="text" id="expense-title" name="expense-title" class="form-control" required minlength="3" placeholder="e.g. 500 kg Refined Cooking Oil" />
+        </div>
+
+        <div class="form-row" style="margin-bottom: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="expense-category">Budget Category *</label>
+            <select id="expense-category" name="expense-category" class="form-control" required>
+              <option value="Grains & Pulses">Grains & Pulses</option>
+              <option value="Produce">Produce & Vegetables</option>
+              <option value="Packaging">Packaging Kits</option>
+              <option value="Logistics">Logistics & Transportation</option>
+              <option value="Maintenance">Maintenance & Sanitation</option>
+              <option value="Education Supplies">Education Supplies</option>
+              <option value="Medical Consumables">Medical Consumables</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="expense-amount">Disbursement Amount (₹) *</label>
+            <input type="number" id="expense-amount" name="expense-amount" class="form-control" required min="10" step="10" placeholder="e.g. 15000" />
+            <small class="form-help">Protected: cannot exceed available campaign funds.</small>
+          </div>
+        </div>
+
+        <div class="form-row" style="margin-bottom: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="expense-receipt-ref">Bill / Invoice Reference</label>
+            <input type="text" id="expense-receipt-ref" name="expense-receipt-ref" class="form-control" placeholder="e.g. INV-BLR-9901" />
+            <small class="form-help">Leave empty to test Missing Receipt audit flag.</small>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="expense-date">Disbursement Date *</label>
+            <input type="date" id="expense-date" name="expense-date" class="form-control" required />
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="expense-desc">Auditor &amp; Ledger Notes</label>
+          <textarea id="expense-desc" name="expense-desc" class="form-control" rows="2" placeholder="Audit inspection notes, vendor verification details..."></textarea>
+        </div>
+
+        <div class="form-modal-actions">
+          <button type="button" class="btn-subtle" onclick="ModalManager.closeAll()">Cancel</button>
+          <button type="submit" class="btn-primary">Log Expense</button>
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <!-- Modal 5: Volunteer Form -->
+  <aside id="modal-volunteer" class="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-vol-reg-title">
+    <div class="app-modal-dialog">
+      <button type="button" class="app-modal-close" onclick="ModalManager.closeAll()" aria-label="Close Modal">&times;</button>
+      <h3 id="modal-vol-reg-title" style="margin: 0 0 1rem; color: var(--color-deep-teal); font-weight: 800;">Register Community Volunteer</h3>
+      <form id="form-volunteer">
+        <input type="hidden" id="vol-id" name="vol-id" />
+        
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="vol-name">Full Name *</label>
+          <input type="text" id="vol-name" name="vol-name" class="form-control" required minlength="2" placeholder="e.g. Arjun Patel" />
+        </div>
+
+        <div class="form-row" style="margin-bottom: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="vol-email">Email Address *</label>
+            <input type="email" id="vol-email" name="vol-email" class="form-control" required placeholder="e.g. arjun@example.com" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="vol-phone">Phone Number</label>
+            <input type="tel" id="vol-phone" name="vol-phone" class="form-control" placeholder="+91 98765 43210" />
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="vol-skills">Registered Skills (comma-separated) *</label>
+          <input type="text" id="vol-skills" name="vol-skills" class="form-control" required placeholder="e.g. Food Distribution, Quality Inspection, Logistics" />
+          <small class="form-help">Used by the rule-based matching engine to calculate opportunity fit.</small>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="vol-availability">Weekly Availability *</label>
+          <select id="vol-availability" name="vol-availability" class="form-control" required>
+            <option value="Weekends (Morning)">Weekends (Morning)</option>
+            <option value="Weekends (Afternoon)">Weekends (Afternoon)</option>
+            <option value="Weekdays (Evening)">Weekdays (Evening)</option>
+            <option value="Flexible / Full-Time">Flexible / Full-Time</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="vol-status">Volunteer Status *</label>
+          <select id="vol-status" name="vol-status" class="form-control" required>
+            <option value="active">Active</option>
+            <option value="pending">Pending</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+
+        <div class="form-modal-actions">
+          <button type="button" class="btn-subtle" onclick="ModalManager.closeAll()">Cancel</button>
+          <button type="submit" class="btn-orange">Register Volunteer</button>
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <!-- Modal 6: Opportunity Creation / Edit Form -->
+  <aside id="modal-opportunity" class="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-opportunity-title">
+    <div class="app-modal-dialog">
+      <button type="button" class="app-modal-close" onclick="ModalManager.closeAll()" aria-label="Close Modal">&times;</button>
+      <h3 id="modal-opportunity-title" style="margin: 0 0 1rem; color: var(--color-deep-teal); font-weight: 800;">Create Opportunity Shift</h3>
+      <form id="form-opportunity">
+        <input type="hidden" id="opp-id" name="opp-id" />
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="opp-title">Opportunity Title *</label>
+          <input type="text" id="opp-title" name="opp-title" class="form-control" required minlength="3" placeholder="e.g. Weekend Food Distribution &amp; Quality Check" />
+        </div>
+        <div class="form-row" style="margin-bottom: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="opp-campaign">Associated Campaign *</label>
+            <select id="opp-campaign" name="opp-campaign" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="opp-capacity">Volunteer Capacity *</label>
+            <input type="number" id="opp-capacity" name="opp-capacity" class="form-control" required min="1" max="100" value="5" />
+          </div>
+        </div>
+        <div class="form-row" style="margin-bottom: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="opp-date">Shift Date *</label>
+            <input type="date" id="opp-date" name="opp-date" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="opp-timing">Timing / Hours *</label>
+            <input type="text" id="opp-timing" name="opp-timing" class="form-control" required placeholder="e.g. 09:00 - 13:00" />
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="opp-location">Reporting Location *</label>
+          <input type="text" id="opp-location" name="opp-location" class="form-control" required placeholder="e.g. Bengaluru Central Hub, Yeshwanthpur" />
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="opp-skills">Required Skills (comma-separated)</label>
+          <input type="text" id="opp-skills" name="opp-skills" class="form-control" placeholder="e.g. Food Handling, Quality Inspection, Logistics" />
+          <small class="form-help">Leave empty for an open shift with no prerequisite skills.</small>
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="opp-status">Opportunity Status *</label>
+          <select id="opp-status" name="opp-status" class="form-control" required>
+            <option value="open">Open</option>
+            <option value="filled">Filled / Full</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="opp-desc">Opportunity Description</label>
+          <textarea id="opp-desc" name="opp-desc" class="form-control" rows="2" placeholder="Tasks, instructions, safety precautions..."></textarea>
+        </div>
+        <div class="form-modal-actions">
+          <button type="button" class="btn-subtle" onclick="ModalManager.closeAll()">Cancel</button>
+          <button type="submit" class="btn-primary">Save Opportunity</button>
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <!-- Modal 6: Enroll Volunteer for Opportunity -->
+  <aside id="modal-apply-opportunity" class="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-apply-heading">
+    <div class="app-modal-dialog">
+      <button type="button" class="app-modal-close" onclick="ModalManager.closeAll()" aria-label="Close Modal">&times;</button>
+      <h3 id="modal-apply-heading" style="margin: 0 0 0.5rem; color: var(--color-deep-teal); font-weight: 800;">Enroll Volunteer for Shift</h3>
+      <p style="font-size: 0.85rem; color: var(--color-muted); margin-bottom: 1rem;">Shift Opportunity: <strong id="apply-opp-title" style="color: var(--color-ink);"></strong></p>
+      <form id="form-apply-opportunity">
+        <input type="hidden" id="apply-opp-id" name="apply-opp-id" />
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label class="form-label" for="apply-volunteer-select">Select Candidate Volunteer *</label>
+          <select id="apply-volunteer-select" name="apply-volunteer-select" class="form-control" required></select>
+          <small class="form-help">Duplicate enrollments for the same volunteer and shift are prevented via Set.</small>
+        </div>
+        <div class="form-modal-actions">
+          <button type="button" class="btn-subtle" onclick="ModalManager.closeAll()">Cancel</button>
+          <button type="submit" class="btn-primary">Confirm Enrollment</button>
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Global Asynchronous Loading Overlay -->
+  <div id="global-loading-overlay" class="global-loading-overlay" aria-hidden="true">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Synchronizing...</div>
+  </div>
+
+  <!-- GiveTrack Lab 3 Client Application Script -->
+  <script src="script.js" defer></script>
+
+</body>
+</html>

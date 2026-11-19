@@ -1,0 +1,177 @@
+{
+  "timestamp": "2026-11-19T16:31:28.556Z",
+  "passCount": 34,
+  "total": 34,
+  "testResults": [
+    {
+      "id": 1,
+      "name": "openAddCampaignModal launches modal",
+      "pass": true
+    },
+    {
+      "id": 2,
+      "name": "toggleSimulatedFailure toggles network state",
+      "pass": true
+    },
+    {
+      "id": 3,
+      "name": "resetDemoData actually restores modified data to verified baseline",
+      "pass": true
+    },
+    {
+      "id": 4,
+      "name": "All inline event handlers resolve to existing methods",
+      "pass": true
+    },
+    {
+      "id": 5,
+      "name": "Duplicate transaction reference rejected via Set",
+      "pass": true
+    },
+    {
+      "id": 6,
+      "name": "Editing donation preserving its own tx ref succeeds",
+      "pass": true
+    },
+    {
+      "id": 7,
+      "name": "Donation to inactive/completed campaign rejected",
+      "pass": true
+    },
+    {
+      "id": 8,
+      "name": "Switching donation to inactive campaign rejected",
+      "pass": true
+    },
+    {
+      "id": 9,
+      "name": "Donor ID continuity across repeat contributions",
+      "pass": true
+    },
+    {
+      "id": 10,
+      "name": "Expense exceeding campaign balance rejected",
+      "pass": true
+    },
+    {
+      "id": 11,
+      "name": "Editing expense validates against destination balance",
+      "pass": true
+    },
+    {
+      "id": 12,
+      "name": "Moving expense credits origin and debits destination",
+      "pass": true
+    },
+    {
+      "id": 13,
+      "name": "directApplyVolunteer validates volunteer existence & status",
+      "pass": true
+    },
+    {
+      "id": 14,
+      "name": "directApplyVolunteer validates opportunity existence & status",
+      "pass": true
+    },
+    {
+      "id": 15,
+      "name": "directApplyVolunteer rejects enrollment when capacity reached",
+      "pass": true
+    },
+    {
+      "id": 16,
+      "name": "Duplicate volunteer enrollment prevented via Set",
+      "pass": true
+    },
+    {
+      "id": 17,
+      "name": "Skill matching calculates 0% for zero overlap",
+      "pass": true
+    },
+    {
+      "id": 18,
+      "name": "Opportunity with zero required skills indicates Open Shift",
+      "pass": true
+    },
+    {
+      "id": 19,
+      "name": "Deliberate balance corruption triggers Sentinel Check 4 discrepancy alert",
+      "pass": true
+    },
+    {
+      "id": 20,
+      "name": "Sentinel Check 5 detects statistical disbursement outlier",
+      "pass": true
+    },
+    {
+      "id": 21,
+      "name": "Actual asynchronous failure simulation rejects with HTTP 503 error",
+      "pass": true
+    },
+    {
+      "id": 22,
+      "name": "Actual asynchronous failure renders error toast with interactive retry button",
+      "pass": true
+    },
+    {
+      "id": 23,
+      "name": "Clicking retry button successfully completes and persists failed transaction with zero duplicates",
+      "pass": true
+    },
+    {
+      "id": 24,
+      "name": "localStorage schema and data persists across page reload via CDP",
+      "pass": true
+    },
+    {
+      "id": 25,
+      "name": "Invalid localStorage recovery restores baseline without crashing",
+      "pass": true
+    },
+    {
+      "id": 26,
+      "name": "Donation modal initializes with local today date by default",
+      "pass": true
+    },
+    {
+      "id": 27,
+      "name": "Donation editing preserves original historical date",
+      "pass": true
+    },
+    {
+      "id": 28,
+      "name": "Complete donation and expense CRUD cycle with updated value verification",
+      "pass": true
+    },
+    {
+      "id": 29,
+      "name": "Complete volunteer and opportunity CRUD cycle with updated value verification",
+      "pass": true
+    },
+    {
+      "id": 30,
+      "name": "Form constraints reject non-positive amounts and missing mandatory fields with visible feedback",
+      "pass": true
+    },
+    {
+      "id": 31,
+      "name": "Interactive search and filter controls dynamically filter rendered DOM records",
+      "pass": true
+    },
+    {
+      "id": 32,
+      "name": "Theme switcher cleanly toggles design tokens between light and dark",
+      "pass": true
+    },
+    {
+      "id": 33,
+      "name": "All status indicators display exactly one icon via CSS pseudo-element with zero duplicate text glyphs",
+      "pass": true
+    },
+    {
+      "id": 34,
+      "name": "Campaign balance dynamically recomputed on disbursement addition and removal",
+      "pass": true
+    }
+  ]
+}
